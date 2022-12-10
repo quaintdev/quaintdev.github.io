@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>rohanrd.xyz</title>
+    <link>https://rohanrd.xyz/</link>
+    <description>Recent content on rohanrd.xyz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 09 Dec 2022 23:36:47 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Surprising Capability of AI: Code Generation</title>
+      <link>https://rohanrd.xyz/posts/surprising-capability-of-ai-code-generation/</link>
+      <pubDate>Fri, 09 Dec 2022 23:36:47 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/surprising-capability-of-ai-code-generation/</guid>
+      <description>Software development using AI is going to be a gamechanger</description>
+    </item>
+    
+    <item>
+      <title>Self hosting Your First Application: AdGuardHome</title>
+      <link>https://rohanrd.xyz/posts/self-hosting-your-first-application-adguardhome/</link>
+      <pubDate>Sat, 03 Dec 2022 08:27:00 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/self-hosting-your-first-application-adguardhome/</guid>
+      <description>A network wide adblocker for your home</description>
+    </item>
+    
+    <item>
+      <title>Future of Social Media</title>
+      <link>https://rohanrd.xyz/posts/future-of-social-media/</link>
+      <pubDate>Tue, 29 Nov 2022 18:48:45 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/future-of-social-media/</guid>
+      <description>How decentralization is going to change social media</description>
+    </item>
+    
+    <item>
+      <title>Getting Started With Self Hosting</title>
+      <link>https://rohanrd.xyz/posts/getting-started-with-self-hosting/</link>
+      <pubDate>Sat, 09 Apr 2022 07:59:26 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/getting-started-with-self-hosting/</guid>
+      <description>Get started with your self hosting journey</description>
+    </item>
+    
+    <item>
+      <title>Why Start Self Hosting</title>
+      <link>https://rohanrd.xyz/posts/why-start-self-hosting/</link>
+      <pubDate>Wed, 23 Mar 2022 00:02:34 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/why-start-self-hosting/</guid>
+      <description>Take control back of your digital life</description>
+    </item>
+    
+    
+    
+  </channel>
+</rss>

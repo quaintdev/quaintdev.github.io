@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>self hosting on rohanrd.xyz</title>
+    <link>https://rohanrd.xyz/tags/self-hosting/</link>
+    <description>Recent content in self hosting on rohanrd.xyz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Dec 2022 08:27:00 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/tags/self-hosting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Self hosting Your First Application: AdGuardHome</title>
+      <link>https://rohanrd.xyz/posts/self-hosting-your-first-application-adguardhome/</link>
+      <pubDate>Sat, 03 Dec 2022 08:27:00 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/self-hosting-your-first-application-adguardhome/</guid>
+      <description>A network wide adblocker for your home</description>
+    </item>
+    
+    <item>
+      <title>Getting Started With Self Hosting</title>
+      <link>https://rohanrd.xyz/posts/getting-started-with-self-hosting/</link>
+      <pubDate>Sat, 09 Apr 2022 07:59:26 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/getting-started-with-self-hosting/</guid>
+      <description>Get started with your self hosting journey</description>
+    </item>
+    
+    <item>
+      <title>Why Start Self Hosting</title>
+      <link>https://rohanrd.xyz/posts/why-start-self-hosting/</link>
+      <pubDate>Wed, 23 Mar 2022 00:02:34 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/why-start-self-hosting/</guid>
+      <description>Take control back of your digital life</description>
+    </item>
+    
+  </channel>
+</rss>
