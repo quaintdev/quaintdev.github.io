@@ -2,11 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://rohanrd.xyz/posts/a-different-approach-to-social-media/</loc>
+    <lastmod>2022-12-17T01:05:29+05:30</lastmod>
+  </url><url>
     <loc>https://rohanrd.xyz/posts/</loc>
-    <lastmod>2022-12-10T23:59:27+05:30</lastmod>
+    <lastmod>2022-12-17T01:05:29+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/</loc>
-    <lastmod>2022-12-10T23:59:27+05:30</lastmod>
+    <lastmod>2022-12-17T01:05:29+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/tags/social-media/</loc>
+    <lastmod>2022-12-17T01:05:29+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/tags/</loc>
+    <lastmod>2022-12-17T01:05:29+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/posts/the-changing-landscape-of-content-consumption/</loc>
     <lastmod>2022-12-10T23:59:27+05:30</lastmod>
@@ -20,13 +29,7 @@
     <loc>https://rohanrd.xyz/posts/self-hosting-your-first-application-adguardhome/</loc>
     <lastmod>2022-12-03T08:27:00+05:30</lastmod>
   </url><url>
-    <loc>https://rohanrd.xyz/tags/</loc>
-    <lastmod>2022-12-03T08:27:00+05:30</lastmod>
-  </url><url>
     <loc>https://rohanrd.xyz/posts/future-of-social-media/</loc>
-    <lastmod>2022-11-29T18:48:45+05:30</lastmod>
-  </url><url>
-    <loc>https://rohanrd.xyz/tags/social-media/</loc>
     <lastmod>2022-11-29T18:48:45+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/posts/getting-started-with-self-hosting/</loc>
