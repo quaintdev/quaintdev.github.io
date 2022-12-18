@@ -6,7 +6,16 @@
     <description>Recent content in Posts on rohanrd.xyz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Dec 2022 01:05:29 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Dec 2022 23:21:41 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I Created Entire App in 30 Min With ChatGPT</title>
+      <link>https://rohanrd.xyz/posts/i-created-entire-app-in-30-min-with-chatgpt/</link>
+      <pubDate>Sun, 18 Dec 2022 23:21:41 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/i-created-entire-app-in-30-min-with-chatgpt/</guid>
+      <description>I have been playing around with ChatGPT for quite some time now and have used it for quite a few things like blog posts, generation of thumbnails, simple programs, random research on certain topics, etc,. Now I wanted to see just how useful ChatGPT can be if I am starting a project from scratch. I started working on this project called Echoes of Eternity. The app sounds very fancy but it&amp;rsquo;s actually very simple.</description>
+    </item>
+    
     <item>
       <title>A Different Approach to Social Media</title>
       <link>https://rohanrd.xyz/posts/a-different-approach-to-social-media/</link>
