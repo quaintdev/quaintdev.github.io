@@ -6,7 +6,16 @@
     <description>Recent content in self hosting on rohanrd.xyz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 03 Dec 2022 08:27:00 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/tags/self-hosting/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Dec 2022 00:21:08 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/tags/self-hosting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RSS Readers That You Can Self Host</title>
+      <link>https://rohanrd.xyz/posts/rss-readers-that-you-can-self-host/</link>
+      <pubDate>Sat, 24 Dec 2022 00:21:08 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/rss-readers-that-you-can-self-host/</guid>
+      <description>Self-hosted RSS readers offer users a way to customize their feeds and have more control over their data and privacy. One of the main advantages of using a self-hosted RSS reader is that it allows you to avoid the algorithms that drive many commercial platforms. These algorithms are designed to show you content that they think you&amp;rsquo;ll be interested in based on your past browsing history and other factors. With a self-hosted RSS reader, you have complete control over what you see in your feed and can customize it to your liking.</description>
+    </item>
+    
     <item>
       <title>Self hosting Your First Application: AdGuardHome</title>
       <link>https://rohanrd.xyz/posts/self-hosting-your-first-application-adguardhome/</link>

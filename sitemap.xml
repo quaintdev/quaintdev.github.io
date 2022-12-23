@@ -11,6 +11,12 @@
     <loc>https://rohanrd.xyz/posts/rss-readers-that-you-can-self-host/</loc>
     <lastmod>2022-12-24T00:21:08+05:30</lastmod>
   </url><url>
+    <loc>https://rohanrd.xyz/tags/self-hosting/</loc>
+    <lastmod>2022-12-24T00:21:08+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/tags/</loc>
+    <lastmod>2022-12-24T00:21:08+05:30</lastmod>
+  </url><url>
     <loc>https://rohanrd.xyz/posts/i-created-entire-app-in-30-min-with-chatgpt/</loc>
     <lastmod>2022-12-18T23:21:41+05:30</lastmod>
   </url><url>
@@ -20,17 +26,11 @@
     <loc>https://rohanrd.xyz/tags/social-media/</loc>
     <lastmod>2022-12-17T01:05:29+05:30</lastmod>
   </url><url>
-    <loc>https://rohanrd.xyz/tags/</loc>
-    <lastmod>2022-12-17T01:05:29+05:30</lastmod>
-  </url><url>
     <loc>https://rohanrd.xyz/posts/the-changing-landscape-of-content-consumption/</loc>
     <lastmod>2022-12-10T23:59:27+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/posts/surprising-capability-of-ai-code-generation/</loc>
     <lastmod>2022-12-09T23:36:47+05:30</lastmod>
-  </url><url>
-    <loc>https://rohanrd.xyz/tags/self-hosting/</loc>
-    <lastmod>2022-12-03T08:27:00+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/posts/self-hosting-your-first-application-adguardhome/</loc>
     <lastmod>2022-12-03T08:27:00+05:30</lastmod>
