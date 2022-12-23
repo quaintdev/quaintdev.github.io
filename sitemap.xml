@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://rohanrd.xyz/posts/i-created-entire-app-in-30-min-with-chatgpt/</loc>
-    <lastmod>2022-12-18T23:21:41+05:30</lastmod>
-  </url><url>
     <loc>https://rohanrd.xyz/posts/</loc>
-    <lastmod>2022-12-18T23:21:41+05:30</lastmod>
+    <lastmod>2022-12-24T00:21:08+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/</loc>
+    <lastmod>2022-12-24T00:21:08+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/posts/rss-readers-that-you-can-self-host/</loc>
+    <lastmod>2022-12-24T00:21:08+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/posts/i-created-entire-app-in-30-min-with-chatgpt/</loc>
     <lastmod>2022-12-18T23:21:41+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/posts/a-different-approach-to-social-media/</loc>

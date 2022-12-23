@@ -112,8 +112,8 @@ if (!doNotTrack) {
   "keywords": [
     
   ],
-  "articleBody": "I have been playing around with ChatGPT for quite some time now and have used it for quite a few things like blog posts, generation of thumbnails, simple programs, random research on certain topics, etc,. Now I wanted to see just how useful ChatGPT can be if I am starting a project from scratch. I started working on this project called Echoes of Eternity. The app sounds very fancy but it’s actually very simple. It can\nGive you a random quote of the day when you access /qotd endpoint List all the quotes that are present in database when you hit /quotes endpoint Here goes my first prompt\nI need a Go program that will respond to /qotd endpoint with a Quote json. Quote is a struct holding author and a quote.\nChatGPT:\npackage main import ( \"encoding/json\" \"net/http\" ) type Quote struct { Author string `json:\"author\"` Quote string `json:\"quote\"` } func main() { http.HandleFunc(\"/qotd\", quoteOfTheDay) http.ListenAndServe(\":8080\", nil) } func quoteOfTheDay(w http.ResponseWriter, r *http.Request) { quote := Quote{ Author: \"Mark Twain\", Quote: \"Good friends, good books, and a sleepy conscience: this is the ideal life.\", } json, err := json.Marshal(quote) if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } w.Header().Set(\"Content-Type\", \"application/json\") w.Write(json) } As you can see it knows that qotd is quote of the day and that it will need a Quote struct. Awesome! Now I want quote fetched from database so here goes another prompt\nNow update above code to read a random quote from quotes.db\nChatGPT:\nfunc quoteOfTheDay(w http.ResponseWriter, r *http.Request) { db, err := sql.Open(\"sqlite3\", \"quotes.db\") if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } defer db.Close() var count int err = db.QueryRow(\"SELECT COUNT(*) FROM quotes\").Scan(\u0026count) if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } var idx = rand.Intn(count) var quote Quote err = db.QueryRow(\"SELECT author, quote FROM quotes WHERE id = ?\", idx).Scan(\u0026quote.Author, \u0026quote.Quote) if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } json, err := json.Marshal(quote) if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } w.Header().Set(\"Content-Type\", \"application/json\") w.Write(json) } The code is syntactically correct but I really don’t want database initialized in my request handler\nI would prefer that the database initialization happens in main. Just give me code without the explanation\nChatGPT:\nvar db *sql.DB func main() { var err error db, err = sql.Open(\"sqlite3\", \"quotes.db\") if err != nil { panic(err) } defer db.Close() http.HandleFunc(\"/qotd\", quoteOfTheDay) http.ListenAndServe(\":8080\", nil) } It uses the global variable in the handler function. Quite good but I have seen it initializing database without global variable. I actually prefer that way but for now this works.\nWe need to create quotes.db. Can you provide me with some dummy data for this database\nChatGPT:\nCREATE TABLE quotes (id INTEGER PRIMARY KEY, author TEXT, quote TEXT); INSERT INTO quotes (author, quote) VALUES (\"Mark Twain\", \"Good friends, good books, and a sleepy conscience: this is the ideal life.\"), (\"Albert Einstein\", \"Imagination is more important than knowledge.\"), (\"Mahatma Gandhi\", \"Be the change that you wish to see in the world.\"), (\"Steve Jobs\", \"Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle. As with all matters of the heart, you'll know when you find it.\"), (\"Henry Ford\", \"Whether you think you can, or you think you can't - you're right.\"); So now our app can at least respond with random quote. Let’s add some more capability to it\nNow give me an API that will list all the quotes on certain endpoint\nIt adds http.HandleFunc(\"/quotes\", listQuotes) in main and then goes on to give implementation of listQuotes\nChatGPT\nfunc listQuotes(w http.ResponseWriter, r *http.Request) { rows, err := db.Query(\"SELECT id, author, quote FROM quotes\") if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } defer rows.Close() var quotes []Quote for rows.Next() { var quote Quote err := rows.Scan(\u0026quote.ID, \u0026quote.Author, \u0026quote.Quote) if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } quotes = append(quotes, quote) } json, err := json.Marshal(quotes) if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } w.Header().Set(\"Content-Type\", \"application/json\") w.Write(json) } These are just endpoints we need some front-end to view our quotes\nNow give me a HTML homepage that can list all the quotes available at /quotes endpoint\nChatGPT\n\u003chtml\u003e \u003chead\u003e \u003ctitle\u003eQuotes\u003c/title\u003e \u003c/head\u003e \u003cbody\u003e \u003ch1\u003eQuotes\u003c/h1\u003e \u003cul id=\"quote-list\"\u003e\u003c/ul\u003e \u003cscript\u003e fetch(\"/quotes\") .then(response =\u003e response.json()) .then(quotes =\u003e { const quoteList = document.getElementById(\"quote-list\"); for (const quote of quotes) { const li = document.createElement(\"li\"); li.innerHTML = `\"${quote.quote}\" - ${quote.author}`; quoteList.appendChild(li); } }); \u003c/script\u003e \u003c/body\u003e \u003c/html\u003e Along with above HTML the response also included updated Go code to serve above html\nhttp.HandleFunc(\"/\", homepage) http.HandleFunc(\"/qotd\", quoteOfTheDay) http.HandleFunc(\"/quotes\", listQuotes) http.ListenAndServe(\":8080\", nil) } func homepage(w http.ResponseWriter, r *http.Request) { http.ServeFile(w, r, \"index.html\") } Now we can view quotes when we hit our website but still the HTML is too barebones. Let’s stylize it. Below was my prompt\nCan you stylize the homepage a little bit? Maybe use card for each quote\nIt’s initial approach was to use bootstrap and it’s response was truncated so I’m not including it here. I threw another prompt at it\nI would prefer not using bootstrap\nChatGPT:\n\u003chtml\u003e \u003chead\u003e \u003ctitle\u003eQuotes\u003c/title\u003e \u003cstyle\u003e .card { border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; overflow: hidden; } .card-body { flex: 1; padding: 16px; } .card-text { margin: 0; } .card-footer { background-color: #f7f7f7; border-top: 1px solid #ccc; padding: 16px; } \u003c/style\u003e \u003c/head\u003e \u003cbody\u003e \u003ch1\u003eQuotes\u003c/h1\u003e \u003cdiv id=\"quote-list\"\u003e\u003c/div\u003e \u003cscript\u003e fetch(\"/quotes\") .then(response =\u003e response.json()) .then(quotes =\u003e { const quoteList = document.getElementById(\"quote-list\"); for (const quote of quotes) { const card = document.createElement(\"div\"); card.className = \"card\"; card.innerHTML = ` \"${quote.quote}\"\n- ${quote.author}\n`; quoteList.appendChild(card); } }); \u003c/script\u003e \u003c/body\u003e \u003c/html\u003e This was good but I had to do couple of iterations with it to fine tune design of my webpage. I am not going to include all responses but here are all the prompts I used\nI would prefer that card does not extend throughout the screen and remains centered. Also, provide me the updated parts of code only and not entire listing\nThat was incomplete response. I would prefer that you respond with just the changes that are required in code for my previous request\nwhat css I need to update if I want to have spacing between 2 cards\nNow I need a good header for this page. You can center the heading and change it to “echoes of eternity”. Stylize the header. You can just provide code related to header\nAdd some color to header and choose some nice font\nThe final output\n\u003chtml\u003e \u003chead\u003e \u003ctitle\u003eQuotes\u003c/title\u003e \u003cstyle\u003e .header { color: #00bfff; font-family: \"Courier New\", monospace; font-size: 32px; font-weight: bold; margin: 32px 0; text-align: center; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); } .card-wrapper { display: flex; flex-wrap: wrap; justify-content: center; max-width: 800px; margin: 0 auto; } .card { border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; overflow: hidden; max-width: 300px; margin: 16px; } .card-body { flex: 1; padding: 16px; } .card-text { margin: 0; } .card-footer { background-color: #f7f7f7; border-top: 1px solid #ccc; padding: 16px; } \u003c/style\u003e \u003c/head\u003e \u003cbody\u003e \u003ch1 class=\"header\"\u003eEchoes of Eternity\u003c/h1\u003e \u003cdiv class=\"card-wrapper\"\u003e \u003cdiv id=\"quote-list\"\u003e\u003c/div\u003e \u003c/div\u003e \u003cscript\u003e fetch(\"/quotes\") .then(response =\u003e response.json()) .then(quotes =\u003e { const quoteList = document.getElementById(\"quote-list\"); for (const quote of quotes) { const card = document.createElement(\"div\"); card.className = \"card\"; card.innerHTML = ` \u003cdiv class=\"card-body\"\u003e \u003cp class=\"card-text\"\u003e\"${quote.quote}\"\u003c/p\u003e \u003c/div\u003e As you can see the response is not complete. But you can get it to do what you want by requesting only the parts of code you are interested in. I have seen it truncating response when the code listing is long. I have observed that this mostly happens with HTML code only. Anyways, entire code listing is available on my GitHub\nExcept some minor refactoring of code I did not do any changes to the generated code. All of this in under 30 mins and I know just as much CSS as a backend developer would. Pretty impressive!\nSubscribe for more!\n",
-  "wordCount" : "1370",
+  "articleBody": "I have been playing around with ChatGPT for quite some time now and have used it for quite a few things like blog posts, generation of thumbnails, simple programs, random research on certain topics, etc,. Now I wanted to see just how useful ChatGPT can be if I am starting a project from scratch. I started working on this project called Echoes of Eternity. The app sounds very fancy but it’s actually very simple. It can\n Give you a random quote of the day when you access /qotd endpoint List all the quotes that are present in database when you hit /quotes endpoint  Let’s dive straight into it. Here goes my first prompt\n I need a Go program that will respond to /qotd endpoint with a Quote json. Quote is a struct holding author and a quote.\n ChatGPT:\npackage main import ( \"encoding/json\" \"net/http\" ) type Quote struct { Author string `json:\"author\"` Quote string `json:\"quote\"` } func main() { http.HandleFunc(\"/qotd\", quoteOfTheDay) http.ListenAndServe(\":8080\", nil) } func quoteOfTheDay(w http.ResponseWriter, r *http.Request) { quote := Quote{ Author: \"Mark Twain\", Quote: \"Good friends, good books, and a sleepy conscience: this is the ideal life.\", } json, err := json.Marshal(quote) if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } w.Header().Set(\"Content-Type\", \"application/json\") w.Write(json) } As you can see it knows that qotd is quote of the day and that it will need a Quote struct. Awesome! Now I want quote fetched from database so here goes another prompt\n Now update above code to read a random quote from quotes.db\n ChatGPT:\nfunc quoteOfTheDay(w http.ResponseWriter, r *http.Request) { db, err := sql.Open(\"sqlite3\", \"quotes.db\") if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } defer db.Close() var count int err = db.QueryRow(\"SELECT COUNT(*) FROM quotes\").Scan(\u0026count) if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } var idx = rand.Intn(count) var quote Quote err = db.QueryRow(\"SELECT author, quote FROM quotes WHERE id = ?\", idx).Scan(\u0026quote.Author, \u0026quote.Quote) if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } json, err := json.Marshal(quote) if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } w.Header().Set(\"Content-Type\", \"application/json\") w.Write(json) } The code is syntactically correct but I really don’t want database initialized in my request handler\n I would prefer that the database initialization happens in main. Just give me code without the explanation\n ChatGPT:\nvar db *sql.DB func main() { var err error db, err = sql.Open(\"sqlite3\", \"quotes.db\") if err != nil { panic(err) } defer db.Close() http.HandleFunc(\"/qotd\", quoteOfTheDay) http.ListenAndServe(\":8080\", nil) } It uses the global variable in the handler function. Quite good but I have seen it initializing database without global variable. I actually prefer that way but for now this works.\n We need to create quotes.db. Can you provide me with some dummy data for this database\n ChatGPT:\nCREATETABLEquotes(idINTEGERPRIMARYKEY,authorTEXT,quoteTEXT);INSERTINTOquotes(author,quote)VALUES(\"Mark Twain\",\"Good friends, good books, and a sleepy conscience: this is the ideal life.\"),(\"Albert Einstein\",\"Imagination is more important than knowledge.\"),(\"Mahatma Gandhi\",\"Be the change that you wish to see in the world.\"),(\"Steve Jobs\",\"Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle. As with all matters of the heart, you'll know when you find it.\"),(\"Henry Ford\",\"Whether you think you can, or you think you can't - you're right.\");So now our app can at least respond with random quote. Let’s add some more capability to it\n Now give me an API that will list all the quotes on certain endpoint\n It adds http.HandleFunc(\"/quotes\", listQuotes) in main and then goes on to give implementation of listQuotes\nChatGPT\nfunc listQuotes(w http.ResponseWriter, r *http.Request) { rows, err := db.Query(\"SELECT id, author, quote FROM quotes\") if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } defer rows.Close() var quotes []Quote for rows.Next() { var quote Quote err := rows.Scan(\u0026quote.ID, \u0026quote.Author, \u0026quote.Quote) if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } quotes = append(quotes, quote) } json, err := json.Marshal(quotes) if err != nil { http.Error(w, err.Error(), http.StatusInternalServerError) return } w.Header().Set(\"Content-Type\", \"application/json\") w.Write(json) } These are just endpoints we need some front-end to view our quotes\n Now give me a HTML homepage that can list all the quotes available at /quotes endpoint\n ChatGPT\nhtml head titleQuotestitle head body h1Quotesh1 ul id=\"quote-list\"ul script fetch(\"/quotes\") .then(response = response.json()) .then(quotes = { const quoteList = document.getElementById(\"quote-list\"); for (const quote of quotes) { const li = document.createElement(\"li\"); li.innerHTML = `\"${quote.quote}\" - ${quote.author}`; quoteList.appendChild(li); } }); script body html Along with above HTML the response also included updated Go code to serve above html\nhttp.HandleFunc(\"/\", homepage) http.HandleFunc(\"/qotd\", quoteOfTheDay) http.HandleFunc(\"/quotes\", listQuotes) http.ListenAndServe(\":8080\", nil) } func homepage(w http.ResponseWriter, r *http.Request) { http.ServeFile(w, r, \"index.html\") } Now we can view quotes when we hit our website but still the HTML is too barebones. Let’s stylize it. Below was my prompt\n Can you stylize the homepage a little bit? Maybe use card for each quote\n It’s initial approach was to use bootstrap and it’s response was truncated so I’m not including it here. I threw another prompt at it\n I would prefer not using bootstrap\n ChatGPT:\nhtml head titleQuotestitle style .card { border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; overflow: hidden; } .card-body { flex: 1; padding: 16px; } .card-text { margin: 0; } .card-footer { background-color: #f7f7f7; border-top: 1px solid #ccc; padding: 16px; } style head body h1Quotesh1 div id=\"quote-list\"div script fetch(\"/quotes\") .then(response = response.json()) .then(quotes = { const quoteList = document.getElementById(\"quote-list\"); for (const quote of quotes) { const card = document.createElement(\"div\"); card.className = \"card\"; card.innerHTML = ` \"${quote.quote}\"\n - ${quote.author} `; quoteList.appendChild(card); } }); script body html This was good but I had to do couple of iterations with it to fine tune design of my webpage. I am not going to include all responses but here are all the prompts I used\n I would prefer that card does not extend throughout the screen and remains centered. Also, provide me the updated parts of code only and not entire listing\n  That was incomplete response. I would prefer that you respond with just the changes that are required in code for my previous request\n  what css I need to update if I want to have spacing between 2 cards\n  Now I need a good header for this page. You can center the heading and change it to “echoes of eternity”. Stylize the header. You can just provide code related to header\n  Add some color to header and choose some nice font\n The final output\nhtml head titleQuotestitle style .header { color: #00bfff; font-family: \"Courier New\", monospace; font-size: 32px; font-weight: bold; margin: 32px 0; text-align: center; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); } .card-wrapper { display: flex; flex-wrap: wrap; justify-content: center; max-width: 800px; margin: 0 auto; } .card { border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; overflow: hidden; max-width: 300px; margin: 16px; } .card-body { flex: 1; padding: 16px; } .card-text { margin: 0; } .card-footer { background-color: #f7f7f7; border-top: 1px solid #ccc; padding: 16px; } style head body h1 class=\"header\"Echoes of Eternityh1 div class=\"card-wrapper\" div id=\"quote-list\"div div script fetch(\"/quotes\") .then(response = response.json()) .then(quotes = { const quoteList = document.getElementById(\"quote-list\"); for (const quote of quotes) { const card = document.createElement(\"div\"); card.className = \"card\"; card.innerHTML = ` div class=\"card-body\" p class=\"card-text\"\"${quote.quote}\"p div As you can see the response is not complete. But you can get it to do what you want by requesting only the parts of code you are interested in. I have seen it truncating response when the code listing is long. I have observed that this mostly happens with HTML code only. Anyways, entire code listing is available on my GitHub\nExcept some minor refactoring of code I did not do any changes to the generated code. All of this in under 30 mins and I know just as much CSS as a backend developer would. Pretty impressive!\nSubscribe for more!\n",
+  "wordCount" : "1348",
   "inLanguage": "en",
   "image":"https://rohanrd.xyz/static/echoesofeternity.png","datePublished": "2022-12-18T23:21:41+05:30",
   "dateModified": "2022-12-18T23:21:41+05:30",
@@ -215,182 +215,182 @@ if (!doNotTrack) {
 <li>Give you a random quote of the day when you access <code>/qotd</code> endpoint</li>
 <li>List all the quotes that are present in database when you hit <code>/quotes</code> endpoint</li>
 </ol>
-<p>Here goes my first prompt</p>
+<p>Let&rsquo;s dive straight into it. Here goes my first prompt</p>
 <blockquote>
 <p>I need a Go program that will respond to /qotd endpoint with a Quote json. Quote is a struct holding author and a quote.</p>
 </blockquote>
 <p>ChatGPT:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Go" data-lang="Go"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">package</span> main
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">import</span> (
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;encoding/json&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#b44">&#34;net/http&#34;</span>
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">type</span> Quote <span style="color:#a2f;font-weight:bold">struct</span> {
-</span></span><span style="display:flex;"><span>	Author <span style="color:#0b0;font-weight:bold">string</span> <span style="color:#b44">`json:&#34;author&#34;`</span>
-</span></span><span style="display:flex;"><span>	Quote  <span style="color:#0b0;font-weight:bold">string</span> <span style="color:#b44">`json:&#34;quote&#34;`</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">main</span>() {
-</span></span><span style="display:flex;"><span>	http.<span style="color:#00a000">HandleFunc</span>(<span style="color:#b44">&#34;/qotd&#34;</span>, quoteOfTheDay)
-</span></span><span style="display:flex;"><span>	http.<span style="color:#00a000">ListenAndServe</span>(<span style="color:#b44">&#34;:8080&#34;</span>, <span style="color:#a2f;font-weight:bold">nil</span>)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">quoteOfTheDay</span>(w http.ResponseWriter, r <span style="color:#666">*</span>http.Request) {
-</span></span><span style="display:flex;"><span>	quote <span style="color:#666">:=</span> Quote{
-</span></span><span style="display:flex;"><span>		Author: <span style="color:#b44">&#34;Mark Twain&#34;</span>,
-</span></span><span style="display:flex;"><span>		Quote:  <span style="color:#b44">&#34;Good friends, good books, and a sleepy conscience: this is the ideal life.&#34;</span>,
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	json, err <span style="color:#666">:=</span> json.<span style="color:#00a000">Marshal</span>(quote)
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
-</span></span><span style="display:flex;"><span>		<span style="color:#a2f;font-weight:bold">return</span>
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	w.<span style="color:#00a000">Header</span>().<span style="color:#00a000">Set</span>(<span style="color:#b44">&#34;Content-Type&#34;</span>, <span style="color:#b44">&#34;application/json&#34;</span>)
-</span></span><span style="display:flex;"><span>	w.<span style="color:#00a000">Write</span>(json)
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>As you can see it knows that qotd is quote of the day and that it will need a Quote struct. Awesome! Now I want quote fetched from database so here goes another prompt</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#a2f;font-weight:bold">package</span> main
+
+<span style="color:#a2f;font-weight:bold">import</span> (
+	<span style="color:#b44">&#34;encoding/json&#34;</span>
+	<span style="color:#b44">&#34;net/http&#34;</span>
+)
+
+<span style="color:#a2f;font-weight:bold">type</span> Quote <span style="color:#a2f;font-weight:bold">struct</span> {
+	Author <span style="color:#0b0;font-weight:bold">string</span> <span style="color:#b44">`json:&#34;author&#34;`</span>
+	Quote  <span style="color:#0b0;font-weight:bold">string</span> <span style="color:#b44">`json:&#34;quote&#34;`</span>
+}
+
+<span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">main</span>() {
+	http.<span style="color:#00a000">HandleFunc</span>(<span style="color:#b44">&#34;/qotd&#34;</span>, quoteOfTheDay)
+	http.<span style="color:#00a000">ListenAndServe</span>(<span style="color:#b44">&#34;:8080&#34;</span>, <span style="color:#a2f;font-weight:bold">nil</span>)
+}
+
+<span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">quoteOfTheDay</span>(w http.ResponseWriter, r <span style="color:#666">*</span>http.Request) {
+	quote <span style="color:#666">:=</span> Quote{
+		Author: <span style="color:#b44">&#34;Mark Twain&#34;</span>,
+		Quote:  <span style="color:#b44">&#34;Good friends, good books, and a sleepy conscience: this is the ideal life.&#34;</span>,
+	}
+
+	json, err <span style="color:#666">:=</span> json.<span style="color:#00a000">Marshal</span>(quote)
+	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
+		http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
+		<span style="color:#a2f;font-weight:bold">return</span>
+	}
+
+	w.<span style="color:#00a000">Header</span>().<span style="color:#00a000">Set</span>(<span style="color:#b44">&#34;Content-Type&#34;</span>, <span style="color:#b44">&#34;application/json&#34;</span>)
+	w.<span style="color:#00a000">Write</span>(json)
+}
+</code></pre></div><p>As you can see it knows that qotd is quote of the day and that it will need a Quote struct. Awesome! Now I want quote fetched from database so here goes another prompt</p>
 <blockquote>
 <p>Now update above code to read a random quote from quotes.db</p>
 </blockquote>
 <p>ChatGPT:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Go" data-lang="Go"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">quoteOfTheDay</span>(w http.ResponseWriter, r <span style="color:#666">*</span>http.Request) {
-</span></span><span style="display:flex;"><span>	db, err <span style="color:#666">:=</span> sql.<span style="color:#00a000">Open</span>(<span style="color:#b44">&#34;sqlite3&#34;</span>, <span style="color:#b44">&#34;quotes.db&#34;</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
-</span></span><span style="display:flex;"><span>		<span style="color:#a2f;font-weight:bold">return</span>
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">defer</span> db.<span style="color:#00a000">Close</span>()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">var</span> count <span style="color:#0b0;font-weight:bold">int</span>
-</span></span><span style="display:flex;"><span>	err = db.<span style="color:#00a000">QueryRow</span>(<span style="color:#b44">&#34;SELECT COUNT(*) FROM quotes&#34;</span>).<span style="color:#00a000">Scan</span>(<span style="color:#666">&amp;</span>count)
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
-</span></span><span style="display:flex;"><span>		<span style="color:#a2f;font-weight:bold">return</span>
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">var</span> idx = rand.<span style="color:#00a000">Intn</span>(count)
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">var</span> quote Quote
-</span></span><span style="display:flex;"><span>	err = db.<span style="color:#00a000">QueryRow</span>(<span style="color:#b44">&#34;SELECT author, quote FROM quotes WHERE id = ?&#34;</span>, idx).<span style="color:#00a000">Scan</span>(<span style="color:#666">&amp;</span>quote.Author, <span style="color:#666">&amp;</span>quote.Quote)
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
-</span></span><span style="display:flex;"><span>		<span style="color:#a2f;font-weight:bold">return</span>
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	json, err <span style="color:#666">:=</span> json.<span style="color:#00a000">Marshal</span>(quote)
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
-</span></span><span style="display:flex;"><span>		<span style="color:#a2f;font-weight:bold">return</span>
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	w.<span style="color:#00a000">Header</span>().<span style="color:#00a000">Set</span>(<span style="color:#b44">&#34;Content-Type&#34;</span>, <span style="color:#b44">&#34;application/json&#34;</span>)
-</span></span><span style="display:flex;"><span>	w.<span style="color:#00a000">Write</span>(json)
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>The code is syntactically correct but I really don&rsquo;t want database initialized in my request handler</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">quoteOfTheDay</span>(w http.ResponseWriter, r <span style="color:#666">*</span>http.Request) {
+	db, err <span style="color:#666">:=</span> sql.<span style="color:#00a000">Open</span>(<span style="color:#b44">&#34;sqlite3&#34;</span>, <span style="color:#b44">&#34;quotes.db&#34;</span>)
+	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
+		http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
+		<span style="color:#a2f;font-weight:bold">return</span>
+	}
+	<span style="color:#a2f;font-weight:bold">defer</span> db.<span style="color:#00a000">Close</span>()
+
+	<span style="color:#a2f;font-weight:bold">var</span> count <span style="color:#0b0;font-weight:bold">int</span>
+	err = db.<span style="color:#00a000">QueryRow</span>(<span style="color:#b44">&#34;SELECT COUNT(*) FROM quotes&#34;</span>).<span style="color:#00a000">Scan</span>(<span style="color:#666">&amp;</span>count)
+	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
+		http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
+		<span style="color:#a2f;font-weight:bold">return</span>
+	}
+
+	<span style="color:#a2f;font-weight:bold">var</span> idx = rand.<span style="color:#00a000">Intn</span>(count)
+	<span style="color:#a2f;font-weight:bold">var</span> quote Quote
+	err = db.<span style="color:#00a000">QueryRow</span>(<span style="color:#b44">&#34;SELECT author, quote FROM quotes WHERE id = ?&#34;</span>, idx).<span style="color:#00a000">Scan</span>(<span style="color:#666">&amp;</span>quote.Author, <span style="color:#666">&amp;</span>quote.Quote)
+	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
+		http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
+		<span style="color:#a2f;font-weight:bold">return</span>
+	}
+
+	json, err <span style="color:#666">:=</span> json.<span style="color:#00a000">Marshal</span>(quote)
+	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
+		http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
+		<span style="color:#a2f;font-weight:bold">return</span>
+	}
+
+	w.<span style="color:#00a000">Header</span>().<span style="color:#00a000">Set</span>(<span style="color:#b44">&#34;Content-Type&#34;</span>, <span style="color:#b44">&#34;application/json&#34;</span>)
+	w.<span style="color:#00a000">Write</span>(json)
+}
+</code></pre></div><p>The code is syntactically correct but I really don&rsquo;t want database initialized in my request handler</p>
 <blockquote>
 <p>I would prefer that the database initialization happens in main. Just give me code without the explanation</p>
 </blockquote>
 <p>ChatGPT:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Go" data-lang="Go"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">var</span> db <span style="color:#666">*</span>sql.DB
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">main</span>() {
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">var</span> err <span style="color:#0b0;font-weight:bold">error</span>
-</span></span><span style="display:flex;"><span>	db, err = sql.<span style="color:#00a000">Open</span>(<span style="color:#b44">&#34;sqlite3&#34;</span>, <span style="color:#b44">&#34;quotes.db&#34;</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#a2f">panic</span>(err)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">defer</span> db.<span style="color:#00a000">Close</span>()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	http.<span style="color:#00a000">HandleFunc</span>(<span style="color:#b44">&#34;/qotd&#34;</span>, quoteOfTheDay)
-</span></span><span style="display:flex;"><span>	http.<span style="color:#00a000">ListenAndServe</span>(<span style="color:#b44">&#34;:8080&#34;</span>, <span style="color:#a2f;font-weight:bold">nil</span>)
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>It uses the global variable in the handler function. Quite good but I have seen it initializing database without global variable. I actually prefer that way but for now this works.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#a2f;font-weight:bold">var</span> db <span style="color:#666">*</span>sql.DB
+
+<span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">main</span>() {
+	<span style="color:#a2f;font-weight:bold">var</span> err <span style="color:#0b0;font-weight:bold">error</span>
+	db, err = sql.<span style="color:#00a000">Open</span>(<span style="color:#b44">&#34;sqlite3&#34;</span>, <span style="color:#b44">&#34;quotes.db&#34;</span>)
+	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
+		<span style="color:#a2f">panic</span>(err)
+	}
+	<span style="color:#a2f;font-weight:bold">defer</span> db.<span style="color:#00a000">Close</span>()
+
+	http.<span style="color:#00a000">HandleFunc</span>(<span style="color:#b44">&#34;/qotd&#34;</span>, quoteOfTheDay)
+	http.<span style="color:#00a000">ListenAndServe</span>(<span style="color:#b44">&#34;:8080&#34;</span>, <span style="color:#a2f;font-weight:bold">nil</span>)
+}
+</code></pre></div><p>It uses the global variable in the handler function. Quite good but I have seen it initializing database without global variable. I actually prefer that way but for now this works.</p>
 <blockquote>
 <p>We need to create quotes.db. Can you provide me with some dummy data for this database</p>
 </blockquote>
 <p>ChatGPT:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">CREATE</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">TABLE</span><span style="color:#bbb"> </span>quotes<span style="color:#bbb"> </span>(id<span style="color:#bbb"> </span><span style="color:#a2f">INTEGER</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">PRIMARY</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">KEY</span>,<span style="color:#bbb"> </span>author<span style="color:#bbb"> </span><span style="color:#a2f">TEXT</span>,<span style="color:#bbb"> </span>quote<span style="color:#bbb"> </span><span style="color:#a2f">TEXT</span>);<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">INSERT</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">INTO</span><span style="color:#bbb"> </span>quotes<span style="color:#bbb"> </span>(author,<span style="color:#bbb"> </span>quote)<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">VALUES</span><span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>(<span style="color:#b44">&#34;Mark Twain&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;Good friends, good books, and a sleepy conscience: this is the ideal life.&#34;</span>),<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>(<span style="color:#b44">&#34;Albert Einstein&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;Imagination is more important than knowledge.&#34;</span>),<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>(<span style="color:#b44">&#34;Mahatma Gandhi&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;Be the change that you wish to see in the world.&#34;</span>),<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>(<span style="color:#b44">&#34;Steve Jobs&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven&#39;t found it yet, keep looking. Don&#39;t settle. As with all matters of the heart, you&#39;ll know when you find it.&#34;</span>),<span style="color:#bbb">
-</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>(<span style="color:#b44">&#34;Henry Ford&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;Whether you think you can, or you think you can&#39;t - you&#39;re right.&#34;</span>);<span style="color:#bbb">
-</span></span></span></code></pre></div><p>So now our app can at least respond with random quote. Let&rsquo;s add some more capability to it</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#a2f;font-weight:bold">CREATE</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">TABLE</span><span style="color:#bbb"> </span>quotes<span style="color:#bbb"> </span>(id<span style="color:#bbb"> </span><span style="color:#a2f">INTEGER</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">PRIMARY</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">KEY</span>,<span style="color:#bbb"> </span>author<span style="color:#bbb"> </span><span style="color:#a2f">TEXT</span>,<span style="color:#bbb"> </span>quote<span style="color:#bbb"> </span><span style="color:#a2f">TEXT</span>);<span style="color:#bbb">
+</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#a2f;font-weight:bold">INSERT</span><span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">INTO</span><span style="color:#bbb"> </span>quotes<span style="color:#bbb"> </span>(author,<span style="color:#bbb"> </span>quote)<span style="color:#bbb"> </span><span style="color:#a2f;font-weight:bold">VALUES</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span>(<span style="color:#b44">&#34;Mark Twain&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;Good friends, good books, and a sleepy conscience: this is the ideal life.&#34;</span>),<span style="color:#bbb">
+</span><span style="color:#bbb"></span>(<span style="color:#b44">&#34;Albert Einstein&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;Imagination is more important than knowledge.&#34;</span>),<span style="color:#bbb">
+</span><span style="color:#bbb"></span>(<span style="color:#b44">&#34;Mahatma Gandhi&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;Be the change that you wish to see in the world.&#34;</span>),<span style="color:#bbb">
+</span><span style="color:#bbb"></span>(<span style="color:#b44">&#34;Steve Jobs&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven&#39;t found it yet, keep looking. Don&#39;t settle. As with all matters of the heart, you&#39;ll know when you find it.&#34;</span>),<span style="color:#bbb">
+</span><span style="color:#bbb"></span>(<span style="color:#b44">&#34;Henry Ford&#34;</span>,<span style="color:#bbb"> </span><span style="color:#b44">&#34;Whether you think you can, or you think you can&#39;t - you&#39;re right.&#34;</span>);<span style="color:#bbb">
+</span></code></pre></div><p>So now our app can at least respond with random quote. Let&rsquo;s add some more capability to it</p>
 <blockquote>
 <p>Now give me an API that will list all the quotes on certain endpoint</p>
 </blockquote>
 <p>It adds <code>http.HandleFunc(&quot;/quotes&quot;, listQuotes)</code> in main and then goes on to give implementation of <code>listQuotes</code></p>
 <p>ChatGPT</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Go" data-lang="Go"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">listQuotes</span>(w http.ResponseWriter, r <span style="color:#666">*</span>http.Request) {
-</span></span><span style="display:flex;"><span>	rows, err <span style="color:#666">:=</span> db.<span style="color:#00a000">Query</span>(<span style="color:#b44">&#34;SELECT id, author, quote FROM quotes&#34;</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
-</span></span><span style="display:flex;"><span>		<span style="color:#a2f;font-weight:bold">return</span>
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">defer</span> rows.<span style="color:#00a000">Close</span>()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">var</span> quotes []Quote
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">for</span> rows.<span style="color:#00a000">Next</span>() {
-</span></span><span style="display:flex;"><span>		<span style="color:#a2f;font-weight:bold">var</span> quote Quote
-</span></span><span style="display:flex;"><span>		err <span style="color:#666">:=</span> rows.<span style="color:#00a000">Scan</span>(<span style="color:#666">&amp;</span>quote.ID, <span style="color:#666">&amp;</span>quote.Author, <span style="color:#666">&amp;</span>quote.Quote)
-</span></span><span style="display:flex;"><span>		<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>			http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">return</span>
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		quotes = <span style="color:#a2f">append</span>(quotes, quote)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	json, err <span style="color:#666">:=</span> json.<span style="color:#00a000">Marshal</span>(quotes)
-</span></span><span style="display:flex;"><span>	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
-</span></span><span style="display:flex;"><span>		http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
-</span></span><span style="display:flex;"><span>		<span style="color:#a2f;font-weight:bold">return</span>
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	w.<span style="color:#00a000">Header</span>().<span style="color:#00a000">Set</span>(<span style="color:#b44">&#34;Content-Type&#34;</span>, <span style="color:#b44">&#34;application/json&#34;</span>)
-</span></span><span style="display:flex;"><span>	w.<span style="color:#00a000">Write</span>(json)
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>These are just endpoints we need some front-end to view our quotes</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">listQuotes</span>(w http.ResponseWriter, r <span style="color:#666">*</span>http.Request) {
+	rows, err <span style="color:#666">:=</span> db.<span style="color:#00a000">Query</span>(<span style="color:#b44">&#34;SELECT id, author, quote FROM quotes&#34;</span>)
+	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
+		http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
+		<span style="color:#a2f;font-weight:bold">return</span>
+	}
+	<span style="color:#a2f;font-weight:bold">defer</span> rows.<span style="color:#00a000">Close</span>()
+
+	<span style="color:#a2f;font-weight:bold">var</span> quotes []Quote
+	<span style="color:#a2f;font-weight:bold">for</span> rows.<span style="color:#00a000">Next</span>() {
+		<span style="color:#a2f;font-weight:bold">var</span> quote Quote
+		err <span style="color:#666">:=</span> rows.<span style="color:#00a000">Scan</span>(<span style="color:#666">&amp;</span>quote.ID, <span style="color:#666">&amp;</span>quote.Author, <span style="color:#666">&amp;</span>quote.Quote)
+		<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
+			http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
+			<span style="color:#a2f;font-weight:bold">return</span>
+		}
+		quotes = <span style="color:#a2f">append</span>(quotes, quote)
+	}
+
+	json, err <span style="color:#666">:=</span> json.<span style="color:#00a000">Marshal</span>(quotes)
+	<span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
+		http.<span style="color:#00a000">Error</span>(w, err.<span style="color:#00a000">Error</span>(), http.StatusInternalServerError)
+		<span style="color:#a2f;font-weight:bold">return</span>
+	}
+
+	w.<span style="color:#00a000">Header</span>().<span style="color:#00a000">Set</span>(<span style="color:#b44">&#34;Content-Type&#34;</span>, <span style="color:#b44">&#34;application/json&#34;</span>)
+	w.<span style="color:#00a000">Write</span>(json)
+}
+</code></pre></div><p>These are just endpoints we need some front-end to view our quotes</p>
 <blockquote>
 <p>Now give me a HTML homepage that can list all the quotes available at /quotes endpoint</p>
 </blockquote>
 <p>ChatGPT</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">html</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">head</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#008000;font-weight:bold">title</span>&gt;Quotes&lt;/<span style="color:#008000;font-weight:bold">title</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">head</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">body</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#008000;font-weight:bold">h1</span>&gt;Quotes&lt;/<span style="color:#008000;font-weight:bold">h1</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#008000;font-weight:bold">ul</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;quote-list&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">ul</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#008000;font-weight:bold">script</span>&gt;
-</span></span><span style="display:flex;"><span>		fetch(<span style="color:#b44">&#34;/quotes&#34;</span>)
-</span></span><span style="display:flex;"><span>			.then(response =&gt; response.json())
-</span></span><span style="display:flex;"><span>			.then(quotes =&gt; {
-</span></span><span style="display:flex;"><span>				<span style="color:#a2f;font-weight:bold">const</span> quoteList <span style="color:#666">=</span> <span style="color:#a2f">document</span>.getElementById(<span style="color:#b44">&#34;quote-list&#34;</span>);
-</span></span><span style="display:flex;"><span>				<span style="color:#a2f;font-weight:bold">for</span> (<span style="color:#a2f;font-weight:bold">const</span> quote <span style="color:#a2f;font-weight:bold">of</span> quotes) {
-</span></span><span style="display:flex;"><span>					<span style="color:#a2f;font-weight:bold">const</span> li <span style="color:#666">=</span> <span style="color:#a2f">document</span>.createElement(<span style="color:#b44">&#34;li&#34;</span>);
-</span></span><span style="display:flex;"><span>					li.innerHTML <span style="color:#666">=</span> <span style="color:#b44">`&#34;</span><span style="color:#b68;font-weight:bold">${</span>quote.quote<span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">&#34; - </span><span style="color:#b68;font-weight:bold">${</span>quote.author<span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">`</span>;
-</span></span><span style="display:flex;"><span>					quoteList.appendChild(li);
-</span></span><span style="display:flex;"><span>				}
-</span></span><span style="display:flex;"><span>			});
-</span></span><span style="display:flex;"><span>	&lt;/<span style="color:#008000;font-weight:bold">script</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">body</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">html</span>&gt;
-</span></span></code></pre></div><p>Along with above HTML the response also included updated Go code to serve above html</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Go" data-lang="Go"><span style="display:flex;"><span>	http.<span style="color:#00a000">HandleFunc</span>(<span style="color:#b44">&#34;/&#34;</span>, homepage)
-</span></span><span style="display:flex;"><span>	http.<span style="color:#00a000">HandleFunc</span>(<span style="color:#b44">&#34;/qotd&#34;</span>, quoteOfTheDay)
-</span></span><span style="display:flex;"><span>	http.<span style="color:#00a000">HandleFunc</span>(<span style="color:#b44">&#34;/quotes&#34;</span>, listQuotes)
-</span></span><span style="display:flex;"><span>	http.<span style="color:#00a000">ListenAndServe</span>(<span style="color:#b44">&#34;:8080&#34;</span>, <span style="color:#a2f;font-weight:bold">nil</span>)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">homepage</span>(w http.ResponseWriter, r <span style="color:#666">*</span>http.Request) {
-</span></span><span style="display:flex;"><span>	http.<span style="color:#00a000">ServeFile</span>(w, r, <span style="color:#b44">&#34;index.html&#34;</span>)
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Now we can view quotes when we hit our website but still the HTML is too barebones. Let&rsquo;s stylize it. Below was my prompt</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#008000;font-weight:bold">html</span>&gt;
+&lt;<span style="color:#008000;font-weight:bold">head</span>&gt;
+	&lt;<span style="color:#008000;font-weight:bold">title</span>&gt;Quotes&lt;/<span style="color:#008000;font-weight:bold">title</span>&gt;
+&lt;/<span style="color:#008000;font-weight:bold">head</span>&gt;
+&lt;<span style="color:#008000;font-weight:bold">body</span>&gt;
+	&lt;<span style="color:#008000;font-weight:bold">h1</span>&gt;Quotes&lt;/<span style="color:#008000;font-weight:bold">h1</span>&gt;
+	&lt;<span style="color:#008000;font-weight:bold">ul</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;quote-list&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">ul</span>&gt;
+	&lt;<span style="color:#008000;font-weight:bold">script</span>&gt;
+		fetch(<span style="color:#b44">&#34;/quotes&#34;</span>)
+			.then(response =&gt; response.json())
+			.then(quotes =&gt; {
+				<span style="color:#a2f;font-weight:bold">const</span> quoteList <span style="color:#666">=</span> <span style="color:#a2f">document</span>.getElementById(<span style="color:#b44">&#34;quote-list&#34;</span>);
+				<span style="color:#a2f;font-weight:bold">for</span> (<span style="color:#a2f;font-weight:bold">const</span> quote <span style="color:#a2f;font-weight:bold">of</span> quotes) {
+					<span style="color:#a2f;font-weight:bold">const</span> li <span style="color:#666">=</span> <span style="color:#a2f">document</span>.createElement(<span style="color:#b44">&#34;li&#34;</span>);
+					li.innerHTML <span style="color:#666">=</span> <span style="color:#b44">`&#34;</span><span style="color:#b68;font-weight:bold">${</span>quote.quote<span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">&#34; - </span><span style="color:#b68;font-weight:bold">${</span>quote.author<span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">`</span>;
+					quoteList.appendChild(li);
+				}
+			});
+	&lt;/<span style="color:#008000;font-weight:bold">script</span>&gt;
+&lt;/<span style="color:#008000;font-weight:bold">body</span>&gt;
+&lt;/<span style="color:#008000;font-weight:bold">html</span>&gt;
+</code></pre></div><p>Along with above HTML the response also included updated Go code to serve above html</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go">	http.<span style="color:#00a000">HandleFunc</span>(<span style="color:#b44">&#34;/&#34;</span>, homepage)
+	http.<span style="color:#00a000">HandleFunc</span>(<span style="color:#b44">&#34;/qotd&#34;</span>, quoteOfTheDay)
+	http.<span style="color:#00a000">HandleFunc</span>(<span style="color:#b44">&#34;/quotes&#34;</span>, listQuotes)
+	http.<span style="color:#00a000">ListenAndServe</span>(<span style="color:#b44">&#34;:8080&#34;</span>, <span style="color:#a2f;font-weight:bold">nil</span>)
+}
+
+<span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">homepage</span>(w http.ResponseWriter, r <span style="color:#666">*</span>http.Request) {
+	http.<span style="color:#00a000">ServeFile</span>(w, r, <span style="color:#b44">&#34;index.html&#34;</span>)
+}
+</code></pre></div><p>Now we can view quotes when we hit our website but still the HTML is too barebones. Let&rsquo;s stylize it. Below was my prompt</p>
 <blockquote>
 <p>Can you stylize the homepage a little bit? Maybe use card for each quote</p>
 </blockquote>
@@ -399,58 +399,59 @@ if (!doNotTrack) {
 <p>I would prefer not using bootstrap</p>
 </blockquote>
 <p>ChatGPT:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">html</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">head</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#008000;font-weight:bold">title</span>&gt;Quotes&lt;/<span style="color:#008000;font-weight:bold">title</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#008000;font-weight:bold">style</span>&gt;
-</span></span><span style="display:flex;"><span>		.<span style="color:#00f">card</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">border</span>: <span style="color:#666">1</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#a2f;font-weight:bold">solid</span> <span style="color:#666">#ccc</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">border-radius</span>: <span style="color:#666">4</span><span style="color:#0b0;font-weight:bold">px</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">box-shadow</span>: <span style="color:#666">0</span> <span style="color:#666">2</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#666">4</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#a2f">rgba</span>(<span style="color:#666">0</span>, <span style="color:#666">0</span>, <span style="color:#666">0</span>, <span style="color:#666">0.1</span>);
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">display</span>: <span style="color:#a2f;font-weight:bold">flex</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">flex-direction</span>: <span style="color:#a2f;font-weight:bold">column</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">overflow</span>: <span style="color:#a2f;font-weight:bold">hidden</span>;
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		.<span style="color:#00f">card-body</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">flex</span>: <span style="color:#666">1</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">padding</span>: <span style="color:#666">16</span><span style="color:#0b0;font-weight:bold">px</span>;
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		.<span style="color:#00f">card-text</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">margin</span>: <span style="color:#666">0</span>;
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		.<span style="color:#00f">card-footer</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">background-color</span>: <span style="color:#666">#f7f7f7</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">border-top</span>: <span style="color:#666">1</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#a2f;font-weight:bold">solid</span> <span style="color:#666">#ccc</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">padding</span>: <span style="color:#666">16</span><span style="color:#0b0;font-weight:bold">px</span>;
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>	&lt;/<span style="color:#008000;font-weight:bold">style</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">head</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">body</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#008000;font-weight:bold">h1</span>&gt;Quotes&lt;/<span style="color:#008000;font-weight:bold">h1</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;quote-list&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#008000;font-weight:bold">script</span>&gt;
-</span></span><span style="display:flex;"><span>		fetch(<span style="color:#b44">&#34;/quotes&#34;</span>)
-</span></span><span style="display:flex;"><span>			.then(response =&gt; response.json())
-</span></span><span style="display:flex;"><span>			.then(quotes =&gt; {
-</span></span><span style="display:flex;"><span>				<span style="color:#a2f;font-weight:bold">const</span> quoteList <span style="color:#666">=</span> <span style="color:#a2f">document</span>.getElementById(<span style="color:#b44">&#34;quote-list&#34;</span>);
-</span></span><span style="display:flex;"><span>				<span style="color:#a2f;font-weight:bold">for</span> (<span style="color:#a2f;font-weight:bold">const</span> quote <span style="color:#a2f;font-weight:bold">of</span> quotes) {
-</span></span><span style="display:flex;"><span>					<span style="color:#a2f;font-weight:bold">const</span> card <span style="color:#666">=</span> <span style="color:#a2f">document</span>.createElement(<span style="color:#b44">&#34;div&#34;</span>);
-</span></span><span style="display:flex;"><span>					card.className <span style="color:#666">=</span> <span style="color:#b44">&#34;card&#34;</span>;
-</span></span><span style="display:flex;"><span>					card.innerHTML <span style="color:#666">=</span> <span style="color:#b44">`
-</span></span></span><span style="display:flex;"><span><span style="color:#b44">						&lt;div class=&#34;card-body&#34;&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#b44">							&lt;p class=&#34;card-text&#34;&gt;&#34;</span><span style="color:#b68;font-weight:bold">${</span>quote.quote<span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">&#34;&lt;/p&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#b44">						&lt;/div&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#b44">						&lt;div class=&#34;card-footer&#34;&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#b44">							&lt;p class=&#34;card-text&#34;&gt;- </span><span style="color:#b68;font-weight:bold">${</span>quote.author<span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">&lt;/p&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#b44">						&lt;/div&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#b44">					`</span>;
-</span></span><span style="display:flex;"><span>					quoteList.appendChild(card);
-</span></span><span style="display:flex;"><span>				}
-</span></span><span style="display:flex;"><span>			});
-</span></span><span style="display:flex;"><span>	&lt;/<span style="color:#008000;font-weight:bold">script</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">body</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">html</span>&gt;
-</span></span></code></pre></div><p>This was good but I had to do couple of iterations with it to fine tune design of my webpage. I am not going to include all responses but here are all the prompts I used</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#008000;font-weight:bold">html</span>&gt;
+&lt;<span style="color:#008000;font-weight:bold">head</span>&gt;
+	&lt;<span style="color:#008000;font-weight:bold">title</span>&gt;Quotes&lt;/<span style="color:#008000;font-weight:bold">title</span>&gt;
+	&lt;<span style="color:#008000;font-weight:bold">style</span>&gt;
+		.<span style="color:#00f">card</span> {
+			<span style="color:#a2f;font-weight:bold">border</span>: <span style="color:#666">1</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#a2f;font-weight:bold">solid</span> <span style="color:#666">#ccc</span>;
+			<span style="color:#a2f;font-weight:bold">border-radius</span>: <span style="color:#666">4</span><span style="color:#0b0;font-weight:bold">px</span>;
+			<span style="color:#a2f;font-weight:bold">box-shadow</span>: <span style="color:#666">0</span> <span style="color:#666">2</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#666">4</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#a2f">rgba</span>(<span style="color:#666">0</span>, <span style="color:#666">0</span>, <span style="color:#666">0</span>, <span style="color:#666">0.1</span>);
+			<span style="color:#a2f;font-weight:bold">display</span>: <span style="color:#a2f;font-weight:bold">flex</span>;
+			<span style="color:#a2f;font-weight:bold">flex-direction</span>: <span style="color:#a2f;font-weight:bold">column</span>;
+			<span style="color:#a2f;font-weight:bold">overflow</span>: <span style="color:#a2f;font-weight:bold">hidden</span>;
+		}
+		.<span style="color:#00f">card-body</span> {
+			<span style="color:#a2f;font-weight:bold">flex</span>: <span style="color:#666">1</span>;
+			<span style="color:#a2f;font-weight:bold">padding</span>: <span style="color:#666">16</span><span style="color:#0b0;font-weight:bold">px</span>;
+		}
+		.<span style="color:#00f">card-text</span> {
+			<span style="color:#a2f;font-weight:bold">margin</span>: <span style="color:#666">0</span>;
+		}
+		.<span style="color:#00f">card-footer</span> {
+			<span style="color:#a2f;font-weight:bold">background-color</span>: <span style="color:#666">#f7f7f7</span>;
+			<span style="color:#a2f;font-weight:bold">border-top</span>: <span style="color:#666">1</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#a2f;font-weight:bold">solid</span> <span style="color:#666">#ccc</span>;
+			<span style="color:#a2f;font-weight:bold">padding</span>: <span style="color:#666">16</span><span style="color:#0b0;font-weight:bold">px</span>;
+		}
+	&lt;/<span style="color:#008000;font-weight:bold">style</span>&gt;
+&lt;/<span style="color:#008000;font-weight:bold">head</span>&gt;
+&lt;<span style="color:#008000;font-weight:bold">body</span>&gt;
+	&lt;<span style="color:#008000;font-weight:bold">h1</span>&gt;Quotes&lt;/<span style="color:#008000;font-weight:bold">h1</span>&gt;
+	&lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;quote-list&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+	&lt;<span style="color:#008000;font-weight:bold">script</span>&gt;
+		fetch(<span style="color:#b44">&#34;/quotes&#34;</span>)
+			.then(response =&gt; response.json())
+			.then(quotes =&gt; {
+				<span style="color:#a2f;font-weight:bold">const</span> quoteList <span style="color:#666">=</span> <span style="color:#a2f">document</span>.getElementById(<span style="color:#b44">&#34;quote-list&#34;</span>);
+				<span style="color:#a2f;font-weight:bold">for</span> (<span style="color:#a2f;font-weight:bold">const</span> quote <span style="color:#a2f;font-weight:bold">of</span> quotes) {
+					<span style="color:#a2f;font-weight:bold">const</span> card <span style="color:#666">=</span> <span style="color:#a2f">document</span>.createElement(<span style="color:#b44">&#34;div&#34;</span>);
+					card.className <span style="color:#666">=</span> <span style="color:#b44">&#34;card&#34;</span>;
+					card.innerHTML <span style="color:#666">=</span> <span style="color:#b44">`
+</span><span style="color:#b44">						&lt;div class=&#34;card-body&#34;&gt;
+</span><span style="color:#b44">							&lt;p class=&#34;card-text&#34;&gt;&#34;</span><span style="color:#b68;font-weight:bold">${</span>quote.quote<span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">&#34;&lt;/p&gt;
+</span><span style="color:#b44">						&lt;/div&gt;
+</span><span style="color:#b44">						&lt;div class=&#34;card-footer&#34;&gt;
+</span><span style="color:#b44">							&lt;p class=&#34;card-text&#34;&gt;- </span><span style="color:#b68;font-weight:bold">${</span>quote.author<span style="color:#b68;font-weight:bold">}</span><span style="color:#b44">&lt;/p&gt;
+</span><span style="color:#b44">						&lt;/div&gt;
+</span><span style="color:#b44">					`</span>;
+					quoteList.appendChild(card);
+				}
+			});
+	&lt;/<span style="color:#008000;font-weight:bold">script</span>&gt;
+&lt;/<span style="color:#008000;font-weight:bold">body</span>&gt;
+&lt;/<span style="color:#008000;font-weight:bold">html</span>&gt;
+
+</code></pre></div><p>This was good but I had to do couple of iterations with it to fine tune design of my webpage. I am not going to include all responses but here are all the prompts I used</p>
 <blockquote>
 <p>I would prefer that card does not extend throughout the screen and remains centered. Also, provide me the updated parts of code only and not entire listing</p>
 </blockquote>
@@ -467,68 +468,68 @@ if (!doNotTrack) {
 <p>Add some color to header and choose some nice font</p>
 </blockquote>
 <p>The final output</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">html</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">head</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#008000;font-weight:bold">title</span>&gt;Quotes&lt;/<span style="color:#008000;font-weight:bold">title</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#008000;font-weight:bold">style</span>&gt;
-</span></span><span style="display:flex;"><span>		.<span style="color:#00f">header</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">color</span>: <span style="color:#666">#00bfff</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">font-family</span>: <span style="color:#b44">&#34;Courier New&#34;</span>, <span style="color:#a2f;font-weight:bold">monospace</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">font-size</span>: <span style="color:#666">32</span><span style="color:#0b0;font-weight:bold">px</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">font-weight</span>: <span style="color:#a2f;font-weight:bold">bold</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">margin</span>: <span style="color:#666">32</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#666">0</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">text-align</span>: <span style="color:#a2f;font-weight:bold">center</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">text-shadow</span>: <span style="color:#666">0</span> <span style="color:#666">2</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#666">4</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#a2f">rgba</span>(<span style="color:#666">0</span>, <span style="color:#666">0</span>, <span style="color:#666">0</span>, <span style="color:#666">0.1</span>);
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		.<span style="color:#00f">card-wrapper</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">display</span>: <span style="color:#a2f;font-weight:bold">flex</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">flex-wrap</span>: <span style="color:#a2f;font-weight:bold">wrap</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">justify-content</span>: <span style="color:#a2f;font-weight:bold">center</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">max-width</span>: <span style="color:#666">800</span><span style="color:#0b0;font-weight:bold">px</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">margin</span>: <span style="color:#666">0</span> <span style="color:#a2f;font-weight:bold">auto</span>;
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		.<span style="color:#00f">card</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">border</span>: <span style="color:#666">1</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#a2f;font-weight:bold">solid</span> <span style="color:#666">#ccc</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">border-radius</span>: <span style="color:#666">4</span><span style="color:#0b0;font-weight:bold">px</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">box-shadow</span>: <span style="color:#666">0</span> <span style="color:#666">2</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#666">4</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#a2f">rgba</span>(<span style="color:#666">0</span>, <span style="color:#666">0</span>, <span style="color:#666">0</span>, <span style="color:#666">0.1</span>);
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">display</span>: <span style="color:#a2f;font-weight:bold">flex</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">flex-direction</span>: <span style="color:#a2f;font-weight:bold">column</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">overflow</span>: <span style="color:#a2f;font-weight:bold">hidden</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">max-width</span>: <span style="color:#666">300</span><span style="color:#0b0;font-weight:bold">px</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">margin</span>: <span style="color:#666">16</span><span style="color:#0b0;font-weight:bold">px</span>;
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		.<span style="color:#00f">card-body</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">flex</span>: <span style="color:#666">1</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">padding</span>: <span style="color:#666">16</span><span style="color:#0b0;font-weight:bold">px</span>;
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		.<span style="color:#00f">card-text</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">margin</span>: <span style="color:#666">0</span>;
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		.<span style="color:#00f">card-footer</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">background-color</span>: <span style="color:#666">#f7f7f7</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">border-top</span>: <span style="color:#666">1</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#a2f;font-weight:bold">solid</span> <span style="color:#666">#ccc</span>;
-</span></span><span style="display:flex;"><span>			<span style="color:#a2f;font-weight:bold">padding</span>: <span style="color:#666">16</span><span style="color:#0b0;font-weight:bold">px</span>;
-</span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>	&lt;/<span style="color:#008000;font-weight:bold">style</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#008000;font-weight:bold">head</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#008000;font-weight:bold">body</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#008000;font-weight:bold">h1</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;header&#34;</span>&gt;Echoes of Eternity&lt;/<span style="color:#008000;font-weight:bold">h1</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;card-wrapper&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>		&lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;quote-list&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
-</span></span><span style="display:flex;"><span>	&lt;<span style="color:#008000;font-weight:bold">script</span>&gt;
-</span></span><span style="display:flex;"><span>		fetch(&#34;/quotes&#34;)
-</span></span><span style="display:flex;"><span>			.then(response =&gt; response.json())
-</span></span><span style="display:flex;"><span>			.then(quotes =&gt; {
-</span></span><span style="display:flex;"><span>				const quoteList = document.getElementById(&#34;quote-list&#34;);
-</span></span><span style="display:flex;"><span>				for (const quote of quotes) {
-</span></span><span style="display:flex;"><span>					const card = document.createElement(&#34;div&#34;);
-</span></span><span style="display:flex;"><span>					card.className = &#34;card&#34;;
-</span></span><span style="display:flex;"><span>					card.innerHTML = `
-</span></span><span style="display:flex;"><span>						&lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;card-body&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>							&lt;<span style="color:#008000;font-weight:bold">p</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;card-text&#34;</span>&gt;&#34;${quote.quote}&#34;&lt;/<span style="color:#008000;font-weight:bold">p</span>&gt;
-</span></span><span style="display:flex;"><span>						&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
-</span></span></code></pre></div><p>As you can see the response is not complete. But you can get it to do what you want by requesting only the parts of code you are interested in. I have seen it truncating response when the code listing is long. I have observed that this mostly happens with HTML code only. Anyways, entire code listing is available on my <a href="https://github.com/quaintdev/echoesofeternity">GitHub</a></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#008000;font-weight:bold">html</span>&gt;
+&lt;<span style="color:#008000;font-weight:bold">head</span>&gt;
+	&lt;<span style="color:#008000;font-weight:bold">title</span>&gt;Quotes&lt;/<span style="color:#008000;font-weight:bold">title</span>&gt;
+	&lt;<span style="color:#008000;font-weight:bold">style</span>&gt;
+		.<span style="color:#00f">header</span> {
+			<span style="color:#a2f;font-weight:bold">color</span>: <span style="color:#666">#00bfff</span>;
+			<span style="color:#a2f;font-weight:bold">font-family</span>: <span style="color:#b44">&#34;Courier New&#34;</span>, <span style="color:#a2f;font-weight:bold">monospace</span>;
+			<span style="color:#a2f;font-weight:bold">font-size</span>: <span style="color:#666">32</span><span style="color:#0b0;font-weight:bold">px</span>;
+			<span style="color:#a2f;font-weight:bold">font-weight</span>: <span style="color:#a2f;font-weight:bold">bold</span>;
+			<span style="color:#a2f;font-weight:bold">margin</span>: <span style="color:#666">32</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#666">0</span>;
+			<span style="color:#a2f;font-weight:bold">text-align</span>: <span style="color:#a2f;font-weight:bold">center</span>;
+			<span style="color:#a2f;font-weight:bold">text-shadow</span>: <span style="color:#666">0</span> <span style="color:#666">2</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#666">4</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#a2f">rgba</span>(<span style="color:#666">0</span>, <span style="color:#666">0</span>, <span style="color:#666">0</span>, <span style="color:#666">0.1</span>);
+		}
+		.<span style="color:#00f">card-wrapper</span> {
+			<span style="color:#a2f;font-weight:bold">display</span>: <span style="color:#a2f;font-weight:bold">flex</span>;
+			<span style="color:#a2f;font-weight:bold">flex-wrap</span>: <span style="color:#a2f;font-weight:bold">wrap</span>;
+			<span style="color:#a2f;font-weight:bold">justify-content</span>: <span style="color:#a2f;font-weight:bold">center</span>;
+			<span style="color:#a2f;font-weight:bold">max-width</span>: <span style="color:#666">800</span><span style="color:#0b0;font-weight:bold">px</span>;
+			<span style="color:#a2f;font-weight:bold">margin</span>: <span style="color:#666">0</span> <span style="color:#a2f;font-weight:bold">auto</span>;
+		}
+		.<span style="color:#00f">card</span> {
+			<span style="color:#a2f;font-weight:bold">border</span>: <span style="color:#666">1</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#a2f;font-weight:bold">solid</span> <span style="color:#666">#ccc</span>;
+			<span style="color:#a2f;font-weight:bold">border-radius</span>: <span style="color:#666">4</span><span style="color:#0b0;font-weight:bold">px</span>;
+			<span style="color:#a2f;font-weight:bold">box-shadow</span>: <span style="color:#666">0</span> <span style="color:#666">2</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#666">4</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#a2f">rgba</span>(<span style="color:#666">0</span>, <span style="color:#666">0</span>, <span style="color:#666">0</span>, <span style="color:#666">0.1</span>);
+			<span style="color:#a2f;font-weight:bold">display</span>: <span style="color:#a2f;font-weight:bold">flex</span>;
+			<span style="color:#a2f;font-weight:bold">flex-direction</span>: <span style="color:#a2f;font-weight:bold">column</span>;
+			<span style="color:#a2f;font-weight:bold">overflow</span>: <span style="color:#a2f;font-weight:bold">hidden</span>;
+			<span style="color:#a2f;font-weight:bold">max-width</span>: <span style="color:#666">300</span><span style="color:#0b0;font-weight:bold">px</span>;
+			<span style="color:#a2f;font-weight:bold">margin</span>: <span style="color:#666">16</span><span style="color:#0b0;font-weight:bold">px</span>;
+		}
+		.<span style="color:#00f">card-body</span> {
+			<span style="color:#a2f;font-weight:bold">flex</span>: <span style="color:#666">1</span>;
+			<span style="color:#a2f;font-weight:bold">padding</span>: <span style="color:#666">16</span><span style="color:#0b0;font-weight:bold">px</span>;
+		}
+		.<span style="color:#00f">card-text</span> {
+			<span style="color:#a2f;font-weight:bold">margin</span>: <span style="color:#666">0</span>;
+		}
+		.<span style="color:#00f">card-footer</span> {
+			<span style="color:#a2f;font-weight:bold">background-color</span>: <span style="color:#666">#f7f7f7</span>;
+			<span style="color:#a2f;font-weight:bold">border-top</span>: <span style="color:#666">1</span><span style="color:#0b0;font-weight:bold">px</span> <span style="color:#a2f;font-weight:bold">solid</span> <span style="color:#666">#ccc</span>;
+			<span style="color:#a2f;font-weight:bold">padding</span>: <span style="color:#666">16</span><span style="color:#0b0;font-weight:bold">px</span>;
+		}
+	&lt;/<span style="color:#008000;font-weight:bold">style</span>&gt;
+&lt;/<span style="color:#008000;font-weight:bold">head</span>&gt;
+&lt;<span style="color:#008000;font-weight:bold">body</span>&gt;
+	&lt;<span style="color:#008000;font-weight:bold">h1</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;header&#34;</span>&gt;Echoes of Eternity&lt;/<span style="color:#008000;font-weight:bold">h1</span>&gt;
+	&lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;card-wrapper&#34;</span>&gt;
+		&lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">id</span><span style="color:#666">=</span><span style="color:#b44">&#34;quote-list&#34;</span>&gt;&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+	&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+	&lt;<span style="color:#008000;font-weight:bold">script</span>&gt;
+		fetch(&#34;/quotes&#34;)
+			.then(response =&gt; response.json())
+			.then(quotes =&gt; {
+				const quoteList = document.getElementById(&#34;quote-list&#34;);
+				for (const quote of quotes) {
+					const card = document.createElement(&#34;div&#34;);
+					card.className = &#34;card&#34;;
+					card.innerHTML = `
+						&lt;<span style="color:#008000;font-weight:bold">div</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;card-body&#34;</span>&gt;
+							&lt;<span style="color:#008000;font-weight:bold">p</span> <span style="color:#b44">class</span><span style="color:#666">=</span><span style="color:#b44">&#34;card-text&#34;</span>&gt;&#34;${quote.quote}&#34;&lt;/<span style="color:#008000;font-weight:bold">p</span>&gt;
+						&lt;/<span style="color:#008000;font-weight:bold">div</span>&gt;
+</code></pre></div><p>As you can see the response is not complete. But you can get it to do what you want by requesting only the parts of code you are interested in. I have seen it truncating response when the code listing is long. I have observed that this mostly happens with HTML code only. Anyways, entire code listing is available on my <a href="https://github.com/quaintdev/echoesofeternity">GitHub</a></p>
 <p>Except some minor refactoring of code I did not do any changes to the generated code. All of this in under 30 mins and I know just as much CSS as a backend developer would. Pretty impressive!</p>
 <p><em>Subscribe for more!</em></p>
 
