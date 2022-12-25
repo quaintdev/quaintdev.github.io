@@ -112,7 +112,7 @@ if (!doNotTrack) {
   "keywords": [
     
   ],
-  "articleBody": "As a software developer, I have been following the advancements in artificial intelligence with great interest. While I have seen AI perform a variety of tasks, from image recognition to natural language processing, one thing that really surprised me was its ability to generate code.\nCode generation is the process of automatically creating code based on a set of input parameters. This is a difficult task for a machine to perform, as it requires a deep understanding of programming languages, algorithms, and logic. However, recent developments in AI have made it possible for machines to generate code that is both functional and efficient. By training a machine learning model on a large dataset of code, it can learn the patterns and structures that are commonly used in programming languages. This allows it to generate code that follows these patterns, resulting in code that is both syntactically correct and semantically meaningful.\nGitHub copilot was one such AI and now OpenAI’s ChatGPT is another that can generate code. The beauty of these AIs is their ability to understand natural language. So developers can generate code in preferred programming language with a simple prompt. This makes it possible for non-technical users to specify the functionality they want, without having to know how to write code themselves.\nWhat is possible today? I asked ChatGPT to write code for different use cases. First started with something simple:\nThen I asked it to Write a golang server to serve static files\npackage main import ( \"fmt\" \"net/http\" ) func main() { // Use the http.FileServer function to create a new file server  // that serves files from the specified directory  fs := http.FileServer(http.Dir(\"static\")) // Use the http.Handle function to register the file server as  // the handler for requests to the \"/static\" URL path  http.Handle(\"/static/\", http.StripPrefix(\"/static/\", fs)) // Use the http.ListenAndServe function to start the server  // listening on the specified port  fmt.Println(\"Starting server on port 8080\") http.ListenAndServe(\":8080\", nil) } The code comments are helpful to developer and then it also responds with how to run the code which I think is good if some beginner is trying to learn to code. I generated quite a few programs and although I did not run any of these I am pretty sure they will give expected result with little to no tweaking.\nI went on to ask more complex tasks and asked it to generate Go code to convert Color image to Black \u0026 White and below is the result. It even knows what it needs to import and how to use those APIs!\npackage main import ( \"image\" \"image/color\" \"image/jpeg\" \"os\" ) func main() { // Open the input file  in, err := os.Open(\"input.jpg\") if err != nil { panic(err) } defer in.Close() // Decode the input image  img, err := jpeg.Decode(in) if err != nil { panic(err) } // Create a new image with the same dimensions as the input image  bw := image.NewGray(img.Bounds()) // Iterate over each pixel in the input image  for y := img.Bounds().Min.Y; y Bounds().Max.Y; y++ { for x := img.Bounds().Min.X; x Bounds().Max.X; x++ { // Get the color of the current pixel  c := img.At(x, y) // Convert the color to grayscale  g := color.GrayModel.Convert(c).(color.Gray) // Set the pixel in the output image to the grayscale color  bw.Set(x, y, g) } } // Open the output file  out, err := os.Create(\"output.jpg\") if err != nil { panic(err) } defer out.Close() // Encode the output image as a JPEG and write it to the output file  err = jpeg.Encode(out, bw, \u0026jpeg.Options{Quality: 100}) if err != nil { panic(err) } } It can generate code in quite a few languages and understand what it needs to do. For example, you can just ask it to create a CSS for a rounded button with light color and it will spit out the result that you can use in your code. Currently it seems that the capabilities of this AI are intentionally diminished for general public because when I asked it to generate a website for selling sustainable products it truncated it’s response after generating fairly complex CSS, content for website and links to products page One can only imagine how powerful it is behind the scenes.\nSo far I have seen people using it to generate\n iptables for firewall config complicated ffmpeg commands to stich images to create a video regex for given filter criteria docker commands  Someone just launched a website to share the prompts and response of ChatGPT, visit https://www.learngpt.com/.\nOverall, the ability of AI to generate code was the last thing I was expecting using machine learning. Its ability to understand and generate code has the potential to revolutionize the way we develop software, making it more accessible and efficient.\nThe possibilities with this AI are unlimited. Finally I will leave you with the terms and conditions I asked it to generate.\nAIs can help developers throughout the development life cycle of the products. I am excited to see what other developments in AI will emerge in the future.\n80% of this blog post including title and cover image is generated by AI\n",
+  "articleBody": "As a software developer, I have been following the advancements in artificial intelligence with great interest. While I have seen AI perform a variety of tasks, from image recognition to natural language processing, one thing that really surprised me was its ability to generate code.\nCode generation is the process of automatically creating code based on a set of input parameters. This is a difficult task for a machine to perform, as it requires a deep understanding of programming languages, algorithms, and logic. However, recent developments in AI have made it possible for machines to generate code that is both functional and efficient. By training a machine learning model on a large dataset of code, it can learn the patterns and structures that are commonly used in programming languages. This allows it to generate code that follows these patterns, resulting in code that is both syntactically correct and semantically meaningful.\nGitHub copilot was one such AI and now OpenAI’s ChatGPT is another that can generate code. The beauty of these AIs is their ability to understand natural language. So developers can generate code in preferred programming language with a simple prompt. This makes it possible for non-technical users to specify the functionality they want, without having to know how to write code themselves.\nWhat is possible today? I asked ChatGPT to write code for different use cases. First started with something simple:\nThen I asked it to Write a golang server to serve static files\npackage main  import (  \"fmt\"  \"net/http\" )  func main() {  // Use the http.FileServer function to create a new file server  // that serves files from the specified directory  fs := http.FileServer(http.Dir(\"static\"))   // Use the http.Handle function to register the file server as  // the handler for requests to the \"/static\" URL path  http.Handle(\"/static/\", http.StripPrefix(\"/static/\", fs))   // Use the http.ListenAndServe function to start the server  // listening on the specified port  fmt.Println(\"Starting server on port 8080\")  http.ListenAndServe(\":8080\", nil) } The code comments are helpful to developer and then it also responds with how to run the code which I think is good if some beginner is trying to learn to code. I generated quite a few programs and although I did not run any of these I am pretty sure they will give expected result with little to no tweaking.\nI went on to ask more complex tasks and asked it to generate Go code to convert Color image to Black \u0026 White and below is the result. It even knows what it needs to import and how to use those APIs!\npackage main  import (  \"image\"  \"image/color\"  \"image/jpeg\"  \"os\" )  func main() {  // Open the input file  in, err := os.Open(\"input.jpg\")  if err != nil {  panic(err)  }  defer in.Close()   // Decode the input image  img, err := jpeg.Decode(in)  if err != nil {  panic(err)  }   // Create a new image with the same dimensions as the input image  bw := image.NewGray(img.Bounds())   // Iterate over each pixel in the input image  for y := img.Bounds().Min.Y; y Bounds().Max.Y; y++ {  for x := img.Bounds().Min.X; x Bounds().Max.X; x++ {  // Get the color of the current pixel  c := img.At(x, y)   // Convert the color to grayscale  g := color.GrayModel.Convert(c).(color.Gray)   // Set the pixel in the output image to the grayscale color  bw.Set(x, y, g)  }  }   // Open the output file  out, err := os.Create(\"output.jpg\")  if err != nil {  panic(err)  }  defer out.Close()   // Encode the output image as a JPEG and write it to the output file  err = jpeg.Encode(out, bw, \u0026jpeg.Options{Quality: 100})  if err != nil {  panic(err)  } } It can generate code in quite a few languages and understand what it needs to do. For example, you can just ask it to create a CSS for a rounded button with light color and it will spit out the result that you can use in your code. Currently it seems that the capabilities of this AI are intentionally diminished for general public because when I asked it to generate a website for selling sustainable products it truncated it’s response after generating fairly complex CSS, content for website and links to products page One can only imagine how powerful it is behind the scenes.\nSo far I have seen people using it to generate\n iptables for firewall config complicated ffmpeg commands to stich images to create a video regex for given filter criteria docker commands  Someone just launched a website to share the prompts and response of ChatGPT, visit https://www.learngpt.com/.\nOverall, the ability of AI to generate code was the last thing I was expecting using machine learning. Its ability to understand and generate code has the potential to revolutionize the way we develop software, making it more accessible and efficient.\nThe possibilities with this AI are unlimited. Finally I will leave you with the terms and conditions I asked it to generate.\nAIs can help developers throughout the development life cycle of the products. I am excited to see what other developments in AI will emerge in the future.\n80% of this blog post including title and cover image is generated by AI\n",
   "wordCount" : "855",
   "inLanguage": "en",
   "image":"https://rohanrd.xyz/static/robot.png","datePublished": "2022-12-09T23:36:47+05:30",
@@ -218,83 +218,83 @@ if (!doNotTrack) {
 <p><img loading="lazy" src="/static/sql.png" alt=""  />
 </p>
 <p>Then I asked it to <em>Write a golang server to serve static files</em></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#a2f;font-weight:bold">package</span> main
-
-<span style="color:#a2f;font-weight:bold">import</span> (
-    <span style="color:#b44">&#34;fmt&#34;</span>
-    <span style="color:#b44">&#34;net/http&#34;</span>
-)
-
-<span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">main</span>() {
-    <span style="color:#080;font-style:italic">// Use the http.FileServer function to create a new file server
-</span><span style="color:#080;font-style:italic"></span>    <span style="color:#080;font-style:italic">// that serves files from the specified directory
-</span><span style="color:#080;font-style:italic"></span>    fs <span style="color:#666">:=</span> http.<span style="color:#00a000">FileServer</span>(http.<span style="color:#00a000">Dir</span>(<span style="color:#b44">&#34;static&#34;</span>))
-
-    <span style="color:#080;font-style:italic">// Use the http.Handle function to register the file server as
-</span><span style="color:#080;font-style:italic"></span>    <span style="color:#080;font-style:italic">// the handler for requests to the &#34;/static&#34; URL path
-</span><span style="color:#080;font-style:italic"></span>    http.<span style="color:#00a000">Handle</span>(<span style="color:#b44">&#34;/static/&#34;</span>, http.<span style="color:#00a000">StripPrefix</span>(<span style="color:#b44">&#34;/static/&#34;</span>, fs))
-
-    <span style="color:#080;font-style:italic">// Use the http.ListenAndServe function to start the server
-</span><span style="color:#080;font-style:italic"></span>    <span style="color:#080;font-style:italic">// listening on the specified port
-</span><span style="color:#080;font-style:italic"></span>    fmt.<span style="color:#00a000">Println</span>(<span style="color:#b44">&#34;Starting server on port 8080&#34;</span>)
-    http.<span style="color:#00a000">ListenAndServe</span>(<span style="color:#b44">&#34;:8080&#34;</span>, <span style="color:#a2f;font-weight:bold">nil</span>)
-}
-</code></pre></div><p>The code comments are helpful to developer and then it also responds with how to run the code which I think is good if some beginner is trying to learn to code. I generated quite a few programs and although I did not run any of these I am pretty sure they will give expected result with little to no tweaking.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Go" data-lang="Go"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">package</span> main
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">import</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#b44">&#34;net/http&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">// Use the http.FileServer function to create a new file server
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#080;font-style:italic">// that serves files from the specified directory
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    fs <span style="color:#666">:=</span> http.<span style="color:#00a000">FileServer</span>(http.<span style="color:#00a000">Dir</span>(<span style="color:#b44">&#34;static&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">// Use the http.Handle function to register the file server as
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#080;font-style:italic">// the handler for requests to the &#34;/static&#34; URL path
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    http.<span style="color:#00a000">Handle</span>(<span style="color:#b44">&#34;/static/&#34;</span>, http.<span style="color:#00a000">StripPrefix</span>(<span style="color:#b44">&#34;/static/&#34;</span>, fs))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#080;font-style:italic">// Use the http.ListenAndServe function to start the server
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    <span style="color:#080;font-style:italic">// listening on the specified port
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>    fmt.<span style="color:#00a000">Println</span>(<span style="color:#b44">&#34;Starting server on port 8080&#34;</span>)
+</span></span><span style="display:flex;"><span>    http.<span style="color:#00a000">ListenAndServe</span>(<span style="color:#b44">&#34;:8080&#34;</span>, <span style="color:#a2f;font-weight:bold">nil</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The code comments are helpful to developer and then it also responds with how to run the code which I think is good if some beginner is trying to learn to code. I generated quite a few programs and although I did not run any of these I am pretty sure they will give expected result with little to no tweaking.</p>
 <p>I went on to ask more complex tasks and asked it to generate Go code to convert Color image to Black &amp; White and below is the result. It even knows what it needs to import and how to use those APIs!</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Go" data-lang="Go"><span style="color:#a2f;font-weight:bold">package</span> main
-
-<span style="color:#a2f;font-weight:bold">import</span> (
-  <span style="color:#b44">&#34;image&#34;</span>
-  <span style="color:#b44">&#34;image/color&#34;</span>
-  <span style="color:#b44">&#34;image/jpeg&#34;</span>
-  <span style="color:#b44">&#34;os&#34;</span>
-)
-
-<span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">main</span>() {
-  <span style="color:#080;font-style:italic">// Open the input file
-</span><span style="color:#080;font-style:italic"></span>  in, err <span style="color:#666">:=</span> os.<span style="color:#00a000">Open</span>(<span style="color:#b44">&#34;input.jpg&#34;</span>)
-  <span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
-    <span style="color:#a2f">panic</span>(err)
-  }
-  <span style="color:#a2f;font-weight:bold">defer</span> in.<span style="color:#00a000">Close</span>()
-
-  <span style="color:#080;font-style:italic">// Decode the input image
-</span><span style="color:#080;font-style:italic"></span>  img, err <span style="color:#666">:=</span> jpeg.<span style="color:#00a000">Decode</span>(in)
-  <span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
-    <span style="color:#a2f">panic</span>(err)
-  }
-
-  <span style="color:#080;font-style:italic">// Create a new image with the same dimensions as the input image
-</span><span style="color:#080;font-style:italic"></span>  bw <span style="color:#666">:=</span> image.<span style="color:#00a000">NewGray</span>(img.<span style="color:#00a000">Bounds</span>())
-
-  <span style="color:#080;font-style:italic">// Iterate over each pixel in the input image
-</span><span style="color:#080;font-style:italic"></span>  <span style="color:#a2f;font-weight:bold">for</span> y <span style="color:#666">:=</span> img.<span style="color:#00a000">Bounds</span>().Min.Y; y &lt; img.<span style="color:#00a000">Bounds</span>().Max.Y; y<span style="color:#666">++</span> {
-    <span style="color:#a2f;font-weight:bold">for</span> x <span style="color:#666">:=</span> img.<span style="color:#00a000">Bounds</span>().Min.X; x &lt; img.<span style="color:#00a000">Bounds</span>().Max.X; x<span style="color:#666">++</span> {
-      <span style="color:#080;font-style:italic">// Get the color of the current pixel
-</span><span style="color:#080;font-style:italic"></span>      c <span style="color:#666">:=</span> img.<span style="color:#00a000">At</span>(x, y)
-
-      <span style="color:#080;font-style:italic">// Convert the color to grayscale
-</span><span style="color:#080;font-style:italic"></span>      g <span style="color:#666">:=</span> color.GrayModel.<span style="color:#00a000">Convert</span>(c).(color.Gray)
-
-      <span style="color:#080;font-style:italic">// Set the pixel in the output image to the grayscale color
-</span><span style="color:#080;font-style:italic"></span>      bw.<span style="color:#00a000">Set</span>(x, y, g)
-    }
-  }
-
-  <span style="color:#080;font-style:italic">// Open the output file
-</span><span style="color:#080;font-style:italic"></span>  out, err <span style="color:#666">:=</span> os.<span style="color:#00a000">Create</span>(<span style="color:#b44">&#34;output.jpg&#34;</span>)
-  <span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
-    <span style="color:#a2f">panic</span>(err)
-  }
-  <span style="color:#a2f;font-weight:bold">defer</span> out.<span style="color:#00a000">Close</span>()
-
-  <span style="color:#080;font-style:italic">// Encode the output image as a JPEG and write it to the output file
-</span><span style="color:#080;font-style:italic"></span>  err = jpeg.<span style="color:#00a000">Encode</span>(out, bw, <span style="color:#666">&amp;</span>jpeg.Options{Quality: <span style="color:#666">100</span>})
-  <span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
-    <span style="color:#a2f">panic</span>(err)
-  }
-}
-</code></pre></div><p>It can generate code in quite a few languages and understand what it needs to do. For example, you can just ask it to create a CSS for a <em>rounded button with light color</em> and it will spit out the result that you can use in your code. Currently it seems that the capabilities of this AI are intentionally diminished for general public because when I asked it to generate a website for selling sustainable products it truncated it&rsquo;s response after generating fairly complex CSS, content for website and links to products page One can only imagine how powerful it is behind the scenes.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Go" data-lang="Go"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">package</span> main
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">import</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#b44">&#34;image&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#b44">&#34;image/color&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#b44">&#34;image/jpeg&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#b44">&#34;os&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">func</span> <span style="color:#00a000">main</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#080;font-style:italic">// Open the input file
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>  in, err <span style="color:#666">:=</span> os.<span style="color:#00a000">Open</span>(<span style="color:#b44">&#34;input.jpg&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f">panic</span>(err)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a2f;font-weight:bold">defer</span> in.<span style="color:#00a000">Close</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#080;font-style:italic">// Decode the input image
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>  img, err <span style="color:#666">:=</span> jpeg.<span style="color:#00a000">Decode</span>(in)
+</span></span><span style="display:flex;"><span>  <span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f">panic</span>(err)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#080;font-style:italic">// Create a new image with the same dimensions as the input image
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>  bw <span style="color:#666">:=</span> image.<span style="color:#00a000">NewGray</span>(img.<span style="color:#00a000">Bounds</span>())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#080;font-style:italic">// Iterate over each pixel in the input image
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>  <span style="color:#a2f;font-weight:bold">for</span> y <span style="color:#666">:=</span> img.<span style="color:#00a000">Bounds</span>().Min.Y; y &lt; img.<span style="color:#00a000">Bounds</span>().Max.Y; y<span style="color:#666">++</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">for</span> x <span style="color:#666">:=</span> img.<span style="color:#00a000">Bounds</span>().Min.X; x &lt; img.<span style="color:#00a000">Bounds</span>().Max.X; x<span style="color:#666">++</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#080;font-style:italic">// Get the color of the current pixel
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>      c <span style="color:#666">:=</span> img.<span style="color:#00a000">At</span>(x, y)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#080;font-style:italic">// Convert the color to grayscale
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>      g <span style="color:#666">:=</span> color.GrayModel.<span style="color:#00a000">Convert</span>(c).(color.Gray)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#080;font-style:italic">// Set the pixel in the output image to the grayscale color
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>      bw.<span style="color:#00a000">Set</span>(x, y, g)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#080;font-style:italic">// Open the output file
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>  out, err <span style="color:#666">:=</span> os.<span style="color:#00a000">Create</span>(<span style="color:#b44">&#34;output.jpg&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f">panic</span>(err)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a2f;font-weight:bold">defer</span> out.<span style="color:#00a000">Close</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#080;font-style:italic">// Encode the output image as a JPEG and write it to the output file
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>  err = jpeg.<span style="color:#00a000">Encode</span>(out, bw, <span style="color:#666">&amp;</span>jpeg.Options{Quality: <span style="color:#666">100</span>})
+</span></span><span style="display:flex;"><span>  <span style="color:#a2f;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#a2f;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f">panic</span>(err)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>It can generate code in quite a few languages and understand what it needs to do. For example, you can just ask it to create a CSS for a <em>rounded button with light color</em> and it will spit out the result that you can use in your code. Currently it seems that the capabilities of this AI are intentionally diminished for general public because when I asked it to generate a website for selling sustainable products it truncated it&rsquo;s response after generating fairly complex CSS, content for website and links to products page One can only imagine how powerful it is behind the scenes.</p>
 <p>So far I have seen people using it to generate</p>
 <ul>
 <li>iptables for firewall config</li>
