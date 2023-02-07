@@ -6,7 +6,16 @@
     <description>Recent content in Posts on rohanrd.xyz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 25 Dec 2022 23:41:57 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 Feb 2023 01:09:19 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dear Microsoft</title>
+      <link>https://rohanrd.xyz/posts/dear-microsoft/</link>
+      <pubDate>Wed, 08 Feb 2023 01:09:19 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/dear-microsoft/</guid>
+      <description>A letter to Microsoft regarding Bing</description>
+    </item>
+    
     <item>
       <title>Self Hosting Password Manager</title>
       <link>https://rohanrd.xyz/posts/self-hosting-password-manager/</link>
