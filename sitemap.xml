@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://rohanrd.xyz/posts/dear-microsoft/</loc>
-    <lastmod>2023-02-08T01:09:19+05:30</lastmod>
-  </url><url>
     <loc>https://rohanrd.xyz/posts/</loc>
-    <lastmod>2023-02-08T01:09:19+05:30</lastmod>
+    <lastmod>2023-03-12T17:22:47+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/</loc>
+    <lastmod>2023-03-12T17:22:47+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/posts/toxic-positivity/</loc>
+    <lastmod>2023-03-12T17:22:47+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/posts/dear-microsoft/</loc>
     <lastmod>2023-02-08T01:09:19+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/posts/self-hosting-password-manager/</loc>
