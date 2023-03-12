@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>projects on rohanrd.xyz</title>
+    <link>https://rohanrd.xyz/tags/projects/</link>
+    <description>Recent content in projects on rohanrd.xyz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rohanrd.xyz/tags/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Monitoring Solar Power Over WiFi</title>
+      <link>https://rohanrd.xyz/posts/monitoring-solar-power-over-wifi/</link>
+      <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/monitoring-solar-power-over-wifi/</guid>
+      <description>Measuring solar panel output with Arduino and ESP8266 and viewing it on Grafana dashboard with InfluxDB hosted on Raspberry PI</description>
+    </item>
+    
+  </channel>
+</rss>
