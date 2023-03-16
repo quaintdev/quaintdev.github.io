@@ -6,7 +6,27 @@
     <description>Recent content on rohanrd.xyz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Mar 2023 17:22:47 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Mar 2023 22:42:48 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>गुढीची आरती</title>
+      <link>https://rohanrd.xyz/marathi/gudhichi-aarti/</link>
+      <pubDate>Mon, 13 Mar 2023 22:42:48 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/marathi/gudhichi-aarti/</guid>
+      <description>गुढी उभारू चैत्रमासी प्रतिपदा ही तिथी,
+आरती करुनी वसंत ऋतूचा महिमा वर्णू किती|
+विश्व निर्मिती ब्रह्म करीतो, ब्रमहपुराणी असे,
+अयोद्धेसी वनवासाहुनी राम पुन्हा परतसे,
+गुढ्या-तोरणे रांगोळ्यांनी स्वागत ते करीती,
+आरती करुनी वसंत ऋतूचा महिमा वर्णू किती|
+माधव तसे मधुमास ही वेदातील ही नावे,
+पंचांगाचे पूजन सर्वही करती मनोभावे,
+सरस्वतीस गंध अन पाटी ही पुजिती,
+आरती करुनी वसंत ऋतूचा महिमा वर्णू किती|
+साखरमाळ कडुलिंबाची पाने फुलमाळा,
+गडु चांदीचा रेशमी वस्त्र कुंकू ,केशर , टिळा,</description>
+    </item>
+    
     <item>
       <title>Toxic Positivity</title>
       <link>https://rohanrd.xyz/posts/toxic-positivity/</link>
@@ -14,15 +34,6 @@
       
       <guid>https://rohanrd.xyz/posts/toxic-positivity/</guid>
       <description>Imagine our ancestors, who were primarily hunter-gatherers, when faced with predator like a Lion thought &amp;ldquo;This lion will not eat me&amp;rdquo;. Or consider example of the 2008 financial crisis, people thought &amp;ldquo;mortgage backed securities will never go down&amp;rdquo;. Then every now and then throughout the world their are banks that collapsed and eventually had to be bailed out by government. In each of these examples, people failed to consider a perspective.</description>
-    </item>
-    
-    <item>
-      <title>Dear Microsoft</title>
-      <link>https://rohanrd.xyz/posts/dear-microsoft/</link>
-      <pubDate>Wed, 08 Feb 2023 01:09:19 +0530</pubDate>
-      
-      <guid>https://rohanrd.xyz/posts/dear-microsoft/</guid>
-      <description>I have few suggestions for Bing homepage</description>
     </item>
     
     <item>
@@ -41,15 +52,6 @@
       
       <guid>https://rohanrd.xyz/posts/rss-readers-that-you-can-self-host/</guid>
       <description>Self-hosted RSS readers offer users a way to customize their feeds and have more control over their data and privacy. One of the main advantages of using a self-hosted RSS reader is that it allows you to avoid the algorithms that drive many commercial platforms. These algorithms are designed to show you content that they think you&amp;rsquo;ll be interested in based on your past browsing history and other factors. With a self-hosted RSS reader, you have complete control over what you see in your feed and can customize it to your liking.</description>
-    </item>
-    
-    <item>
-      <title>I Created Entire App in 30 Min With ChatGPT</title>
-      <link>https://rohanrd.xyz/posts/i-created-entire-app-in-30-min-with-chatgpt/</link>
-      <pubDate>Sun, 18 Dec 2022 23:21:41 +0530</pubDate>
-      
-      <guid>https://rohanrd.xyz/posts/i-created-entire-app-in-30-min-with-chatgpt/</guid>
-      <description>I have been playing around with ChatGPT for quite some time now and have used it for quite a few things like blog posts, generation of thumbnails, simple programs, random research on certain topics, etc,. Now I wanted to see just how useful ChatGPT can be if I am starting a project from scratch. I started working on this project called Echoes of Eternity. The app sounds very fancy but it&amp;rsquo;s actually very simple.</description>
     </item>
     
     <item>
@@ -122,6 +124,15 @@
       
       <guid>https://rohanrd.xyz/posts/monitoring-solar-power-over-wifi/</guid>
       <description>Measuring solar panel output with Arduino and ESP8266 and viewing it on Grafana dashboard with InfluxDB hosted on Raspberry PI</description>
+    </item>
+    
+    <item>
+      <title>Inheritance with Golang</title>
+      <link>https://rohanrd.xyz/posts/inheritance-with-golang/</link>
+      <pubDate>Sun, 24 May 2020 12:49:08 +0000</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/inheritance-with-golang/</guid>
+      <description>Implementing inheritance pattern in Go without using Interfaces</description>
     </item>
     
     

@@ -6,11 +6,20 @@
     <description>Recent content in Tags on rohanrd.xyz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 24 Dec 2022 00:21:08 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Mar 2023 17:22:47 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ramblings</title>
+      <link>https://rohanrd.xyz/tags/ramblings/</link>
+      <pubDate>Sun, 12 Mar 2023 17:22:47 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/tags/ramblings/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>self hosting</title>
       <link>https://rohanrd.xyz/tags/self-hosting/</link>
-      <pubDate>Sat, 24 Dec 2022 00:21:08 +0530</pubDate>
+      <pubDate>Sun, 25 Dec 2022 23:41:57 +0530</pubDate>
       
       <guid>https://rohanrd.xyz/tags/self-hosting/</guid>
       <description></description>
@@ -26,11 +35,29 @@
     </item>
     
     <item>
+      <title>ai</title>
+      <link>https://rohanrd.xyz/tags/ai/</link>
+      <pubDate>Fri, 09 Dec 2022 23:36:47 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/tags/ai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>projects</title>
       <link>https://rohanrd.xyz/tags/projects/</link>
       <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://rohanrd.xyz/tags/projects/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://rohanrd.xyz/tags/golang/</link>
+      <pubDate>Sun, 24 May 2020 12:49:08 +0000</pubDate>
+      
+      <guid>https://rohanrd.xyz/tags/golang/</guid>
       <description></description>
     </item>
     

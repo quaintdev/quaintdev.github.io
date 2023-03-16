@@ -17,15 +17,6 @@
     </item>
     
     <item>
-      <title>Dear Microsoft</title>
-      <link>https://rohanrd.xyz/posts/dear-microsoft/</link>
-      <pubDate>Wed, 08 Feb 2023 01:09:19 +0530</pubDate>
-      
-      <guid>https://rohanrd.xyz/posts/dear-microsoft/</guid>
-      <description>I have few suggestions for Bing homepage</description>
-    </item>
-    
-    <item>
       <title>Self Hosting Password Manager</title>
       <link>https://rohanrd.xyz/posts/self-hosting-password-manager/</link>
       <pubDate>Sun, 25 Dec 2022 23:41:57 +0530</pubDate>
@@ -41,15 +32,6 @@
       
       <guid>https://rohanrd.xyz/posts/rss-readers-that-you-can-self-host/</guid>
       <description>Self-hosted RSS readers offer users a way to customize their feeds and have more control over their data and privacy. One of the main advantages of using a self-hosted RSS reader is that it allows you to avoid the algorithms that drive many commercial platforms. These algorithms are designed to show you content that they think you&amp;rsquo;ll be interested in based on your past browsing history and other factors. With a self-hosted RSS reader, you have complete control over what you see in your feed and can customize it to your liking.</description>
-    </item>
-    
-    <item>
-      <title>I Created Entire App in 30 Min With ChatGPT</title>
-      <link>https://rohanrd.xyz/posts/i-created-entire-app-in-30-min-with-chatgpt/</link>
-      <pubDate>Sun, 18 Dec 2022 23:21:41 +0530</pubDate>
-      
-      <guid>https://rohanrd.xyz/posts/i-created-entire-app-in-30-min-with-chatgpt/</guid>
-      <description>I have been playing around with ChatGPT for quite some time now and have used it for quite a few things like blog posts, generation of thumbnails, simple programs, random research on certain topics, etc,. Now I wanted to see just how useful ChatGPT can be if I am starting a project from scratch. I started working on this project called Echoes of Eternity. The app sounds very fancy but it&amp;rsquo;s actually very simple.</description>
     </item>
     
     <item>
@@ -122,6 +104,15 @@
       
       <guid>https://rohanrd.xyz/posts/monitoring-solar-power-over-wifi/</guid>
       <description>Measuring solar panel output with Arduino and ESP8266 and viewing it on Grafana dashboard with InfluxDB hosted on Raspberry PI</description>
+    </item>
+    
+    <item>
+      <title>Inheritance with Golang</title>
+      <link>https://rohanrd.xyz/posts/inheritance-with-golang/</link>
+      <pubDate>Sun, 24 May 2020 12:49:08 +0000</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/inheritance-with-golang/</guid>
+      <description>Implementing inheritance pattern in Go without using Interfaces</description>
     </item>
     
   </channel>

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Surprising Capability of AI: Code Generation | rohanrd.xyz</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="ai">
 <meta name="description" content="Software development using AI is going to be a gamechanger">
 <meta name="author" content="Rohan D">
 <link rel="canonical" href="https://rohanrd.xyz/posts/surprising-capability-of-ai-code-generation/">
@@ -110,7 +110,7 @@ if (!doNotTrack) {
   "name": "Surprising Capability of AI: Code Generation",
   "description": "Software development using AI is going to be a gamechanger",
   "keywords": [
-    
+    "ai"
   ],
   "articleBody": "As a software developer, I have been following the advancements in artificial intelligence with great interest. While I have seen AI perform a variety of tasks, from image recognition to natural language processing, one thing that really surprised me was its ability to generate code.\nCode generation is the process of automatically creating code based on a set of input parameters. This is a difficult task for a machine to perform, as it requires a deep understanding of programming languages, algorithms, and logic. However, recent developments in AI have made it possible for machines to generate code that is both functional and efficient. By training a machine learning model on a large dataset of code, it can learn the patterns and structures that are commonly used in programming languages. This allows it to generate code that follows these patterns, resulting in code that is both syntactically correct and semantically meaningful.\nGitHub copilot was one such AI and now OpenAI’s ChatGPT is another that can generate code. The beauty of these AIs is their ability to understand natural language. So developers can generate code in preferred programming language with a simple prompt. This makes it possible for non-technical users to specify the functionality they want, without having to know how to write code themselves.\nWhat is possible today? I asked ChatGPT to write code for different use cases. First started with something simple:\nThen I asked it to Write a golang server to serve static files\npackage main  import (  \"fmt\"  \"net/http\" )  func main() {  // Use the http.FileServer function to create a new file server  // that serves files from the specified directory  fs := http.FileServer(http.Dir(\"static\"))   // Use the http.Handle function to register the file server as  // the handler for requests to the \"/static\" URL path  http.Handle(\"/static/\", http.StripPrefix(\"/static/\", fs))   // Use the http.ListenAndServe function to start the server  // listening on the specified port  fmt.Println(\"Starting server on port 8080\")  http.ListenAndServe(\":8080\", nil) } The code comments are helpful to developer and then it also responds with how to run the code which I think is good if some beginner is trying to learn to code. I generated quite a few programs and although I did not run any of these I am pretty sure they will give expected result with little to no tweaking.\nI went on to ask more complex tasks and asked it to generate Go code to convert Color image to Black \u0026 White and below is the result. It even knows what it needs to import and how to use those APIs!\npackage main  import (  \"image\"  \"image/color\"  \"image/jpeg\"  \"os\" )  func main() {  // Open the input file  in, err := os.Open(\"input.jpg\")  if err != nil {  panic(err)  }  defer in.Close()   // Decode the input image  img, err := jpeg.Decode(in)  if err != nil {  panic(err)  }   // Create a new image with the same dimensions as the input image  bw := image.NewGray(img.Bounds())   // Iterate over each pixel in the input image  for y := img.Bounds().Min.Y; y Bounds().Max.Y; y++ {  for x := img.Bounds().Min.X; x Bounds().Max.X; x++ {  // Get the color of the current pixel  c := img.At(x, y)   // Convert the color to grayscale  g := color.GrayModel.Convert(c).(color.Gray)   // Set the pixel in the output image to the grayscale color  bw.Set(x, y, g)  }  }   // Open the output file  out, err := os.Create(\"output.jpg\")  if err != nil {  panic(err)  }  defer out.Close()   // Encode the output image as a JPEG and write it to the output file  err = jpeg.Encode(out, bw, \u0026jpeg.Options{Quality: 100})  if err != nil {  panic(err)  } } It can generate code in quite a few languages and understand what it needs to do. For example, you can just ask it to create a CSS for a rounded button with light color and it will spit out the result that you can use in your code. Currently it seems that the capabilities of this AI are intentionally diminished for general public because when I asked it to generate a website for selling sustainable products it truncated it’s response after generating fairly complex CSS, content for website and links to products page One can only imagine how powerful it is behind the scenes.\nSo far I have seen people using it to generate\n iptables for firewall config complicated ffmpeg commands to stich images to create a video regex for given filter criteria docker commands  Someone just launched a website to share the prompts and response of ChatGPT, visit https://www.learngpt.com/.\nOverall, the ability of AI to generate code was the last thing I was expecting using machine learning. Its ability to understand and generate code has the potential to revolutionize the way we develop software, making it more accessible and efficient.\nThe possibilities with this AI are unlimited. Finally I will leave you with the terms and conditions I asked it to generate.\nAIs can help developers throughout the development life cycle of the products. I am excited to see what other developments in AI will emerge in the future.\n80% of this blog post including title and cover image is generated by AI\n",
   "wordCount" : "855",
@@ -190,6 +190,11 @@ if (!doNotTrack) {
             <li>
                 <a href="https://rohanrd.xyz/archives/" title="Archives">
                     <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://rohanrd.xyz/marathi/" title="Marathi">
+                    <span>Marathi</span>
                 </a>
             </li>
         </ul>
@@ -315,11 +320,12 @@ if (!doNotTrack) {
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="https://rohanrd.xyz/tags/ai/">ai</a></li>
     </ul>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Surprising Capability of AI: Code Generation on twitter"
-        href="https://twitter.com/intent/tweet/?text=Surprising%20Capability%20of%20AI%3a%20Code%20Generation&amp;url=https%3a%2f%2frohanrd.xyz%2fposts%2fsurprising-capability-of-ai-code-generation%2f&amp;hashtags=">
+        href="https://twitter.com/intent/tweet/?text=Surprising%20Capability%20of%20AI%3a%20Code%20Generation&amp;url=https%3a%2f%2frohanrd.xyz%2fposts%2fsurprising-capability-of-ai-code-generation%2f&amp;hashtags=ai">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
