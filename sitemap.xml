@@ -2,22 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://rohanrd.xyz/marathi/</loc>
-    <lastmod>2023-03-13T22:42:48+05:30</lastmod>
+    <loc>https://rohanrd.xyz/tags/ai/</loc>
+    <lastmod>2023-03-17T21:00:22+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/posts/ai/</loc>
+    <lastmod>2023-03-17T21:00:22+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/posts/</loc>
+    <lastmod>2023-03-17T21:00:22+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/</loc>
+    <lastmod>2023-03-17T21:00:22+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/tags/</loc>
+    <lastmod>2023-03-17T21:00:22+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/marathi/</loc>
     <lastmod>2023-03-13T22:42:48+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/marathi/gudhichi-aarti/</loc>
     <lastmod>2023-03-13T22:42:48+05:30</lastmod>
   </url><url>
-    <loc>https://rohanrd.xyz/posts/</loc>
-    <lastmod>2023-03-12T17:22:47+05:30</lastmod>
-  </url><url>
     <loc>https://rohanrd.xyz/tags/ramblings/</loc>
-    <lastmod>2023-03-12T17:22:47+05:30</lastmod>
-  </url><url>
-    <loc>https://rohanrd.xyz/tags/</loc>
     <lastmod>2023-03-12T17:22:47+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/posts/toxic-positivity/</loc>
@@ -40,9 +46,6 @@
   </url><url>
     <loc>https://rohanrd.xyz/posts/the-changing-landscape-of-content-consumption/</loc>
     <lastmod>2022-12-10T23:59:27+05:30</lastmod>
-  </url><url>
-    <loc>https://rohanrd.xyz/tags/ai/</loc>
-    <lastmod>2022-12-09T23:36:47+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/posts/surprising-capability-of-ai-code-generation/</loc>
     <lastmod>2022-12-09T23:36:47+05:30</lastmod>
