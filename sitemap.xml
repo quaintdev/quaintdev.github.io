@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://rohanrd.xyz/posts/getting-started-with-selfhosting-part-2/</loc>
+    <lastmod>2023-03-19T17:07:37+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/posts/</loc>
+    <lastmod>2023-03-19T17:07:37+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/</loc>
+    <lastmod>2023-03-19T17:07:37+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/tags/self-hosting/</loc>
+    <lastmod>2023-03-19T17:07:37+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/tags/</loc>
+    <lastmod>2023-03-19T17:07:37+05:30</lastmod>
+  </url><url>
     <loc>https://rohanrd.xyz/tags/ai/</loc>
     <lastmod>2023-03-17T21:00:22+05:30</lastmod>
   </url><url>
-    <loc>https://rohanrd.xyz/posts/ai/</loc>
-    <lastmod>2023-03-17T21:00:22+05:30</lastmod>
-  </url><url>
-    <loc>https://rohanrd.xyz/posts/</loc>
-    <lastmod>2023-03-17T21:00:22+05:30</lastmod>
-  </url><url>
-    <loc>https://rohanrd.xyz/</loc>
-    <lastmod>2023-03-17T21:00:22+05:30</lastmod>
-  </url><url>
-    <loc>https://rohanrd.xyz/tags/</loc>
+    <loc>https://rohanrd.xyz/posts/artificial-intelligence/</loc>
     <lastmod>2023-03-17T21:00:22+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/marathi/</loc>
@@ -28,9 +34,6 @@
   </url><url>
     <loc>https://rohanrd.xyz/posts/toxic-positivity/</loc>
     <lastmod>2023-03-12T17:22:47+05:30</lastmod>
-  </url><url>
-    <loc>https://rohanrd.xyz/tags/self-hosting/</loc>
-    <lastmod>2022-12-25T23:41:57+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/posts/self-hosting-password-manager/</loc>
     <lastmod>2022-12-25T23:41:57+05:30</lastmod>

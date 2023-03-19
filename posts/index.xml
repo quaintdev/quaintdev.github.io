@@ -6,13 +6,24 @@
     <description>Recent content in Posts on rohanrd.xyz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Mar 2023 21:00:22 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Mar 2023 17:07:37 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>AI</title>
-      <link>https://rohanrd.xyz/posts/ai/</link>
+      <title>Getting Started With Selfhosting Part 2</title>
+      <link>https://rohanrd.xyz/posts/getting-started-with-selfhosting-part-2/</link>
+      <pubDate>Sun, 19 Mar 2023 17:07:37 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/getting-started-with-selfhosting-part-2/</guid>
+      <description>In part 1 we saw what hardware we are using for self hosting. In this part we will look at the software stack we will be using. Let&amp;rsquo;s get started.
+Install Raspbian Downloads
+ Raspberry Pi Imager is the quick and easy way to install Raspberry Pi OS and other operating systems to a microSD card, ready to use with your Raspberry Pi Download Raspbian Lite. Choose 64 bit version  Once you have downloaded these, start imager tool.</description>
+    </item>
+    
+    <item>
+      <title>Artificial Intelligence</title>
+      <link>https://rohanrd.xyz/posts/artificial-intelligence/</link>
       <pubDate>Fri, 17 Mar 2023 21:00:22 +0530</pubDate>
       
-      <guid>https://rohanrd.xyz/posts/ai/</guid>
+      <guid>https://rohanrd.xyz/posts/artificial-intelligence/</guid>
       <description>A few years from now, I think we all will have an AI at home and it will not be like existing smart home devices but an actual AI that will actually help you in day to day life. If you have not been living in a cave you have already heard about ChatGPT. One of it&amp;rsquo;s lesser known features is how it can manipulate data and display the same in proper format.</description>
     </item>
     

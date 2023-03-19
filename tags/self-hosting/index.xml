@@ -6,7 +6,18 @@
     <description>Recent content in self hosting on rohanrd.xyz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 25 Dec 2022 23:41:57 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/tags/self-hosting/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Mar 2023 17:07:37 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/tags/self-hosting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Getting Started With Selfhosting Part 2</title>
+      <link>https://rohanrd.xyz/posts/getting-started-with-selfhosting-part-2/</link>
+      <pubDate>Sun, 19 Mar 2023 17:07:37 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/getting-started-with-selfhosting-part-2/</guid>
+      <description>In part 1 we saw what hardware we are using for self hosting. In this part we will look at the software stack we will be using. Let&amp;rsquo;s get started.
+Install Raspbian Downloads
+ Raspberry Pi Imager is the quick and easy way to install Raspberry Pi OS and other operating systems to a microSD card, ready to use with your Raspberry Pi Download Raspbian Lite. Choose 64 bit version  Once you have downloaded these, start imager tool.</description>
+    </item>
+    
     <item>
       <title>Self Hosting Password Manager</title>
       <link>https://rohanrd.xyz/posts/self-hosting-password-manager/</link>
