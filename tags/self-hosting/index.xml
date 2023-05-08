@@ -15,7 +15,7 @@
       <guid>https://rohanrd.xyz/posts/getting-started-with-selfhosting-part-2/</guid>
       <description>In part 1 we saw what hardware we are using for self hosting. In this part we will look at the software stack we will be using. Let&amp;rsquo;s get started.
 Install Raspbian Downloads
- Raspberry Pi Imager is the quick and easy way to install Raspberry Pi OS and other operating systems to a microSD card, ready to use with your Raspberry Pi Download Raspbian Lite. Choose 64 bit version  Once you have downloaded these, start imager tool.</description>
+Raspberry Pi Imager is the quick and easy way to install Raspberry Pi OS and other operating systems to a microSD card, ready to use with your Raspberry Pi Download Raspbian Lite. Choose 64 bit version Once you have downloaded these, start imager tool.</description>
     </item>
     
     <item>
@@ -34,15 +34,6 @@ Install Raspbian Downloads
       
       <guid>https://rohanrd.xyz/posts/rss-readers-that-you-can-self-host/</guid>
       <description>Self-hosted RSS readers offer users a way to customize their feeds and have more control over their data and privacy. One of the main advantages of using a self-hosted RSS reader is that it allows you to avoid the algorithms that drive many commercial platforms. These algorithms are designed to show you content that they think you&amp;rsquo;ll be interested in based on your past browsing history and other factors. With a self-hosted RSS reader, you have complete control over what you see in your feed and can customize it to your liking.</description>
-    </item>
-    
-    <item>
-      <title>Self hosting Your First Application: AdGuardHome</title>
-      <link>https://rohanrd.xyz/posts/self-hosting-your-first-application-adguardhome/</link>
-      <pubDate>Sat, 03 Dec 2022 08:27:00 +0530</pubDate>
-      
-      <guid>https://rohanrd.xyz/posts/self-hosting-your-first-application-adguardhome/</guid>
-      <description>A network wide adblocker for your home</description>
     </item>
     
     <item>
