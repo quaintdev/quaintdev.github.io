@@ -6,7 +6,27 @@
     <description>Recent content in Posts on rohanrd.xyz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 19 Mar 2023 17:07:37 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Aug 2023 19:51:52 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Every Phone Should Be Able to Run Personal Website</title>
+      <link>https://rohanrd.xyz/posts/every-phone-should-be-able-to-run-personal-website/</link>
+      <pubDate>Sat, 05 Aug 2023 19:51:52 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/every-phone-should-be-able-to-run-personal-website/</guid>
+      <description>Back in 2009, anynone with a Nokia could have a personal website running on their own phone. Sadly this amazing piece of tech was never widely adopted. Today&amp;rsquo;s phone are far more powerful than those Nokias both in performance and battery backup and still we don&amp;rsquo;t see anyone running a server on their phone. Why?
+I think this was never implemented on phones because there&amp;rsquo;s no incentive for large corporations to work on something like this.</description>
+    </item>
+    
+    <item>
+      <title>Search Over Feeds</title>
+      <link>https://rohanrd.xyz/posts/search-over-feeds/</link>
+      <pubDate>Thu, 20 Jul 2023 22:10:33 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/search-over-feeds/</guid>
+      <description>Ever got sucked into YouTube rabbit hole? One of my best friends calls it &amp;ldquo;mayajaal&amp;rdquo; which is fancy way of saying illusion in Hindi.
+Search over feed because search is basically an endevour to find truth. Consuming feed is a lazy activity. Search wants us to create. Feeds wants us to consume.</description>
+    </item>
+    
     <item>
       <title>Getting Started With Selfhosting Part 2</title>
       <link>https://rohanrd.xyz/posts/getting-started-with-selfhosting-part-2/</link>
@@ -61,15 +81,6 @@ Raspberry Pi Imager is the quick and easy way to install Raspberry Pi OS and oth
       
       <guid>https://rohanrd.xyz/posts/surprising-capability-of-ai-code-generation/</guid>
       <description>Software development using AI is going to be a gamechanger</description>
-    </item>
-    
-    <item>
-      <title>Future of Social Media</title>
-      <link>https://rohanrd.xyz/posts/future-of-social-media/</link>
-      <pubDate>Tue, 29 Nov 2022 18:48:45 +0530</pubDate>
-      
-      <guid>https://rohanrd.xyz/posts/future-of-social-media/</guid>
-      <description>How decentralization is going to change social media</description>
     </item>
     
     <item>
