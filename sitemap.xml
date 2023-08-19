@@ -2,11 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://rohanrd.xyz/posts/creating-todo-application-with-htmx/</loc>
+    <lastmod>2023-08-19T14:37:10+05:30</lastmod>
+  </url><url>
     <loc>https://rohanrd.xyz/posts/</loc>
-    <lastmod>2023-08-09T18:24:25+05:30</lastmod>
+    <lastmod>2023-08-19T14:37:10+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/</loc>
-    <lastmod>2023-08-09T18:24:25+05:30</lastmod>
+    <lastmod>2023-08-19T14:37:10+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/posts/solution-for-crowding-at-dmart/</loc>
     <lastmod>2023-08-09T18:24:25+05:30</lastmod>

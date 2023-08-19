@@ -6,7 +6,18 @@
     <description>Recent content in Posts on rohanrd.xyz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Aug 2023 18:24:25 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Aug 2023 14:37:10 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating Todo Application With Htmx</title>
+      <link>https://rohanrd.xyz/posts/creating-todo-application-with-htmx/</link>
+      <pubDate>Sat, 19 Aug 2023 14:37:10 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/creating-todo-application-with-htmx/</guid>
+      <description>PART I: Creating A TODO Application With HTMX
+This is beginner&amp;rsquo;s introduction to creating a web based todo application. If you program on daily basis this post is not for you. But before you go I want you to know that I am implementing this application in htmx. If you haven&amp;rsquo;t heard of htmx, read along. You may skip the sections depending on your expertise
+Our todo application will be very basic one.</description>
+    </item>
+    
     <item>
       <title>Solution for Crowding at Dmart</title>
       <link>https://rohanrd.xyz/posts/solution-for-crowding-at-dmart/</link>
