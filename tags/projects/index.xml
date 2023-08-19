@@ -6,7 +6,17 @@
     <description>Recent content in projects on rohanrd.xyz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://rohanrd.xyz/tags/projects/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Aug 2023 14:37:10 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/tags/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Part 1: Creating Todo Application With Htmx</title>
+      <link>https://rohanrd.xyz/posts/part-1-creating-todo-application-with-htmx/</link>
+      <pubDate>Sat, 19 Aug 2023 14:37:10 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/part-1-creating-todo-application-with-htmx/</guid>
+      <description>This is beginner&amp;rsquo;s introduction to creating a web based todo application. If you program on daily basis this post is not for you. But before you go I want you to know that I am implementing this application in htmx. If you haven&amp;rsquo;t heard of htmx, read along. You may skip the sections depending on your expertise
+Our todo application will be very basic one. It will support functionalities like</description>
+    </item>
+    
     <item>
       <title>Monitoring Solar Power Over WiFi</title>
       <link>https://rohanrd.xyz/posts/monitoring-solar-power-over-wifi/</link>
