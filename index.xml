@@ -6,7 +6,17 @@
     <description>Recent content on rohanrd.xyz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 Sep 2023 17:29:52 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Sep 2023 21:09:42 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>India Should Switch Off Ipv4 Internet</title>
+      <link>https://rohanrd.xyz/posts/india-should-switch-off-ipv4-internet/</link>
+      <pubDate>Sat, 30 Sep 2023 21:09:42 +0530</pubDate>
+      
+      <guid>https://rohanrd.xyz/posts/india-should-switch-off-ipv4-internet/</guid>
+      <description>IPv6 migration has been dragging on for a decades now and there&amp;rsquo;s no end in sight for this migration to complete. Huge software companies like Amazon are buying even more IPv4 addresses to continue to support IPv4 users. Given the current stance of corporations and many governments it seems that Internet will forever be split into two protocols.
+Worldwide 45% of Internet users are on IPv6. This number is quite low if you take into consideration the fact that IPv6 was created almost 3 decades ago.</description>
+    </item>
+    
     <item>
       <title>अस्सल मराठी टायपींग शिका</title>
       <link>https://rohanrd.xyz/marathi/assal-marathi-typing-shika/</link>
@@ -91,15 +101,6 @@ Raspberry Pi Imager is the quick and easy way to install Raspberry Pi OS and oth
       
       <guid>https://rohanrd.xyz/posts/a-different-approach-to-social-media/</guid>
       <description>An alternative to social media feeds</description>
-    </item>
-    
-    <item>
-      <title>Surprising Capability of AI: Code Generation</title>
-      <link>https://rohanrd.xyz/posts/surprising-capability-of-ai-code-generation/</link>
-      <pubDate>Fri, 09 Dec 2022 23:36:47 +0530</pubDate>
-      
-      <guid>https://rohanrd.xyz/posts/surprising-capability-of-ai-code-generation/</guid>
-      <description>Software development using AI is going to be a gamechanger</description>
     </item>
     
     <item>
