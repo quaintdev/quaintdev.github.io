@@ -37,14 +37,14 @@ I think this was never implemented on phones because there&amp;rsquo;s no incent
     </item>
     
     <item>
-      <title>Getting Started With Selfhosting Part 2</title>
-      <link>https://rohanrd.xyz/posts/getting-started-with-selfhosting-part-2/</link>
+      <title>First Steps After Installing Raspbian</title>
+      <link>https://rohanrd.xyz/posts/first-steps-after-installing-raspbian/</link>
       <pubDate>Sun, 19 Mar 2023 17:07:37 +0530</pubDate>
       
-      <guid>https://rohanrd.xyz/posts/getting-started-with-selfhosting-part-2/</guid>
-      <description>In part 1 we saw what hardware we are using for self hosting. In this part we will look at the software stack we will be using. Let&amp;rsquo;s get started.
+      <guid>https://rohanrd.xyz/posts/first-steps-after-installing-raspbian/</guid>
+      <description>We discussed regarding the hardware that I use for self hosting here. Let&amp;rsquo;s prepare our Pi for selfhosting
 Install Raspbian Downloads
-Raspberry Pi Imager is the quick and easy way to install Raspberry Pi OS and other operating systems to a microSD card, ready to use with your Raspberry Pi Download Raspbian Lite. Choose 64 bit version Once you have downloaded these, start imager tool.</description>
+Raspberry Pi Imager is the quick and easy way to install Raspberry Pi OS and other operating systems to a microSD card, ready to use with your Raspberry Pi Download Raspbian Lite. Choose 64 bit version Once you have downloaded these, start imager tool. Now choose &amp;ldquo;Use custom&amp;rdquo; option and specify the OS image location.</description>
     </item>
     
     <item>
@@ -74,24 +74,6 @@ Raspberry Pi Imager is the quick and easy way to install Raspberry Pi OS and oth
       
       <guid>https://rohanrd.xyz/posts/toxic-positivity/</guid>
       <description>Imagine our ancestors, who were primarily hunter-gatherers, when faced with predator like a Lion thought &amp;ldquo;This lion will not eat me&amp;rdquo;. Or consider example of the 2008 financial crisis, people thought &amp;ldquo;mortgage backed securities will never go down&amp;rdquo;. Then every now and then throughout the world their are banks that collapsed and eventually had to be bailed out by government. In each of these examples, people failed to consider a perspective.</description>
-    </item>
-    
-    <item>
-      <title>Self Hosting Password Manager</title>
-      <link>https://rohanrd.xyz/posts/self-hosting-password-manager/</link>
-      <pubDate>Sun, 25 Dec 2022 23:41:57 +0530</pubDate>
-      
-      <guid>https://rohanrd.xyz/posts/self-hosting-password-manager/</guid>
-      <description>Are you tired of entrusting your passwords and personal information to third-party services that may or may not have your best interests at heart? Are you ready to take control of your own data and security? If so, self-hosting a password manager might be the perfect adventure for you! It takes a bit of technical know-how and a whole lot of bravery, but the rewards are well worth it. Not only will you have the peace of mind that comes with knowing your sensitive information is being stored on your own servers, but you&amp;rsquo;ll also have the opportunity to customize your password management solution to suit your specific needs.</description>
-    </item>
-    
-    <item>
-      <title>RSS Readers That You Can Self Host</title>
-      <link>https://rohanrd.xyz/posts/rss-readers-that-you-can-self-host/</link>
-      <pubDate>Sat, 24 Dec 2022 00:21:08 +0530</pubDate>
-      
-      <guid>https://rohanrd.xyz/posts/rss-readers-that-you-can-self-host/</guid>
-      <description>Self-hosted RSS readers offer users a way to customize their feeds and have more control over their data and privacy. One of the main advantages of using a self-hosted RSS reader is that it allows you to avoid the algorithms that drive many commercial platforms. These algorithms are designed to show you content that they think you&amp;rsquo;ll be interested in based on your past browsing history and other factors. With a self-hosted RSS reader, you have complete control over what you see in your feed and can customize it to your liking.</description>
     </item>
     
     <item>
