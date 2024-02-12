@@ -6,35 +6,7 @@
     <description>Recent content in Posts on rohanrd.xyz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Jan 2024 22:35:48 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Glass Containers</title>
-      <link>https://rohanrd.xyz/posts/glass-containers/</link>
-      <pubDate>Fri, 12 Jan 2024 22:35:48 +0530</pubDate>
-      
-      <guid>https://rohanrd.xyz/posts/glass-containers/</guid>
-      <description>It&amp;rsquo;s a pity that in our modern homes we don&amp;rsquo;t use glass crockery enough. Even if we have it at home we usually save it for some event or when guests are coming. I think it is an excellent food/water storage container. You can use microwave with it and is very environmentally friendly as compared to the alternatives. The only disadvantage is that it breaks but this is actually not a problem.</description>
-    </item>
-    
-    <item>
-      <title>Binge Watching</title>
-      <link>https://rohanrd.xyz/posts/binge-watching/</link>
-      <pubDate>Mon, 18 Dec 2023 22:02:22 +0530</pubDate>
-      
-      <guid>https://rohanrd.xyz/posts/binge-watching/</guid>
-      <description>I like binge watching shows like anybody but I have come to realization that I always feel bad by the end of it. Especially if the show was good because I could have savored the show over longer span of time. Finishing it in a weekend gives a closure at the end but only a hazy memory of what exactly happened in episodes other than the last. Some shows have very deep meanings and insights into the human condition.</description>
-    </item>
-    
-    <item>
-      <title>India Should Switch Off IPv4 Internet</title>
-      <link>https://rohanrd.xyz/posts/india-should-switch-off-ipv4-internet/</link>
-      <pubDate>Sat, 30 Sep 2023 21:09:42 +0530</pubDate>
-      
-      <guid>https://rohanrd.xyz/posts/india-should-switch-off-ipv4-internet/</guid>
-      <description>IPv6 migration has been dragging on for a decades now and there&amp;rsquo;s no end in sight for this migration to complete. Huge software companies like Amazon are buying even more IPv4 addresses to continue to support IPv4 users. Given the current stance of corporations and many governments it seems that Internet will forever be split into two protocols.
-Worldwide 45% of Internet users are on IPv6. This number is quite low if you take into consideration the fact that IPv6 was created almost 3 decades ago.</description>
-    </item>
-    
+    <lastBuildDate>Sat, 05 Aug 2023 19:51:52 +0530</lastBuildDate><atom:link href="https://rohanrd.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Every Phone Should Be Able to Run Personal Website</title>
       <link>https://rohanrd.xyz/posts/every-phone-should-be-able-to-run-personal-website/</link>
@@ -54,15 +26,6 @@ I think this was never implemented on phones because there&amp;rsquo;s no incent
       <description>We discussed regarding the hardware that I use for self hosting here. Let&amp;rsquo;s prepare our Pi for selfhosting
 Install Raspbian Downloads
 Raspberry Pi Imager is the quick and easy way to install Raspberry Pi OS and other operating systems to a microSD card, ready to use with your Raspberry Pi Download Raspbian Lite. Choose 64 bit version Once you have downloaded these, start imager tool. Now choose &amp;ldquo;Use custom&amp;rdquo; option and specify the OS image location.</description>
-    </item>
-    
-    <item>
-      <title>Toxic Positivity</title>
-      <link>https://rohanrd.xyz/posts/toxic-positivity/</link>
-      <pubDate>Sun, 12 Mar 2023 17:22:47 +0530</pubDate>
-      
-      <guid>https://rohanrd.xyz/posts/toxic-positivity/</guid>
-      <description>Imagine our ancestors, who were primarily hunter-gatherers, when faced with predator like a Lion thought &amp;ldquo;This lion will not eat me&amp;rdquo;. Or consider example of the 2008 financial crisis, people thought &amp;ldquo;mortgage backed securities will never go down&amp;rdquo;. Then every now and then throughout the world their are banks that collapsed and eventually had to be bailed out by government. In each of these examples, people failed to consider a perspective.</description>
     </item>
     
     <item>
