@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Projects on rohanrd.xyz</title>
+    <link>https://rohanrd.xyz/tags/projects/</link>
+    <description>Recent content in Projects on rohanrd.xyz</description>
+    <generator>Hugo -- 0.125.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://rohanrd.xyz/tags/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Monitoring Solar Power Over WiFi</title>
+      <link>https://rohanrd.xyz/posts/monitoring-solar-power-over-wifi/</link>
+      <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://rohanrd.xyz/posts/monitoring-solar-power-over-wifi/</guid>
+      <description>Measuring solar panel output with Arduino and ESP8266 and viewing it on Grafana dashboard with InfluxDB hosted on Raspberry PI</description>
+      <content:encoded><![CDATA[<p><img loading="lazy" src="/static/solar_panel.jpg" alt="solar panel"  />
+</p>
+<p>India is rapidly switching to renewable energy sources. It&rsquo;s not just the government that&rsquo;s making the switch but people as well have been switching to solar roof tops for their power requirements. In our society, 30-40% houses have set up solar panels on their roofs. Most of these houses do not pay at all to the MSEB but on the other hand contribute surplus to the grid.</p>
+<p>The one that is setup at my home - shown in picture above - has 2.27 kWh capacity. Over the past 3-4 months I have been monitoring the output of these panels and they have been on average producing 220-270 kW per month. There is around 70-100 units of surplus which is fed into the grid every month. I have seen output of about maximum 11.6 kWh in a single day. Rest of days it fluctuates in 6-8 kWh range. There are many parameters affecting output like weather, panel temperature, dust on the panels. I do not have any control over the weather but rest two parameters can be kept in check to improve efficiency of these panels.</p>
+<p>Currently, only way to monitor output of these panels is by checking the inverter manually. This is not helpful at all. Moreover I would prefer to have this data recorded on per minute basis rather than looking at aggregates at the end of the day. I need a system that will continuously log the panel output to a central database. Logging to central database has its own advantages: I can not only do a thorough analysis but also get power stats over the Internet. Let&rsquo;s build this 😃</p>
+<h3 id="components">Components</h3>
+<p><img loading="lazy" src="/static/sct_resize.jpg" alt="floatright"  title="The sensor must be clipped on phase"  />
+</p>
+<ol>
+<li>SCT-013-030: A non-invasive current sensor with a clip-on. I did not wanted to meddle with 230V mains supply, hence this sensor. You can clip it on any wire and it will generate output voltage corresponding to the current flowing from the wire.</li>
+<li>Arduino Uno: I had this sitting in my closet. It has an ADC onboard which can be used to measure output of the current sensor.</li>
+<li>ESP01 WiFi module: This module can directly transmit data over WiFi network and it was the cheapest one that I found. Also, it seems it can be easily interfaced with Arduino.</li>
+<li>3.3V power supply: ESP01 needs a regulated 3.3v power supply</li>
+<li>A raspberry pi: This is used for capturing the data shared by ESP01 and as a data logger. Eventually this will also be used as a server to broadcast captured data over Internet.</li>
+</ol>
+<h3 id="a-note-on-esp01">A Note on ESP01</h3>
+<p>I am using Micropython firmware for ESP01. Stock AT firmware should also work. I chose Micropython because I was facing issues communicating with Arduino over serial. Although I later found out that the issue was because of power supply. ESP01 strictly needs 3.3V[1]. The issue went away once it was powered by a dedicated 3.3V power supply instead of Arduino&rsquo;s 3.3V supply. I spent lot of time resolving this issue. 😅</p>
+<h3 id="interfacing-arduino-with-esp01">Interfacing Arduino With ESP01</h3>
+<p>The interfacing here is for serial communication between Arduino and ESP01. If you want to flash or load programs on ESP01 using Arduino you will have to change wiring. Refer this <a href="https://www.ankshilp.com/flashing_esp_with_arduino/">note</a> for wiring, flashing and loading programs on ESP01.</p>
+<p>Below is the wiring between UNO and ESP01 for serial communication. You can choose different pins for RX &amp; TX in your code.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    UNO — ESP8266
+</span></span><span style="display:flex;"><span>    RX — 11 
+</span></span><span style="display:flex;"><span>    TX — 10 
+</span></span><span style="display:flex;"><span>    GND — GND 
+</span></span><span style="display:flex;"><span>    3.3V — VCC 
+</span></span><span style="display:flex;"><span>    3.3V — CH_PD
+</span></span></code></pre></div><p>The configuration of Arduino environment is out of scope of this article. Arduino IDE makes it very easy to load programs on Arduino.</p>
+<h3 id="serial-io-and-broadcast">Serial I/O and Broadcast</h3>
+<p><strong>Serial write with Arduino</strong><br>
+Here&rsquo;s listing of code that writes <code>Hello from Arduino</code> to ESP01</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#080">#include</span> <span style="color:#080">&lt;SoftwareSerial.h&gt;</span><span style="color:#080">
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define RX 10
+</span></span></span><span style="display:flex;"><span><span style="color:#080">#define TX 11
+</span></span></span><span style="display:flex;"><span><span style="color:#080"></span>SoftwareSerial <span style="color:#00a000">esp8266</span>(RX, TX);
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setup</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    esp8266.begin(<span style="color:#666">115200</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">loop</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    esp8266.println(<span style="color:#b44">&#34;Hello from Arduino&#34;</span>);
+</span></span><span style="display:flex;"><span>    delay(<span style="color:#666">3000</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Serial read from ESP01</strong><br>
+ESP SoC has 2 serial I/Os. UART 1 is write only and UART 0 can do perform both read and write. That is why we have to use UART0 for communication with Arduino. But there&rsquo;s a catch with UART0, it is used by micropython REPL for loading programs. The only way to communicate with Arduino over serial is to detach UART0 from REPL. Doing this would disable the functionality to load or edit programs until it is re-attached[2].</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>uos<span style="color:#666">.</span>dupterm(<span style="color:#a2f;font-weight:bold">None</span>, <span style="color:#666">1</span>)            <span style="color:#080;font-style:italic"># detach UART from REPL. </span>
+</span></span><span style="display:flex;"><span>uart <span style="color:#666">=</span> UART(<span style="color:#666">0</span>, <span style="color:#666">115200</span>)          <span style="color:#080;font-style:italic"># UART 0 is available for our program</span>
+</span></span><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">if</span> uart<span style="color:#666">.</span>any():
+</span></span><span style="display:flex;"><span>    message <span style="color:#666">=</span> uart<span style="color:#666">.</span>readline()   <span style="color:#080;font-style:italic"># read data from serial input</span>
+</span></span><span style="display:flex;"><span>uos<span style="color:#666">.</span>dupterm(uart, <span style="color:#666">1</span>)            <span style="color:#080;font-style:italic"># re-attach UART with REPL before end of program</span>
+</span></span></code></pre></div><p><strong>Broadcast over WiFi</strong><br>
+Now that the data is read from serial it&rsquo;s time to broadcast it over WiFi using below function</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a2f;font-weight:bold">def</span> <span style="color:#00a000">broadcast</span>(message: <span style="color:#a2f">bytes</span>):
+</span></span><span style="display:flex;"><span>    cs <span style="color:#666">=</span> socket(AF_INET, SOCK_DGRAM)
+</span></span><span style="display:flex;"><span>    cs<span style="color:#666">.</span>sendto(message, (<span style="color:#b44">&#39;192.168.0.255&#39;</span>, <span style="color:#666">7007</span>))
+</span></span></code></pre></div><p>The socket is a UDP socket as selected by <code>SOCK_DGRAM</code> parameter. We are choosing to send the message over broadcast address <code>192.168.0.255</code> so that we can receive it on any device on network. Listening to the message on a Linux system is as easy as running the command</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#080;font-style:italic"># listen continuosly for messages on udp socket port 7007</span>
+</span></span><span style="display:flex;"><span>nc -kul <span style="color:#666">7007</span>
+</span></span></code></pre></div><p>I would recommend that you run the serial read and broadcast operation on your ESP01 before you load the actual program to confirm everything is working properly.</p>
+<h3 id="measuring-current">Measuring Current</h3>
+<p>We can measure AC output voltage of CT sensor using ADC on Arduino. The signal first needs to be shifted above 0V in order to meet requirements of ADC. We use a voltage divider circuit as shown below to shift the analog signal by 2.5V so that its lower peak always stays above 0V. Note that our CT sensor has  output of 0-1V.</p>
+<p><img loading="lazy" src="/static/circuit.png" alt=""  />
+</p>
+<p>We will be using <a href="https://github.com/openenergymonitor/EmonLib">EmonLib</a> from <a href="https://openenergymonitor.org/">Open Energy Monitor</a> to sample and measure the RMS current. Here&rsquo;s a code listing to read current from A0 pin with EmonLib.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>EnergyMonitor emon1;
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setup</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  Serial.begin(<span style="color:#666">9600</span>);
+</span></span><span style="display:flex;"><span>  emon1.current(<span style="color:#666">1</span>, <span style="color:#666">30</span>); <span style="color:#080;font-style:italic">//specify pin and calibration
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">loop</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#0b0;font-weight:bold">double</span> I <span style="color:#666">=</span> emon1.calcIrms(<span style="color:#666">1480</span>); 		<span style="color:#080;font-style:italic">//number of samples to take 
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>  Serial.println(<span style="color:#b44">&#34;cu value=&#34;</span> <span style="color:#666">+</span> String(I));	<span style="color:#080;font-style:italic">//write data to esp in a InfluxDB line format
+</span></span></span><span style="display:flex;"><span><span style="color:#080;font-style:italic"></span>  delay(<span style="color:#666">3000</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>emon1.current(1,30)</code> is used to choose ADC pin and for calibration. For the sensor I am using, it is 30. You can find out more about calibration calculation <a href="https://github.com/openenergymonitor/learn/blob/master/view/electricity-monitoring/ctac/emonlib-calibration-theory.md">here</a>.</p>
+<h3 id="data-logging-and-dashboarding">Data Logging And Dashboarding</h3>
+<p>For logging we are going to use timeseries database InfluxDB. InfluxDB integrates well with Grafana which we will be using for dashboarding. Both InfluxDB and Grafana will be installed on Raspberry Pi. Installation of both application is pretty straightforward. You can refer the guides included in notes below[3].</p>
+<h4 id="ingesting-data-with-influxdb-line-protocol">Ingesting Data With InfluxDB Line Protocol</h4>
+<p>The fastest way of inserting a record in InfluxDB is through it&rsquo;s CLI. Here&rsquo;s an example:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ influxdb
+</span></span><span style="display:flex;"><span>&gt; CREATE pmon
+</span></span><span style="display:flex;"><span>&gt; USE pmon
+</span></span><span style="display:flex;"><span>&gt; cu value=2.2
+</span></span><span style="display:flex;"><span>&gt; cu value=2.5
+</span></span></code></pre></div><p>First we create database pmon and then insert values 2.2 and 2.5 as current(cu) in it. You can see inserted records along with timestamps using <code>show measurements</code> command. InfluxDB supports a lot of interfaces REST, UDP, etc,. Since we have already implemented the broadcast over UDP with ESP01 we will be using UDP interface of InfluxDB but first we need to enable UDP interface before we can start ingesting data over it. You can enable the interface in <code>influxdb.conf</code>. This file on  exist at <code>/etc/influxdb/influxdb.conf</code> on raspbian. In the udp section add</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#666">[[</span>udp<span style="color:#666">]]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#b8860b">enabled</span> <span style="color:#666">=</span> <span style="color:#a2f">true</span>
+</span></span><span style="display:flex;"><span>  bind-address <span style="color:#666">=</span> <span style="color:#b44">&#34;0.0.0.0:7007&#34;</span>		<span style="color:#080;font-style:italic"># port address to listen on</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#b8860b">database</span> <span style="color:#666">=</span> <span style="color:#b44">&#34;pmon&#34;</span>
+</span></span><span style="display:flex;"><span>  retention-policy <span style="color:#666">=</span> <span style="color:#b44">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>  batch-size <span style="color:#666">=</span> 2						<span style="color:#080;font-style:italic"># write to database after collecting this many measurements</span>
+</span></span></code></pre></div><p>There are more options in the config file which you can explore as per your requirement.</p>
+<h4 id="dashboard-with-grafana">Dashboard with Grafana</h4>
+<p>Integrating Grafana with InfluxDB is pretty easy. Grafana can be accessed from browser for its configuration. Just point your browser to your Pi IP with 3000 port and that should open Grafana. You will have to go through some basic configuration steps and then from the settings panel you can add InfluxDB as data source. That&rsquo;s it. You can start creating panels for the data that has been recorded.</p>
+<p>Here&rsquo;s Grafana dashboard for my home setup</p>
+<p><img loading="lazy" src="/static/solar.png" alt=""  />
+</p>
+<h4 id="creating-grafana-panels">Creating Grafana Panels</h4>
+<p>InfluxDB queries are fairly easy to understand so I will just put the queries behind each panel that I have used</p>
+<ol>
+<li>Current Panel<br>
+<code>SELECT value FROM &quot;cu&quot;</code></li>
+<li>Power Panel<br>
+<code>SELECT value*252 FROM &quot;cu&quot;</code><br>
+The voltage at my home averages around 252V. Since, P=VxI. Power generated = 252*value.</li>
+<li>Energy Generated Hourly in Wh panel<br>
+<code>SELECT integral(&quot;power&quot;)/3600 FROM (SELECT value*252 AS power FROM &quot;cu&quot;) WHERE $timeFilter GROUP BY time(1h) fill(null)</code><br>
+Energy generated is the area under the power curve. Hence, the integral. We are calculating energy generated on per hour basis.</li>
+<li>Today&rsquo;s generation panel<br>
+<code>SELECT integral(&quot;value&quot;)*252/3600000 FROM (SELECT value FROM &quot;cu&quot;)  where time &gt; now()-12h</code><br>
+Same as energy generated calculation but here we do for last 12 hours.</li>
+<li>Monthly energy generated panel<br>
+Same as today&rsquo;s generation panel but calculated over period of <code>30d</code></li>
+<li>Carbon panels<br>
+Carbon generated per kWh is called as carbon factor for the grid. For India, it is 0.7 and thus <code>Energy(E)*0.7</code> gives us the carbon removed from atmosphere.</li>
+</ol>
+<h3 id="final-words">Final Words</h3>
+<p>I am very happy with this setup and it&rsquo;s been very reliable so far even though I have done all of this on a bread board! The current readings are pretty accurate above 1A. There is deviation in power and energy measurements but this is because we are assuming constant voltage while in reality it fluctuates quite a bit. Maybe I will add voltage sensor to this!</p>
+<h3 id="repository">Repository</h3>
+<p>Both micropython and arduino code is uploaded at <a href="https://github.com/quaintdev/EnergyMonitor">https://github.com/quaintdev/EnergyMonitor</a></p>
+<p>Notes:</p>
+<ol>
+<li>There are instances when people have ran ESP01 chip on 5V. This is most probably because of how different manufactures design their chips. The ESP8266 SoC on board ESP01 needs 3.3V.</li>
+<li>Our program is expected to communicate with Arduino continously and that is why we cannot re-attach the REPL. In the final code listing I have added delay of 10 seconds before detatching REPL. This gives us enough time to load new programs on ESP if required. If we do not do this then we loose the ability to load programs on ESP until we re-flash the firmware.</li>
+<li><a href="https://grafana.com/tutorials/install-grafana-on-raspberry-pi/">Install grafana on Raspberry PI</a><br>
+<a href="https://gist.github.com/boseji/bb71910d43283a1b84ab200bcce43c26">Install influxdb on Raspberry PI</a></li>
+<li><a href="https://learn.openenergymonitor.org/electricity-monitoring/ct-sensors/interface-with-arduino">CT sensor interfacing with Arduino</a></li>
+</ol>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

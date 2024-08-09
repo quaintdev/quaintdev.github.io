@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Golang on rohanrd.xyz</title>
+    <link>https://rohanrd.xyz/tags/golang/</link>
+    <description>Recent content in Golang on rohanrd.xyz</description>
+    <generator>Hugo -- 0.125.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 May 2020 12:49:08 +0000</lastBuildDate>
+    <atom:link href="https://rohanrd.xyz/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Inheritance with Golang</title>
+      <link>https://rohanrd.xyz/posts/inheritance-with-golang/</link>
+      <pubDate>Sun, 24 May 2020 12:49:08 +0000</pubDate>
+      <guid>https://rohanrd.xyz/posts/inheritance-with-golang/</guid>
+      <description>Implementing inheritance pattern in Go without using Interfaces</description>
+      <content:encoded><![CDATA[<p>After taking dozens of Golang interviews over past 6 months, I have realized lot of candidates have no idea when to use or not use Go interfaces. During interviews, I asked people simple problem: there are 3 entities Student, Teacher and Employee. All these 3 entities will have a name parameter. We need a method which will print name of that entity on console. There must be only one implementation of the method and we should be able to call the method as below</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">var</span> s Student
+</span></span><span style="display:flex;"><span>    s<span style="color:#666">.</span>PrintName()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">var</span> t Teacher
+</span></span><span style="display:flex;"><span>    t<span style="color:#666">.</span>PrintName()
+</span></span></code></pre></div><p>Sounds simple, right? Surprisingly, only 2-3 candidates gave the expected answer, others chose interfaces to solve this. They would define <code>printName()</code> as interface method and then I would go on to ask them would it not require 3 methods each for one entity? That would confuse them and they would then come up with even bizzare solution to this problem using interfaces.</p>
+<h2 id="the-solution">The solution</h2>
+<p>This problem does not require interfaces at all. Consider below code</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>    type People struct{
+</span></span><span style="display:flex;"><span>        Name struct
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">func</span> (p <span style="color:#666">*</span>People) PrintName(){
+</span></span><span style="display:flex;"><span>        fmt<span style="color:#666">.</span>Println(<span style="color:#b44">&#34;Name:&#34;</span>, p<span style="color:#666">.</span>Name)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    type Student struct{
+</span></span><span style="display:flex;"><span>        People
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    type Teacher struct{
+</span></span><span style="display:flex;"><span>        People
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Below code now works perfectly</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">var</span> s Student
+</span></span><span style="display:flex;"><span>    s<span style="color:#666">.</span>PrintName()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a2f;font-weight:bold">var</span> t Teacher
+</span></span><span style="display:flex;"><span>    t<span style="color:#666">.</span>PrintName()
+</span></span></code></pre></div><p>The name parameter is common across all three entities so we define new entity called <code>Person</code> and embed it inside all three entities. We implement a method call <code>PrintName()</code> on <code>Person</code> struct and that method becomes available for all three entities.</p>
+<p>As you can see, embedding is the fastest way to acheieve inheritance in Golang. That&rsquo;s all for now people.</p>
+<p>Take care &amp; have a great day!</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

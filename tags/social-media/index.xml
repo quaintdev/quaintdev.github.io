@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Social Media on rohanrd.xyz</title>
+    <link>https://rohanrd.xyz/tags/social-media/</link>
+    <description>Recent content in Social Media on rohanrd.xyz</description>
+    <generator>Hugo -- 0.125.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Nov 2022 18:48:45 +0530</lastBuildDate>
+    <atom:link href="https://rohanrd.xyz/tags/social-media/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Social Media and Decentralization</title>
+      <link>https://rohanrd.xyz/posts/social-media-and-decentralization/</link>
+      <pubDate>Tue, 29 Nov 2022 18:48:45 +0530</pubDate>
+      <guid>https://rohanrd.xyz/posts/social-media-and-decentralization/</guid>
+      <description>How decentralization is going to change social media</description>
+      <content:encoded><![CDATA[<p>If you have been following the Twitter drama over last month, you must have heard about Mastodon. Ten&rsquo;s of thousands of people are leaving Twitter for Mastodon. What is Mastdon? Originally it&rsquo;s an extinct animal but a few years ago <a href="https://toot.community/@Gargron@mastodon.social">Eugen Rochko</a> created a new social network called Mastodon. This is not just any social network, it&rsquo;s a federated. What do I mean by that?</p>
+<p>Consider this, you have Instagram account but you want to follow someone on Twitter, now you know this is not possible with our conventional social networks. Not that this is technically impossible as you will see in some time. This is not possible frankly because it is not conducive to growth of these giant companies. You see, the primary stream of income for these social networks is Ad revenue and that will grow only if users spend more time on their app or website. If they implemented something that will allow interoperability then they will be shooting themselves in the foot as they will no longer be able to hold their own users captive by employing questionable algorithms and dark UI patterns. Also this will allow small companies or someone like you and me to start our own social network and let their users interact with our social network. There social network will not be the walled garden that they so desperately want it to be.</p>
+<p>This all sounds bleak but soon things are going to change because I believe people eventually choose freedom and power of choice over convenience. This is exactly the things that a new protocol called ActivityPub enables. Any social network that implements this protocol will make that network compatible with other social networks who implemented the protocol. I believe these decentralized networks are set to take over conventional social media over next few decades. You might ask why I&rsquo;m so sure of it. Imagine telling the idea of democracy a few centuries back. And that is exactly the idea of these new social network sounds like to conventional social media users today.</p>
+<p>Mastodon is the first social network to support ActivityPub. It&rsquo;s similar to Twitter but is far superior to it in terms of features. Pixelfed is another social network that supports ActivityPub and is similar to Instagram. Needless to say these networks allow you to follow people from one another. There are many networks that are already supporting ActivityPub and you can find out about them <a href="fediverse.party">here</a></p>
+<p>Like I meantioned earlier you and me can host our own Mastodon instance that can federate with other networks. Because there are 1000s of servers spread across the globe each with it&rsquo;s own rules, it becomes easy to manage and moderate these social networks. Like minded individuals can start their own server to discuss topics of their interest, some of these are listed <a href="https://joinmastodon.org/servers">here</a>. Moreover the decentralization helps in blocking bad actors that are engaging in harmful behaviours. All servers are run voluntarily by few community members, which means there are no ads! I think this model of social media reflects our societies in general. There&rsquo;s only one con that I see at the moment and that is your experience depends on the server on which you have signed up but once you figured that out you are ready to go. I highly recommend you check out <a href="https://fedi.tips">fedi.tips</a>. If you want to join one of these networks, I would recommend <a href="https://toot.community">https://toot.community</a> for something like Twitter and <a href="https://pixelfed.social">https://pixelfed.social</a> for something like Instagram. Of course you can follow people other network once you join one of them. It&rsquo;s just PixelFed is more suitable if you prefer pictures over text.</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>
