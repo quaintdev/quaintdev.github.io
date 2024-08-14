@@ -6,8 +6,38 @@
     <description>Recent content on rohanrd.xyz</description>
     <generator>Hugo -- 0.125.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Jun 2024 01:57:39 +0530</lastBuildDate>
+    <lastBuildDate>Thu, 15 Aug 2024 02:49:22 +0530</lastBuildDate>
     <atom:link href="https://rohanrd.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why RSS</title>
+      <link>https://rohanrd.xyz/posts/why-rss/</link>
+      <pubDate>Thu, 15 Aug 2024 02:49:22 +0530</pubDate>
+      <guid>https://rohanrd.xyz/posts/why-rss/</guid>
+      <description>Gone are the days when you could just find a random fun blog where someone wrote about tinkering with their home lab or someone shared about the obscure art they know. Today&amp;rsquo;s web is highly curated and everything is filtered out to show you the content that would generate most revenue. Search engines are filled with optimized results that can easily be categorized as spam. And social media is filled with highly polished, attractive content that may not add any value at all to an individuals life.</description>
+      <content:encoded><![CDATA[<p>Gone are the days when you could just find a random fun blog where someone wrote about tinkering with their home lab or someone shared about the obscure art they know. Today&rsquo;s web is highly curated and everything is filtered out to show you the content that would generate most revenue. Search engines are filled with optimized results that can easily be categorized as spam. And social media is filled with highly polished, attractive content that may not add any value at all to an individuals life.</p>
+<p>The web has become increasingly hostile place because of ads. Huge corporations are pouring billions to grab eyeballs on the web. The ads are becoming intrusive and there are third party trackers everywhere. Trackers that track your interests and show you ads depending on that.  Using web without an adblocker is a nightmare. Now it&rsquo;s getting difficult to block ads[1] as well. Then there&rsquo;s case of AI generated content. It is only going to increase and it will become increasingly difficult to discern from real content.</p>
+<h2 id="ditch-the-feed">Ditch The Feed</h2>
+<p>I mostly hang out on Hacker News and Reddit. I don&rsquo;t have any other social media and I have found myself worrying about global politics, climate change, microplastics and whole lot of other things. Things that I have no control over. Don&rsquo;t get me wrong it&rsquo;s good to be informed about these things but constant influx of such information is not helping anyone. It&rsquo;s critical to regulate what we consume on web because our brains have a tendency to think about what we consume. Our very thoughts are the result of what information we are consuming. Seriously ditch the feed someone else is curating for you!</p>
+<h2 id="curate-your-own">Curate Your Own</h2>
+<p>After all issues above one might want to ditch all the social media and web along with it but we all know that&rsquo;s not possible. The best we can do is limit the influx of information and curate it such that it&rsquo;s good for our well being. But how? Find people and organizations you can trust. There are bloggers and content creators who know their craft and audience. These are the once who prefer authenticity over anything else. You will never see AI generated content from these. Subscribe to such people and organizations.  Add them to your feed or remove them if they aren&rsquo;t adding any value to your life. Curate your own feed religiously.</p>
+<p>But how and where?  Enters RSS.</p>
+<h2 id="what-is-rss">What is RSS</h2>
+<p>Like I mentioned previously it&rsquo;s like a social media feed but you are the curator. You choose sources that will appear in your feed and not some algorithm which is prioritizing revenue of some corporation over your interests. There are no trackers or intrusive ads in RSS. You can configure how frequently you want to refresh the feed. You choose the application to browse the feed. Unlike web where you only have Chrome or Firefox for browsing, RSS feeds can be read on any of 1000s of clients available[2]. Choose one that suits you. You can even use browser to read your feed.</p>
+<p>A Word of Advice: limit the number of sources and frequency of refresh. That way you will have the best possible experience browsing the web. Once you become accustomed to RSS you can configure it to consume everything from blogs to YouTube videos and even podcasts.</p>
+<p>One more thing, sometimes websites do not provide RSS feed and in that case there&rsquo;s nothing we can do except request them to provide one. But such sites are limited and most websites will always provide RSS feed. Just look for icon below. You can copy URL of image and paste it into your feed to subscribe to this blogs RSS feed!</p>
+<p><a href="https://rohanrd.xyz/index.xml"><img loading="lazy" src="/static/rss.svg" alt=""  />
+</a></p>
+<p>Notes:</p>
+<ol>
+<li>
+<p><a href="https://www.androidpolice.com/google-chrome-manifest-v2-extensions-warning/">Google Chrome has started warning users that their ad blockers may soon be disabled</a></p>
+</li>
+<li>
+<p>I personally use miniflux but it needs to be self hosted so I&rsquo;m suggesting <a href="https://github.com/prof18/feed-flow">Feed flow</a> which is open source RSS reader and available for both Android and iOS.</p>
+</li>
+</ol>
+]]></content:encoded>
+    </item>
     <item>
       <title>Goodbye Google. Hello Ecosia!</title>
       <link>https://rohanrd.xyz/posts/goodbye-google.-hello-ecosia/</link>
