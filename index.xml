@@ -26,9 +26,10 @@
 <p><img loading="lazy" src="/static/miniflux.png" alt="RSS feed curated with miniflux"  />
 </p>
 <p>A Word of Advice: limit the number of sources and frequency of refresh. That way you will have the best possible experience browsing the web. Once you become accustomed to RSS you can configure it to consume everything from blogs to YouTube videos and even podcasts. Your RSS feed should be a place where you can find information that you are interested in. Unlike social media, RSS feed will get boring fast and hence non addictive. You will spend less time on web and more time with yourself.</p>
-<p>One more thing, sometimes websites do not provide RSS feed and in that case there&rsquo;s nothing we can do except request them to provide one. But such sites are limited and most websites will provide RSS feed. Just look for icon below. You can copy URL of image and paste it into your feed to subscribe to this blogs RSS feed!</p>
+<p>One more thing, sometimes websites do not provide RSS feed and in that case there&rsquo;s nothing we can do except request them to provide one. But such sites are limited and most websites will provide RSS feed. For example, you can subscribe to this blog by copying RSS feed link below and adding it to your feed reader.</p>
 <p><a href="https://rohanrd.xyz/index.xml"><img loading="lazy" src="/static/rss.svg" alt=""  />
 </a></p>
+<p>Next time you want to subscribe to anyone just look for above icon. Happy curating!</p>
 <p>Notes:</p>
 <ol>
 <li><a href="https://www.androidpolice.com/google-chrome-manifest-v2-extensions-warning/">Google Chrome has started warning users that their ad blockers may soon be disabled</a></li>
