@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Sustainability on rohanrd.xyz</title>
+    <link>https://rohanrd.xyz/tags/sustainability/</link>
+    <description>Recent content in Sustainability on rohanrd.xyz</description>
+    <generator>Hugo -- 0.125.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 16 Jun 2024 01:57:39 +0530</lastBuildDate>
+    <atom:link href="https://rohanrd.xyz/tags/sustainability/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Goodbye Google. Hello Ecosia!</title>
+      <link>https://rohanrd.xyz/posts/goodbye-google.-hello-ecosia/</link>
+      <pubDate>Sun, 16 Jun 2024 01:57:39 +0530</pubDate>
+      <guid>https://rohanrd.xyz/posts/goodbye-google.-hello-ecosia/</guid>
+      <description>Why I switched from Google to Ecosia</description>
+      <content:encoded><![CDATA[<p>There was a time I thought I would never switch away from Google. But times change, things fall apart. An incredible search engine starts giving you answers for the questions you never asked. A search engines job is to find best results for given keywords and then allow the user to navigate away from them. With Google, they are choosing the result for me. They are showing way too much information that I&rsquo;m not really looking for. Try searching for a city and you will know what I&rsquo;m talking about.</p>
+<p>They are tuning search such that it becomes more accessible to people who like asking questions and getting answers. There&rsquo;s nothing wrong with this. The sweet analytics that they collect must have been telling them that large number of people like to ask questions and are expecting answers. So that&rsquo;s the direction they have chosen for search. This is normal progression of any Software when they choose to follow analytics. Of course with their popularity they could have chosen to ignore analytics and make search better. Everyone would eventually learn the art of searching but that&rsquo;s just my idealism.</p>
+<p>I prefer good old searching with keywords instead of asking questions. When I&rsquo;m typing those keywords I want the search engine to find all the pages across the web that might have those keywords. Google still does that but there focus has shifted from returning best results to keeping users engaged on the search page. AI generated answers are now front and center. Then there&rsquo;s that annoying questions panel that keeps expanding with more questions if you click one of the answers. Search results are below all these panels. This shows their priorities. Instead of all this AI fluff they could have chosen to solve the SEO spam issue but no.</p>
+<p>Anyways, my search experience has siginificantly deviated from what it was few years ago. I don&rsquo;t think they can ever go back on this. New and existing users now expect everything that they have been doing on search page. People like me who prefer the good old search will just have to find new search engine.</p>
+<h2 id="hello-ecosia">Hello Ecosia</h2>
+<p>I found out about Ecosia from a comment on Hacker News. It stated that the search engine plants trees when you search. My first thought was that must be some poor search engine which plants trees just to create headlines. But I was wrong. Few days later, I was annoyed with Google and decided to try Ecosia. It&rsquo;s been a long time that I used a search engine other than Google and I was not disappointed with the results. The best way to try out a search engine is to change your deafult search in your browser and use it for few days. I have been using Ecosia for a month now and I&rsquo;m happy to say that I love it. I don&rsquo;t see myself switching back to Google.</p>
+<p>The search engine is clean. It does not have any dynamic panels that expand at will. Search results are front and center and AI is hidden away in separate tab. They do show occasional information panels like currency converter or the dictionary panel but these panels are limited and are useful when shown. Searching on Ecosia reminds you of old days of Google. You can&rsquo;t sign in to Ecosia. They don&rsquo;t store any history and is good from user privacy perspective. You can disable the cookies you don&rsquo;t need from their settings page.</p>
+<p>With Ecosia it&rsquo;s not just better search experience, 100% of their profits go to climate action. They really do plant trees when we are searching! All the information regarding their financials is easily accessible from homepage and they are very transparent about their spending. I actually disabled my adblocker for Ecosia. These ads help them make profits which finally go to climate action. It&rsquo;s refreshing to see a company using their profits for better tomorrow.</p>
+<p>If you are excited to try it out, here you go: <a href="https://www.ecosia.org">https://www.ecosia.org</a></p>
+<p>Subscribe to RSS feed for future updates!</p>
+<hr>
+<p>P.S.
+If you are someone who prefers Google but don&rsquo;t like the new changes that are happening on results page then you can still get old results only page by using the &ldquo;Web&rdquo; filter from &ldquo;More&rdquo; dropdown. With this filter, Google will not show any AI answers or suggest any questions. I tried this for few days but the way this feature is hidden away shows Google&rsquo;s priorities.</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

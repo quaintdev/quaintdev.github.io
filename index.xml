@@ -13,15 +13,15 @@
       <link>https://rohanrd.xyz/posts/why-rss/</link>
       <pubDate>Thu, 15 Aug 2024 02:49:22 +0530</pubDate>
       <guid>https://rohanrd.xyz/posts/why-rss/</guid>
-      <description>Gone are the days when you could just find a random blog on Internet where someone wrote about tinkering with their home lab or someone shared about the obscure art they know. Today&amp;rsquo;s web is highly curated and everything is filtered out to show you the content that would generate most revenue. Search engines are filled with optimized results that can easily be categorized as spam. And social media is filled with highly polished, attractive content that may not add any value at all to an individuals life.</description>
+      <description>Ditch the feed. RSS is all you need</description>
       <content:encoded><![CDATA[<p><img loading="lazy" src="/static/ditch-feed.jpg" alt="AI generate image of boy holding the sign that says &amp;ldquo;ditch the feed. RSS is all you need&amp;rdquo;"  title="AI generated image"  />
 </p>
 <p>Gone are the days when you could just find a random blog on Internet where someone wrote about tinkering with their home lab or someone shared about the obscure art they know. Today&rsquo;s web is highly curated and everything is filtered out to show you the content that would generate most revenue. Search engines are filled with optimized results that can easily be categorized as spam. And social media is filled with highly polished, attractive content that may not add any value at all to an individuals life.</p>
-<p>I blame Ads. The web has become increasingly hostile place because of ads. Huge corporations are pouring billions to grab eyeballs on the web. The ads are becoming intrusive and there are third party trackers everywhere. Trackers that track your interests and show you ads depending on that.  Using web without an adblocker is a nightmare. Now it&rsquo;s getting difficult to block ads[1] as well. Then there&rsquo;s case of AI generated content which is only going to increase and it will become increasingly difficult to discern from real content.</p>
+<p>I blame Ads. The web has become increasingly hostile place because of ads. Huge corporations are pouring billions to grab eyeballs on the web. The ads are becoming intrusive and there are third party trackers everywhere. Trackers that track your interests and show you ads depending on that.  Using web without an adblocker is a nightmare. Now it&rsquo;s getting difficult to block ads as well <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. Then there&rsquo;s case of AI generated content which is only going to increase and it will become increasingly difficult to discern from real content.</p>
 <h2 id="ditch-the-feed">Ditch The Feed</h2>
-<p>I mostly hang out on Hacker News and Reddit. I don&rsquo;t have any other social media annd I have found myself worrying about global politics, climate change, microplastics and whole lot of other things. Things that I have no control over. Don&rsquo;t get me wrong it&rsquo;s good to be informed about these things but constant influx of such information is not helping anyone. It&rsquo;s critical to regulate what we consume on web because our brains have a tendency to think about what we consume. Our very thoughts could be the result of what information we are consuming. Seriously ditch the feed that someone else is curating for you! [2]</p>
+<p>I mostly hang out on Hacker News and Reddit. I don&rsquo;t have any other social media and I have found myself worrying about global politics, climate change, microplastics and whole lot of other things. Things that I have no control over. Don&rsquo;t get me wrong it&rsquo;s good to be informed about these things but constant influx of such information is not helping anyone. It&rsquo;s critical to regulate what we consume on web because our brains have a tendency to think about what we consume. Our very thoughts could be the result of what information we are consuming. Seriously ditch the feed that someone else is curating for you! <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
 <h2 id="curate-your-own">Curate Your Own</h2>
-<p>After all issues above one might want to ditch all the social media and web along with it but we all know that&rsquo;s not possible. The best we can do is limit the influx of information and curate it such that it&rsquo;s good for our well being. Find people and organizations you can trust. There are bloggers and content creators who know their craft and audience. These are the once who prefer authenticity over anything else. You will never see AI generated content from these[3]. You can also trust their content. Subscribe to such people and organizations. Add them to your feed or remove them if they aren&rsquo;t adding any value to your life. Curate your own feed religiously.</p>
+<p>After all issues above one might want to ditch all the social media and web along with it but we all know that&rsquo;s not possible. The best we can do is limit the influx of information and curate it such that it&rsquo;s good for our well being. Find people and organizations you can trust. There are bloggers and content creators who know their craft and audience. These are the once who prefer authenticity over anything else. You will never see AI generated content from these <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>. You can also trust their content. Subscribe to such people and organizations. Add them to your feed or remove them if they aren&rsquo;t adding any value to your life. Curate your own feed religiously.</p>
 <p>But how?  Enters RSS.</p>
 <h2 id="introdution-to-rss">Introdution to RSS</h2>
 <p>It&rsquo;s like a social media feed but you are the curator. You choose sources that will appear in your feed and not some algorithm which is prioritizing revenue of some corporation over your interests. There are no trackers or intrusive ads in RSS. You can configure how frequently you want to refresh the feed. You choose the application to browse the feed. Unlike web where you only have Chrome or Firefox for browsing, RSS feeds can be read on any of 1000s of clients available. Choose one that suits you I will recommend <a href="https://github.com/prof18/feed-flow">Feed flow</a>. You can even use browser to read your feed. I am using miniflux and this is how my feed looks like:</p>
@@ -32,12 +32,20 @@
 <p><a href="https://rohanrd.xyz/index.xml"><img loading="lazy" src="/static/rss.svg" alt=""  />
 </a></p>
 <p>Next time you want to subscribe to anyone just look for above icon. Happy curating!</p>
-<p>Notes:</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li><a href="https://www.androidpolice.com/google-chrome-manifest-v2-extensions-warning/">Google Chrome has started warning users that their ad blockers may soon be disabled</a></li>
-<li>As much as I had like to avoid entire social media it still has some value so I have limited Reddit and Hacker news to once a week. It&rsquo;s still new so I will see how it goes.</li>
-<li>I am not against using AI generated content. It has it&rsquo;s place but it should be clearly marked as such.</li>
+<li id="fn:1">
+<p><a href="https://www.androidpolice.com/google-chrome-manifest-v2-extensions-warning/">Google Chrome has started warning users that their ad blockers may soon be disabled</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>As much as I had like to avoid entire social media it still has some value so I have limited Reddit and Hacker news to once a week. It&rsquo;s still new so I will see how it goes.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>I am not against using AI generated content. It has it&rsquo;s place but it should be clearly marked as such.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
+</div>
 ]]></content:encoded>
     </item>
     <item>
@@ -45,13 +53,12 @@
       <link>https://rohanrd.xyz/posts/goodbye-google.-hello-ecosia/</link>
       <pubDate>Sun, 16 Jun 2024 01:57:39 +0530</pubDate>
       <guid>https://rohanrd.xyz/posts/goodbye-google.-hello-ecosia/</guid>
-      <description>So long Google There was a time I thought I would never switch away from Google. But times change, things fall apart. An incredible search engine starts giving you answers for the questions you never asked. A search engines job is to find best results for given keywords and then allow the user to navigate away from them. With Google, they are choosing the result for me. They are showing way too much information that I&amp;rsquo;m not really looking for.</description>
-      <content:encoded><![CDATA[<h3 id="so-long-google">So long Google</h3>
-<p>There was a time I thought I would never switch away from Google. But times change, things fall apart. An incredible search engine starts giving you answers for the questions you never asked. A search engines job is to find best results for given keywords and then allow the user to navigate away from them. With Google, they are choosing the result for me. They are showing way too much information that I&rsquo;m not really looking for. Try searching for a city and you will know what I&rsquo;m talking about.</p>
+      <description>Why I switched from Google to Ecosia</description>
+      <content:encoded><![CDATA[<p>There was a time I thought I would never switch away from Google. But times change, things fall apart. An incredible search engine starts giving you answers for the questions you never asked. A search engines job is to find best results for given keywords and then allow the user to navigate away from them. With Google, they are choosing the result for me. They are showing way too much information that I&rsquo;m not really looking for. Try searching for a city and you will know what I&rsquo;m talking about.</p>
 <p>They are tuning search such that it becomes more accessible to people who like asking questions and getting answers. There&rsquo;s nothing wrong with this. The sweet analytics that they collect must have been telling them that large number of people like to ask questions and are expecting answers. So that&rsquo;s the direction they have chosen for search. This is normal progression of any Software when they choose to follow analytics. Of course with their popularity they could have chosen to ignore analytics and make search better. Everyone would eventually learn the art of searching but that&rsquo;s just my idealism.</p>
 <p>I prefer good old searching with keywords instead of asking questions. When I&rsquo;m typing those keywords I want the search engine to find all the pages across the web that might have those keywords. Google still does that but there focus has shifted from returning best results to keeping users engaged on the search page. AI generated answers are now front and center. Then there&rsquo;s that annoying questions panel that keeps expanding with more questions if you click one of the answers. Search results are below all these panels. This shows their priorities. Instead of all this AI fluff they could have chosen to solve the SEO spam issue but no.</p>
 <p>Anyways, my search experience has siginificantly deviated from what it was few years ago. I don&rsquo;t think they can ever go back on this. New and existing users now expect everything that they have been doing on search page. People like me who prefer the good old search will just have to find new search engine.</p>
-<h3 id="hello-ecosia">Hello Ecosia</h3>
+<h2 id="hello-ecosia">Hello Ecosia</h2>
 <p>I found out about Ecosia from a comment on Hacker News. It stated that the search engine plants trees when you search. My first thought was that must be some poor search engine which plants trees just to create headlines. But I was wrong. Few days later, I was annoyed with Google and decided to try Ecosia. It&rsquo;s been a long time that I used a search engine other than Google and I was not disappointed with the results. The best way to try out a search engine is to change your deafult search in your browser and use it for few days. I have been using Ecosia for a month now and I&rsquo;m happy to say that I love it. I don&rsquo;t see myself switching back to Google.</p>
 <p>The search engine is clean. It does not have any dynamic panels that expand at will. Search results are front and center and AI is hidden away in separate tab. They do show occasional information panels like currency converter or the dictionary panel but these panels are limited and are useful when shown. Searching on Ecosia reminds you of old days of Google. You can&rsquo;t sign in to Ecosia. They don&rsquo;t store any history and is good from user privacy perspective. You can disable the cookies you don&rsquo;t need from their settings page.</p>
 <p>With Ecosia it&rsquo;s not just better search experience, 100% of their profits go to climate action. They really do plant trees when we are searching! All the information regarding their financials is easily accessible from homepage and they are very transparent about their spending. I actually disabled my adblocker for Ecosia. These ads help them make profits which finally go to climate action. It&rsquo;s refreshing to see a company using their profits for better tomorrow.</p>
@@ -67,7 +74,7 @@ If you are someone who prefers Google but don&rsquo;t like the new changes that 
       <link>https://rohanrd.xyz/posts/every-phone-should-be-able-to-run-personal-website/</link>
       <pubDate>Sat, 05 Aug 2023 19:51:52 +0530</pubDate>
       <guid>https://rohanrd.xyz/posts/every-phone-should-be-able-to-run-personal-website/</guid>
-      <description>Back in 2009, anynone with a Nokia could have a personal website running on their own phone. You could host your own blog or share photos directly from your camera roll. People could message you or even send you sms over HTTP. There was other functionality but you get the gist. Sadly this amazing piece of tech was never widely adopted. Today&amp;rsquo;s phones are far more powerful than those Nokias both in performance and battery backup and still we don&amp;rsquo;t see anyone running a server on their phone.</description>
+      <description>Old Nokia phones could run personal websites, why can&amp;rsquo;t today&amp;rsquo;s phones?</description>
       <content:encoded><![CDATA[<p>Back in 2009, anynone with a Nokia could have a personal website running on their own phone. You could host your own blog or share photos directly from your camera roll. People could message you or even send you sms over HTTP. There was other functionality but you get the gist. Sadly this amazing piece of tech was never widely adopted. Today&rsquo;s phones are far more powerful than those Nokias both in performance and battery backup and still we don&rsquo;t see anyone running a server on their phone. Why?</p>
 <p>I think this is because doing something like this that would make web more open was never a priority for large corporations.Think about it there&rsquo;s no incentive for them to work on something like this. In fact, it might be something they want to actively avoid in order for their walled gardens to flourish. Then there are some tech aspects too that need to be worked on. A large number of population is behind CG-NAT and hence can&rsquo;t use mobile server like this. Although this is changing with IPv6. Then there&rsquo;s Android&rsquo;s case of not allowing any application to bind below 1000 port. This prevents running web server on traditional 80 or 443 port.</p>
 <p>Today&rsquo;s phone can definitely handle a small personal static website that has similar functionality like that of original
@@ -77,78 +84,11 @@ websites or have no idea how to. If we made setting up a website as easy as few 
 ]]></content:encoded>
     </item>
     <item>
-      <title>First Steps After Installing Raspbian</title>
-      <link>https://rohanrd.xyz/posts/first-steps-after-installing-raspbian/</link>
-      <pubDate>Sun, 19 Mar 2023 17:07:37 +0530</pubDate>
-      <guid>https://rohanrd.xyz/posts/first-steps-after-installing-raspbian/</guid>
-      <description>We discussed regarding the hardware that I use for self hosting here. Let&amp;rsquo;s prepare our Pi for selfhosting
-Install Raspbian Downloads
-Raspberry Pi Imager is the quick and easy way to install Raspberry Pi OS and other operating systems to a microSD card, ready to use with your Raspberry Pi Download Raspbian Lite. Choose 64 bit version Once you have downloaded these, start imager tool. Now choose &amp;ldquo;Use custom&amp;rdquo; option and specify the OS image location.</description>
-      <content:encoded><![CDATA[<p>We discussed regarding the hardware that I use for self hosting <a href="https://rohanrd.xyz/posts/getting-started-with-self-hosting/">here</a>. Let&rsquo;s prepare our Pi for selfhosting</p>
-<h2 id="install-raspbian">Install Raspbian</h2>
-<p>Downloads</p>
-<ol>
-<li><a href="https://www.raspberrypi.com/software/">Raspberry Pi Imager</a> is the quick and easy way to install Raspberry Pi OS and other operating systems to a microSD card, ready to use with your Raspberry Pi</li>
-<li><a href="https://www.raspberrypi.com/software/operating-systems/">Download Raspbian Lite.</a> Choose 64 bit version</li>
-</ol>
-<p>Once you have downloaded these, start imager tool. Now choose &ldquo;Use custom&rdquo; option and specify the OS image location. Next you have to choose the storage option which will list the memory card that you will be inserting in Raspberry Pi. Once you have set these, select the gear icon to specify initial preferences for the OS. specify below options and check the set hostname box. You can also set the locale. I am assuming you will be using Ethernet connection. But if you want to use WiFi you should set those preferences as well.</p>
-<p><img loading="lazy" src="/static/os-preferences.png" alt=""  />
-</p>
-<p>Write the image, it will take some time and will give a message when you can eject the memory card. You can now insert it in the memory card slot on your Pi. At this point you are ready to power on your Pi. Once it&rsquo;s powered on, use app like Wifiman on your phone to determine IP address of your Pi. You can log into the shell of your Pi using ssh</p>
-<p><code>ssh pi@192.168.1.12</code></p>
-<p>It will prompt you for the password that we set earlier. Your Pi is ready to self host but let&rsquo;s do some housekeeping before we install any applications.</p>
-<h2 id="install-log2ram">Install Log2ram</h2>
-<p>Log2ram is required because we don&rsquo;t want to write logs generated by our applications to the memory card. Instead we store those logs in RAM. This is mostly useful for preventing wear and tear of our SD card. Run below commands to install <code>log2ram</code>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#a2f">echo</span> <span style="color:#b44">&#34;deb [signed-by=/usr/share/keyrings/azlux-archive-keyring.gpg] http://packages.azlux.fr/debian/ bookworm main&#34;</span> | sudo tee /etc/apt/sources.list.d/azlux.list
-</span></span><span style="display:flex;"><span>sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg  https://azlux.fr/repo.gpg
-</span></span><span style="display:flex;"><span>sudo apt update
-</span></span><span style="display:flex;"><span>sudo apt install log2ram
-</span></span></code></pre></div><p>After installation you need to reboot. You can check if it&rsquo;s working by checking log2ram service status or by running below command</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo df -h | grep log2ram
-</span></span></code></pre></div><p>More details on installation and troubleshooting <a href="https://github.com/azlux/log2ram">here</a></p>
-<h2 id="install-podman">Install Podman</h2>
-<p>Podman is a tool for managing OCI containers and pods. Don&rsquo;t worry about what it is and what it does. You will have your answers as soon as you start using it. You can use below command to install podman</p>
-<p><code>sudo apt install podman</code></p>
-<p>Now run <code>podman ps</code> it&rsquo;s output should be clean one liner. If you see error relate to <code>cgroup</code> do the following:</p>
-<ol>
-<li>Create directory <code>mkdir -p ~/.config/containers</code></li>
-<li>Add a file <code>containers.conf</code> in the directory created above using below command</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cat &gt; ~/.config/containers/containers.conf
-</span></span><span style="display:flex;"><span><span style="color:#666">[</span>engine<span style="color:#666">]</span>
-</span></span><span style="display:flex;"><span><span style="color:#b8860b">events_logger</span> <span style="color:#666">=</span> <span style="color:#b44">&#34;file&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#b8860b">cgroup_manager</span> <span style="color:#666">=</span> <span style="color:#b44">&#34;cgroupfs&#34;</span>
-</span></span></code></pre></div><ol start="3">
-<li>Run the <code>podman ps</code> command again and the error related to cgroup should be gone.</li>
-</ol>
-<h2 id="mount-external-drives">Mount External Drives</h2>
-<p>Our apps and data will stay on external drives since we want to prevent wear and tear of memory card. Follow these steps to mount external drive:</p>
-<ol>
-<li>Your external drive should be visible in output of command <code>sudo blkid</code></li>
-<li>Note the UUID corresponding to your drive from above command</li>
-<li>Create a folder like <code>/mnt/avalon</code> where we will mount our external drive. Change permissions or ownership of this directory as required.</li>
-<li>Make backup of file <code>/etc/fstab</code> and add below line at the end of file. Update your UUID and mount location and keeping everything else same.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>UUID=f8cd0001-1328-4f6a-80fa-8c7b7dea09a4 /mnt/avalon ext4 defaults,auto,users,rw,nofail,exec 0 0
-</span></span></code></pre></div></li>
-<li>Use <code>mount -av</code> to reload changes made to <code>/etc/fstab</code></li>
-</ol>
-<p>You Raspberry Pi is now ready for installing self hosted applications.</p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>I am assuming you have ext4 drive. If your drive is formatted as some different filesystem you will have to update fstab accordingly. Here&rsquo;s a good <a href="https://pimylifeup.com/raspberry-pi-mount-usb-drive/">reference</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</div>
-]]></content:encoded>
-    </item>
-    <item>
       <title>Toxic Positivity</title>
       <link>https://rohanrd.xyz/posts/toxic-positivity/</link>
       <pubDate>Sun, 12 Mar 2023 17:22:47 +0530</pubDate>
       <guid>https://rohanrd.xyz/posts/toxic-positivity/</guid>
-      <description>Imagine our ancestors, who were primarily hunter-gatherers, when faced with predator like a Lion thought &amp;ldquo;This lion will not eat me&amp;rdquo;. Or consider example of the 2008 financial crisis, people thought &amp;ldquo;mortgage backed securities will never go down&amp;rdquo;. Then every now and then throughout the world their are banks that collapsed and eventually had to be bailed out by government. In each of these examples, people failed to consider a perspective.</description>
+      <description>Seek truth, not positivity</description>
       <content:encoded><![CDATA[<p><img loading="lazy" src="/static/hunter-gatherer-cliff.jpg" alt=""  />
 </p>
 <p>Imagine our ancestors, who were primarily hunter-gatherers, when faced with predator like a Lion thought &ldquo;This lion will not eat me&rdquo;.
@@ -191,51 +131,6 @@ perspective along with positive, I think, we get a more clearer picture of reali
 <p>This all sounds bleak but soon things are going to change because I believe people eventually choose freedom and power of choice over convenience. This is exactly the things that a new protocol called ActivityPub enables. Any social network that implements this protocol will make that network compatible with other social networks who implemented the protocol. I believe these decentralized networks are set to take over conventional social media over next few decades. You might ask why I&rsquo;m so sure of it. Imagine telling the idea of democracy a few centuries back. And that is exactly the idea of these new social network sounds like to conventional social media users today.</p>
 <p>Mastodon is the first social network to support ActivityPub. It&rsquo;s similar to Twitter but is far superior to it in terms of features. Pixelfed is another social network that supports ActivityPub and is similar to Instagram. Needless to say these networks allow you to follow people from one another. There are many networks that are already supporting ActivityPub and you can find out about them <a href="fediverse.party">here</a></p>
 <p>Like I meantioned earlier you and me can host our own Mastodon instance that can federate with other networks. Because there are 1000s of servers spread across the globe each with it&rsquo;s own rules, it becomes easy to manage and moderate these social networks. Like minded individuals can start their own server to discuss topics of their interest, some of these are listed <a href="https://joinmastodon.org/servers">here</a>. Moreover the decentralization helps in blocking bad actors that are engaging in harmful behaviours. All servers are run voluntarily by few community members, which means there are no ads! I think this model of social media reflects our societies in general. There&rsquo;s only one con that I see at the moment and that is your experience depends on the server on which you have signed up but once you figured that out you are ready to go. I highly recommend you check out <a href="https://fedi.tips">fedi.tips</a>. If you want to join one of these networks, I would recommend <a href="https://toot.community">https://toot.community</a> for something like Twitter and <a href="https://pixelfed.social">https://pixelfed.social</a> for something like Instagram. Of course you can follow people other network once you join one of them. It&rsquo;s just PixelFed is more suitable if you prefer pictures over text.</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Getting Started With Self Hosting</title>
-      <link>https://rohanrd.xyz/posts/getting-started-with-self-hosting/</link>
-      <pubDate>Sat, 09 Apr 2022 07:59:26 +0530</pubDate>
-      <guid>https://rohanrd.xyz/posts/getting-started-with-self-hosting/</guid>
-      <description>Get started with your self hosting journey</description>
-      <content:encoded><![CDATA[<p><img loading="lazy" src="/static/pi_server.jpg" alt="Raspberry PI server with external hard drive"  />
-</p>
-<p>People in tech circles are increasingly moving towards self hosting and I believe this trend is going to catch on with general population as both hardware and Software continues to evolve. This evolution has already reached to a point where a layman with few hours to spare can self host alernative to most of popular cloud based applications. In this blog post I am going to show you the hardware that I have used for low cost server setup at my home.</p>
-<h2 id="the-server">The Server</h2>
-<p>You can use old PC/laptop as server for your home in which case you don&rsquo;t even have to buy anything but I would recommend that you use a Raspberry Pi instead. There are quite a few advantages if you go this route.</p>
-<ul>
-<li>They are fast and low on power consumption. You can stream 4K content with Raspberry Pi 4.</li>
-<li>They are cheap. 4GB version will cost you around 5000 INR without accessories.</li>
-</ul>
-<p>We want our server to run 24x7<sup>1</sup> and the power consumption adds up over time so it is an important factor while choosing the hardware for our server. A Raspberry Pi will cost you once in beginning but its going to save you lot of money in the long run. Here&rsquo;s a <a href="https://tinyurl.com/nwu6sn4s">calculator</a> to calculate power consumption of any appliance. 10W is average power consumption of Pi. Try putting 65W on that calculator and see how numbers change.</p>
-<p><img loading="lazy" src="/static/power_calc.png" alt=""  />
-</p>
-<h2 id="storage">Storage</h2>
-<p>If you are just beginning your self hosting journey I would advise you to start with a Pen drive. This way you can experiment while keeping costs down. If you are determined to have long term self hosting solution then read on.</p>
-<p>The storage you choose depends on what you want to use your server for. For me, I want to host a Jellyfin media server that can playback 4K content. This requires that I have at least a Tera byte of storage. Note that Raspberry Pi runs of a memory card and you don&rsquo;t need anything else but I would suggest to use that only for booting the Pi. Any data that you want to store for long term should never end up on that memory card. Always use external storage like a pen drive or HDD with Pi. suitable for its booting but not for any long term storage.</p>
-<p><strong>Few considerations while choosing storage hardware</strong></p>
-<ol>
-<li>Pi should be able to serve 4K content. This requires that the HDD be connected over USB3.0.</li>
-<li>The drive should go to sleep when not in use. This reduces power consumption as well as wear and tear of the drive thus increasing the life span.</li>
-<li>Our storage solution should have proper heat dissipation.</li>
-</ol>
-<p>You can connect an external HDD to your Pi and be done with it but there are 2 disavantages to this approach. First, xxternal HDDs have poor heat dissipation which is okay considering they are built for one off usage and not running a mediacenter of them. They are certainly not designed to run 24x7. Second, external HDDs usually have 2.5inch form factor which limits their speed to 5400RPM. These are basically same hard disks as laptops which are slow as compared to internal hard disks used in desktops</p>
-<p>After careful consideration of many HDD connectivity solutions I came to conclusion that PiBox dock is best hardware for our low cost server. It can suspend the drive when not in use. It supports both 3.5/2.5 inch HDD and has USB3.0 interface. I have chosen Seagate Barracuda 3.5 inch HDD for my requirement. Another advantage of going with internal HDD is that they are cheaper as compared to their external counterpart. Regarding heat dissipation, since our drive is internal and docked there is no need for additional heat dissipation. I have checked temperatures and they are well within operating range of HDD. Ideally we should be using an enclosure with fans but that goes way over the budget for the low cost server that we want to build.</p>
-<p><strong>Bill of Materials</strong>:</p>
-<ol>
-<li><a href="https://www.pibox.in/product/raspberry-pi-4b-4gb/">Raspberry PI 4</a> with case and fan - INR 5800</li>
-<li><a href="https://www.pibox.in/product/pibox-india-usb-3-0-hard-drive-docking-station-usb-to-sata-docking-station-with-10tb-drive-support-for-2-5-inch-3-5-inch-hdd-ssd-supports-sata-i-ii-iii-and-uasp-asm1153e-top-loading-desi/">PiBox HDD Dock</a> - INR 1100</li>
-<li><a href="https://www.amazon.in/Seagate-BarraCuda-ST1000DM010-Desktop-Latest/dp/B01LNJBA2I/">Seagate Barracuda HDD 1TB</a> - INR 3000</li>
-</ol>
-<p>It costs little below INR 10,000 but if you compared this to the NAS solutions that are available in market this is pretty low cost. Not to mention its robust as well. I have been streaming 4K content, hosting an alternative to Google Photos and also a document server capable of running OCR on incoming documents but Raspberry Pi hardly breaks a sweat<sup>2</sup>. It&rsquo;s a tiny little beast. In my next post I will show you the kind of applications that I am self hosting at home. So stay tuned.</p>
-<p><img loading="lazy" src="/static/pi.jpg" alt=""  />
-</p>
-<p>Notes:</p>
-<ol>
-<li>We can turn off our server every night further improving cost savings but I will leave that as an exercise for the reader</li>
-<li>Your Pi will have hard time if you are expecting it to perform OCR while also transcoding media streams for multiple users. So yes your apps need to be configured properly to make the best out of this low cost setup.</li>
-</ol>
 ]]></content:encoded>
     </item>
     <item>
