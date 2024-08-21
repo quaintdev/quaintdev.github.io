@@ -53,7 +53,7 @@
 				</a>&#xa0;-&#xa0;
 				<xsl:value-of select="pubDate" />
 				</summary>
-				<xsl:value-of select="description" disable-output-escaping="yes" />
+				<xsl:value-of select="content" disable-output-escaping="yes" />
 				</details>
 		</xsl:for-each>
 		<p><xsl:value-of select="count(/rss/channel/item)"/> news items.</p>
