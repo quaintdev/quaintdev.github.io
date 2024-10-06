@@ -14,9 +14,9 @@
       <pubDate>Sun, 06 Oct 2024 21:14:27 +0530</pubDate>
       <guid>https://rohanrd.xyz/posts/selfhosting-with-ipv6-and-mtls/</guid>
       <description>Uncomplicate self hosting with IPv6 and mTLS</description>
-      <content:encoded><![CDATA[<p>People who frequent this blog know I love self hosting and I&rsquo;m hosting like a dozen of services from home.
-The pain is accessing these service while on the go.
-In India, CG-NAT is norm because there&rsquo;s just not enough IPv4 addresses.
+      <content:encoded><![CDATA[<p>People who frequent this blog know I love self hosting. I&rsquo;m hosting like a dozen of services from home.
+The pain is accessing these services on the go.
+In India, CG-NAT is norm and getting a static IPv4 address is expensive.
 So I&rsquo;m left with few options to access these services like VPN, third party tunnels or use IPv6.</p>
 <p>Now I get why a lot of self hosters prefer VPNs but I think they are just too much work for home use.
 Not to mention I would have to setup a private server to expose my home VPN network as I&rsquo;m on CG-NAT <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.
