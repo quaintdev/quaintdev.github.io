@@ -14,14 +14,13 @@
       <pubDate>Sun, 06 Oct 2024 21:14:27 +0530</pubDate>
       <guid>https://rohanrd.xyz/posts/selfhosting-with-ipv6-and-mtls/</guid>
       <description>Uncomplicate self hosting with IPv6 and mTLS</description>
-      <content:encoded><![CDATA[<p>I love self hosting and I&rsquo;m hosting like a dozen of services from home.
+      <content:encoded><![CDATA[<p>People who frequent this blog know I love self hosting and I&rsquo;m hosting like a dozen of services from home.
 The pain is accessing these service while on the go.
-In India, CG-NAT is default because there&rsquo;s just not enough IPv4 addresses.
-The options that I&rsquo;m left with to access these services are VPN, third party tunnels and IPv6.</p>
-<p>Now I get why lot of self hosters prefer VPNs but I think they are just too much work for home use.
-Not to mention I would have to setup a private server to expose my home VPN network as I&rsquo;m on CG-NAT.
-I could setup IPv6 only VPN and I tried that approach but again it was complicating things.
-I&rsquo;m not a fan of third party tunnels either. So I&rsquo;m left with IPv6 approach. Fortunately I get IPv6 at home and on mobile as well.
+In India, CG-NAT is norm because there&rsquo;s just not enough IPv4 addresses.
+So I&rsquo;m left with few options to access these services like VPN, third party tunnels or use IPv6.</p>
+<p>Now I get why a lot of self hosters prefer VPNs but I think they are just too much work for home use.
+Not to mention I would have to setup a private server to expose my home VPN network as I&rsquo;m on CG-NAT <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.
+I&rsquo;m not a fan of third party tunnels either. So I&rsquo;m left with plain IPv6 approach. Fortunately I get IPv6 at home and on mobile as well.
 Technically I should be able to access the services at home without much hassle.
 But then security wise I&rsquo;m exposing my server to all sorts of bots and bad actors.</p>
 <p>Solution? Expose services on IPv6 with mTLS enabled reverse-proxy.
@@ -44,6 +43,14 @@ mTLS config for caddy is quite simple:</p>
 The major one is you have to access most of your services via browser only because lot of mobile apps do not support mTLS auth.
 Another one is you can&rsquo;t access your services from network that does not support IPv6. The 2nd one is non-issue for me.
 I am mitigating the first one by using apps that do support mTLS or I use the web version only.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>I could setup IPv6 only VPN and I tried that approach but again it was complicating things.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 ]]></content:encoded>
     </item>
     <item>
