@@ -9,7 +9,7 @@
     <lastBuildDate>Sun, 06 Oct 2024 21:14:27 +0530</lastBuildDate>
     <atom:link href="https://rohanrd.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Selfhosting With Ipv6 and mTLS</title>
+      <title>Selfhosting With IPv6 and mTLS</title>
       <link>https://rohanrd.xyz/posts/selfhosting-with-ipv6-and-mtls/</link>
       <pubDate>Sun, 06 Oct 2024 21:14:27 +0530</pubDate>
       <guid>https://rohanrd.xyz/posts/selfhosting-with-ipv6-and-mtls/</guid>
@@ -18,7 +18,7 @@
 The pain is accessing these service while on the go.
 In India, CG-NAT is default because there&rsquo;s just not enough IPv4 addresses.
 The options that I&rsquo;m left with to access these services are VPN, third party tunnels and IPv6.</p>
-<p>I get why lot of self hosters prefer VPNs but I think they are just too much work for home use.
+<p>Now I get why lot of self hosters prefer VPNs but I think they are just too much work for home use.
 Not to mention I would have to setup a private server to expose my home VPN network.
 I&rsquo;m not a fan of third party tunnels. So I&rsquo;m left with IPv6. Fortunately I get IPv6 at home and on mobile as well.
 Technically I should be able to access the services at home without much hassle.
@@ -39,10 +39,10 @@ mTLS config for caddy is quite simple:</p>
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>	reverse_proxy :5006
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>I should mention that this method has it&rsquo;s disadvantages.
-The major one is you are now limited to access your services via browser only because lot of apps do not support mTLS auth.
+</span></span></code></pre></div><p>Like with everything there are some disadvantages of this method.
+The major one is you have to access most of your services via browser only because lot of mobile apps do not support mTLS auth.
 Another one is you can&rsquo;t access your services from network that does not support IPv6. The 2nd one is non-issue for me.
-I mitigate the first one by using apps that do support mTLS or I use the web version of the services only.</p>
+I am mitigating the first one by using apps that do support mTLS or I use the web version only.</p>
 ]]></content:encoded>
     </item>
     <item>
