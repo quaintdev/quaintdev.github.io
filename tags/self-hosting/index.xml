@@ -19,8 +19,9 @@ The pain is accessing these service while on the go.
 In India, CG-NAT is default because there&rsquo;s just not enough IPv4 addresses.
 The options that I&rsquo;m left with to access these services are VPN, third party tunnels and IPv6.</p>
 <p>Now I get why lot of self hosters prefer VPNs but I think they are just too much work for home use.
-Not to mention I would have to setup a private server to expose my home VPN network.
-I&rsquo;m not a fan of third party tunnels. So I&rsquo;m left with IPv6. Fortunately I get IPv6 at home and on mobile as well.
+Not to mention I would have to setup a private server to expose my home VPN network as I&rsquo;m on CG-NAT.
+I could setup IPv6 only VPN and I tried that approach but again it was complicating things.
+I&rsquo;m not a fan of third party tunnels either. So I&rsquo;m left with IPv6 approach. Fortunately I get IPv6 at home and on mobile as well.
 Technically I should be able to access the services at home without much hassle.
 But then security wise I&rsquo;m exposing my server to all sorts of bots and bad actors.</p>
 <p>Solution? Expose services on IPv6 with mTLS enabled reverse-proxy.
