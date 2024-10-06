@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://rohanrd.xyz/posts/</loc>
-    <lastmod>2024-08-15T02:49:22+05:30</lastmod>
+    <lastmod>2024-10-06T21:14:27+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/</loc>
-    <lastmod>2024-08-15T02:49:22+05:30</lastmod>
+    <lastmod>2024-10-06T21:14:27+05:30</lastmod>
+  </url><url>
+    <loc>https://rohanrd.xyz/posts/selfhosting-with-ipv6-and-mtls/</loc>
+    <lastmod>2024-10-06T21:14:27+05:30</lastmod>
   </url><url>
     <loc>https://rohanrd.xyz/tags/self-hosting/</loc>
     <lastmod>2024-08-15T02:49:22+05:30</lastmod>
