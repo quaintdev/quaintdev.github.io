@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Selfhosting With Ipv6 and mTLS | rohanrd.xyz</title>
-<meta name="keywords" content="">
+<meta name="keywords" content="self hosting">
 <meta name="description" content="Uncomplicate self hosting with IPv6 and mTLS">
 <meta name="author" content="Rohan D">
 <link rel="canonical" href="https://rohanrd.xyz/posts/selfhosting-with-ipv6-and-mtls/">
@@ -98,9 +98,9 @@
   "name": "Selfhosting With Ipv6 and mTLS",
   "description": "Uncomplicate self hosting with IPv6 and mTLS",
   "keywords": [
-    
+    "self hosting"
   ],
-  "articleBody": "I love self hosting and I’m hosting like a dozen of services from home. The pain is accessing these service while on the go. In India, CG-NAT is default because there’s just not enough IPv4 addresses. The options that I’m left with to access these services are VPN, third party tunnels and IPv6. I get why lot of self hosters prefer VPNs but I think they are just too much work for home use. Not to mention I would have to setup a private server to expose my home VPN network. I’m not a fan of third party tunnels. So I’m left with IPv6. Fortunately I get IPv6 at home and on mobile as well. Technically I should be able to access the services at home without much hassle. But then security wise I’m exposing my server to all sorts of bots and bad actors. Solution? Expose services on IPv6 with mTLS enabled reverse-proxy. mTLS ensures that only authenticated clients can connect to my home server. It achieves this by requesting client a pre-issued certificate. If the certificate is valid, the reverse-proxy allows connection to the backend service. Here’s a good resource that shows how to create your own CA and obtain the needed certs. The article is for nginx but I use caddy. mTLS config for caddy is quite simple:\nhttps://yourdomain.com { tls your@email.com{ # allows SSL connection client_auth { # mTLS config block mode require_and_verify trusted_ca_cert_file /etc/caddy/certs/private-ca.crt }\t} reverse_proxy :5006 } I should mention that this method has it’s disadvantages. The major one is you are now limited to access your services via browser only because lot of apps do not support mTLS auth. Another one is you can’t access your services from network that does not support IPv6. The 2nd one is non-issue for me. I mitigate the first one by using apps that do support mTLS or I use the web version of the services only.\n",
+  "articleBody": "I love self hosting and I’m hosting like a dozen of services from home. The pain is accessing these service while on the go. In India, CG-NAT is default because there’s just not enough IPv4 addresses. The options that I’m left with to access these services are VPN, third party tunnels and IPv6.\nI get why lot of self hosters prefer VPNs but I think they are just too much work for home use. Not to mention I would have to setup a private server to expose my home VPN network. I’m not a fan of third party tunnels. So I’m left with IPv6. Fortunately I get IPv6 at home and on mobile as well. Technically I should be able to access the services at home without much hassle. But then security wise I’m exposing my server to all sorts of bots and bad actors.\nSolution? Expose services on IPv6 with mTLS enabled reverse-proxy. mTLS ensures that only authenticated clients can connect to my home server. It achieves this by requesting client a pre-issued certificate. If the certificate is valid, the reverse-proxy allows connection to the backend service. Here’s a good resource that shows how to create your own CA and obtain the needed certs. The article is for nginx but I use caddy. mTLS config for caddy is quite simple:\nhttps://yourdomain.com { tls your@email.com{ # allows SSL connection client_auth { # mTLS config block mode require_and_verify trusted_ca_cert_file /etc/caddy/certs/private-ca.crt }\t} reverse_proxy :5006 } I should mention that this method has it’s disadvantages. The major one is you are now limited to access your services via browser only because lot of apps do not support mTLS auth. Another one is you can’t access your services from network that does not support IPv6. The 2nd one is non-issue for me. I mitigate the first one by using apps that do support mTLS or I use the web version of the services only.\n",
   "wordCount" : "321",
   "inLanguage": "en",
   "datePublished": "2024-10-06T21:14:27+05:30",
@@ -195,9 +195,22 @@
 
 </div>
   </header> 
-  <div class="post-content"><p>I love self hosting and I&rsquo;m hosting like a dozen of services from home. The pain is accessing these service while on the go. In India, CG-NAT is default because there&rsquo;s just not enough IPv4 addresses. The options that I&rsquo;m left with to access these services are VPN, third party tunnels and IPv6.
-I get why lot of self hosters prefer VPNs but I think they are just too much work for home use. Not to mention I would have to setup a private server to expose my home VPN network. I&rsquo;m not a fan of third party tunnels. So I&rsquo;m left with IPv6. Fortunately I get IPv6 at home and on mobile as well. Technically I should be able to access the services at home without much hassle. But then security wise I&rsquo;m exposing my server to all sorts of bots and bad actors.
-Solution? Expose services on IPv6 with mTLS enabled reverse-proxy. mTLS ensures that only authenticated clients can connect to my home server. It achieves this by requesting client a pre-issued certificate. If the certificate is valid, the reverse-proxy allows connection to the backend service. Here&rsquo;s a good <a href="https://fardog.io/blog/2017/12/30/client-side-certificate-authentication-with-nginx/">resource</a> that shows how to create your own CA and obtain the needed certs. The article is for nginx but I use caddy.  mTLS config for caddy is quite simple:</p>
+  <div class="post-content"><p>I love self hosting and I&rsquo;m hosting like a dozen of services from home.
+The pain is accessing these service while on the go.
+In India, CG-NAT is default because there&rsquo;s just not enough IPv4 addresses.
+The options that I&rsquo;m left with to access these services are VPN, third party tunnels and IPv6.</p>
+<p>I get why lot of self hosters prefer VPNs but I think they are just too much work for home use.
+Not to mention I would have to setup a private server to expose my home VPN network.
+I&rsquo;m not a fan of third party tunnels. So I&rsquo;m left with IPv6. Fortunately I get IPv6 at home and on mobile as well.
+Technically I should be able to access the services at home without much hassle.
+But then security wise I&rsquo;m exposing my server to all sorts of bots and bad actors.</p>
+<p>Solution? Expose services on IPv6 with mTLS enabled reverse-proxy.
+mTLS ensures that only authenticated clients can connect to my home server.
+It achieves this by requesting client a pre-issued certificate. If the certificate is valid,
+the reverse-proxy allows connection to the backend service.
+Here&rsquo;s a good <a href="https://fardog.io/blog/2017/12/30/client-side-certificate-authentication-with-nginx/">resource</a>
+that shows how to create your own CA and obtain the needed certs. The article is for nginx but I use caddy.
+mTLS config for caddy is quite simple:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>https://yourdomain.com {
 </span></span><span style="display:flex;"><span>	tls your@email.com{                  # allows SSL connection
 </span></span><span style="display:flex;"><span>		client_auth {                               # mTLS config block
@@ -207,19 +220,23 @@ Solution? Expose services on IPv6 with mTLS enabled reverse-proxy. mTLS ensures 
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>	reverse_proxy :5006
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>I should mention that this method has it&rsquo;s disadvantages. The major one is you are now limited to access your services via browser only because lot of apps do not support mTLS auth. Another one is you can&rsquo;t access your services from network that does not support IPv6. The 2nd one is non-issue for me. I mitigate the first one by using apps that do support mTLS or I use the web version of the services only.</p>
+</span></span></code></pre></div><p>I should mention that this method has it&rsquo;s disadvantages.
+The major one is you are now limited to access your services via browser only because lot of apps do not support mTLS auth.
+Another one is you can&rsquo;t access your services from network that does not support IPv6. The 2nd one is non-issue for me.
+I mitigate the first one by using apps that do support mTLS or I use the web version of the services only.</p>
 
 
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="https://rohanrd.xyz/tags/self-hosting/">Self Hosting</a></li>
     </ul>
 
 <ul class="share-buttons">
     <li>
         <a target="_blank" rel="noopener noreferrer" aria-label="share Selfhosting With Ipv6 and mTLS on x"
-            href="https://x.com/intent/tweet/?text=Selfhosting%20With%20Ipv6%20and%20mTLS&amp;url=https%3a%2f%2frohanrd.xyz%2fposts%2fselfhosting-with-ipv6-and-mtls%2f&amp;hashtags=">
+            href="https://x.com/intent/tweet/?text=Selfhosting%20With%20Ipv6%20and%20mTLS&amp;url=https%3a%2f%2frohanrd.xyz%2fposts%2fselfhosting-with-ipv6-and-mtls%2f&amp;hashtags=selfhosting">
             <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
                 <path
                     d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
