@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>self hosting on rohanrd.xyz</title>
+    <title>Self Hosting on rohanrd.xyz</title>
     <link>https://rohanrd.xyz/tags/self-hosting/</link>
-    <description>Recent content in self hosting on rohanrd.xyz</description>
-    <generator>Hugo -- 0.121.2</generator>
+    <description>Recent content in Self Hosting on rohanrd.xyz</description>
+    <generator>Hugo -- 0.126.2</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 06 Oct 2024 21:14:27 +0530</lastBuildDate>
     <atom:link href="https://rohanrd.xyz/tags/self-hosting/index.xml" rel="self" type="application/rss+xml" />
