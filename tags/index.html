@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+  <script>
+    (function() {
+      var theme = localStorage.getItem('theme') || 'retro';
+      var html = document.documentElement;
+      html.setAttribute('data-theme', theme);
+      if (theme === 'retro') {
+        html.classList.add('retro-fonts-loading');
+        var revealed = false;
+        function reveal() {
+          if (revealed) return;
+          revealed = true;
+          html.classList.remove('retro-fonts-loading');
+        }
+        document.fonts.ready.then(reveal);
+        setTimeout(reveal, 3000);
+      }
+    })();
+  </script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+<title>Tags | Ankshilp</title>
+
+<link rel="stylesheet" href="/css/style.min.eefda172d40a8a43c3ce4601bdd904c397e3beb7f2e56b599746f515d684c6c5.css" integrity="sha256-7v2hctQKikPDzkYBvdkEw5fjvrfy5WtZl0b1FdaExsU=" crossorigin="anonymous">
+<style>
+@font-face {
+    font-family: 'Fusion Pixel 12px';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url('/fonts/fusion-pixel-12px.woff2') format('woff2');
+}
+</style>
+<link rel="preload" as="font" href="/fonts/fusion-pixel-12px.woff2" type="font/woff2" crossorigin="anonymous" data-retro-font>
+      <script defer src="/js/main.d4a3a025161705e28b82287ed9103bfd8ffb5af98cc2afadbc2b9f31bf708c22.js" integrity="sha256-1KOgJRYXBeKLgih&#43;2RA7/Y/7WvmMwq&#43;tvCufMb9wjCI=" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+  <header>
+    <div class="site-header"><div class="site-brand">
+    <a class="title" href="/">
+      <h1>Ankshilp</h1>
+    </a>
+  </div>
+
+  <nav class="site-nav"><a href="/">Home</a>
+     <a href="/blog/">Blog</a>
+    <a href="/tags/">Tags</a></nav>
+  <button class="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5" />
+      <line x1="12" y1="1" x2="12" y2="3" />
+      <line x1="12" y1="21" x2="12" y2="23" />
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+      <line x1="1" y1="12" x2="3" y2="12" />
+      <line x1="21" y1="12" x2="23" y2="12" />
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+    </svg>
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+    <svg class="icon-retro" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 11V9.5C12 8 10.5 7.5 10.5 6c0-1.5 1.5-2.5 2.5-1.5s.5 2.5-1 3"/>
+      <rect x="1.5" y="11" width="21" height="11" rx="2"/>
+      <line x1="5.5" y1="16.5" x2="9.5" y2="16.5"/>
+      <line x1="7.5" y1="14.5" x2="7.5" y2="18.5"/>
+      <circle cx="15.5" cy="17.5" r="1.5"/>
+      <circle cx="19" cy="15" r="1.5"/>
+    </svg>
+  </button>
+</div>
+
+  </header>
+  <main>
+    
+<header class="page-header">
+  <h1 class="page-title">Tags</h1>
+</header>
+
+<div class="tags">
+  
+    <a rel="nofollow" href="/tags/self-hosting/">#self hosting</a>
+  
+</div>
+  </main>
+  <footer>
+    <div class="footer-controls"><nav class="footer-links" aria-label="Social links"><a href="/index.xml" title="RSS" aria-label="RSS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 11a9 9 0 0 1 9 9"></path>
+            <path d="M4 4a16 16 0 0 1 16 16"></path>
+            <circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"></circle>
+          </svg></a><a href="https://github.com/username" title="GitHub" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2A10 10 0 0 0 8.84 21.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.18-3.37-1.18-.46-1.16-1.12-1.47-1.12-1.47-.92-.63.07-.62.07-.62 1.01.08 1.54 1.04 1.54 1.04.9 1.55 2.37 1.1 2.94.84.09-.66.35-1.1.64-1.36-2.22-.25-4.55-1.12-4.55-4.96 0-1.1.39-2 1.03-2.7-.1-.26-.45-1.3.1-2.72 0 0 .85-.27 2.78 1.03A9.6 9.6 0 0 1 12 6.84a9.6 9.6 0 0 1 2.53.34c1.93-1.3 2.78-1.03 2.78-1.03.55 1.42.2 2.46.1 2.72.64.7 1.03 1.6 1.03 2.7 0 3.85-2.33 4.71-4.56 4.96.36.31.68.92.68 1.85v2.74c0 .27.18.59.69.48A10 10 0 0 0 12 2z"></path>
+          </svg></a><a href="https://x.com/username" title="X" aria-label="X" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.9 2H22l-6.77 7.73L23.2 22h-6.26l-4.9-7.44L5.54 22H2.4l7.23-8.25L1.8 2h6.38l4.42 6.77L18.9 2zm-1.1 18h1.73L7.25 3.9H5.4L17.8 20z"></path>
+          </svg></a><a href="https://www.linkedin.com/in/username" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M6.94 8.5a1.9 1.9 0 1 1 0-3.8 1.9 1.9 0 0 1 0 3.8zM5.3 9.9h3.3V20H5.3V9.9zm5.2 0h3.2v1.4h.05c.45-.84 1.55-1.73 3.2-1.73 3.42 0 4.05 2.25 4.05 5.17V20h-3.3v-4.7c0-1.12-.02-2.56-1.56-2.56-1.57 0-1.81 1.22-1.81 2.48V20h-3.3V9.9z"></path>
+          </svg></a><a href="mailto:you@example.com" title="Email" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <path d="m3 7 9 6 9-6"></path>
+          </svg></a></nav></div><p>&copy; 2026 Ankshilp — Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> &amp; <a href="https://github.com/binbinsh/hugo-trainsh" target="_blank">hugo-trainsh</a></p>
+
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      var themeToggle = document.querySelector('.theme-toggle');
+      if (themeToggle) {
+        function getEffectiveTheme() {
+          return localStorage.getItem('theme') || 'retro';
+        }
+
+        themeToggle.addEventListener('click', function() {
+          var current = getEffectiveTheme();
+          var order = ['light', 'dark', 'retro'];
+          var idx = order.indexOf(current);
+          var next = order[(idx + 1) % order.length];
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+          try { window.dispatchEvent(new Event('themechange')); } catch (_) {}
+        });
+      }
+
+      
+      var dropdown = document.querySelector('.lang-dropdown');
+      if (dropdown) {
+        var langToggle = dropdown.querySelector('.lang-toggle');
+
+        langToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          dropdown.classList.toggle('open');
+          langToggle.setAttribute('aria-expanded', dropdown.classList.contains('open'));
+        });
+
+        document.addEventListener('click', function(e) {
+          if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('open');
+            langToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+    });
+  </script></body>
+</html>
