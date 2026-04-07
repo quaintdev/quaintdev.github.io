@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home on Ankshilp</title>
-    <link>https://example.org/</link>
+    <link>https://ankshilp.in/</link>
     <description>Recent content in Home on Ankshilp</description>
     <generator>Hugo</generator>
     <language>en-US</language>
     <lastBuildDate>Thu, 26 Feb 2026 21:37:05 +0530</lastBuildDate>
-    <atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ankshilp.in/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>For The Love of Internet</title>
-      <link>https://example.org/posts/for-the-love-of-internet/</link>
+      <link>https://ankshilp.in/posts/for-the-love-of-internet/</link>
       <pubDate>Thu, 26 Feb 2026 21:37:05 +0530</pubDate>
-      <guid>https://example.org/posts/for-the-love-of-internet/</guid>
+      <guid>https://ankshilp.in/posts/for-the-love-of-internet/</guid>
       <description>&lt;p&gt;Two decades ago, when Indian ISPs had adequate IPv4 addresses, they were allocating free public IPs. I remember how exciting it was to host my own website from home and be able to access it from anywhere. Gaming was seamless with public IP. Peer to peer apps just worked. But as Internet users grew ISPs decided to deploy NAT. No more public IPs, no more free hosting. And it’s been like that for two decades now.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Distractions</title>
-      <link>https://example.org/posts/distractions/</link>
+      <link>https://ankshilp.in/posts/distractions/</link>
       <pubDate>Mon, 18 Aug 2025 21:37:05 +0530</pubDate>
-      <guid>https://example.org/posts/distractions/</guid>
+      <guid>https://ankshilp.in/posts/distractions/</guid>
       <description>&lt;p&gt;Our age is age of distractions. Instant messages, notifications, breaking news, endless stories, cute pet videos, random comments on social media are all distractions of one form or other. These distractions are dividing our attention which is already in short supply. Due to this, anything real like relationships, our own problems and issues, our thoughts and ideas forever remain on back burner. We don&amp;rsquo;t have time to sit with our own thoughts and ideas. How can we be healthy if we remain disconnected from ourselves?&lt;/p&gt;</description>
     </item>
     <item>
       <title>Why Start Self Hosting</title>
-      <link>https://example.org/posts/why_self_host/</link>
+      <link>https://ankshilp.in/posts/why_self_host/</link>
       <pubDate>Wed, 23 Mar 2022 00:02:34 +0530</pubDate>
-      <guid>https://example.org/posts/why_self_host/</guid>
+      <guid>https://ankshilp.in/posts/why_self_host/</guid>
       <description>Take control back of your digital life</description>
     </item>
   </channel>
