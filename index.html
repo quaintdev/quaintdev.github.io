@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
-	<meta name="generator" content="Hugo 0.150.0">
-  <script>
+	<meta name="generator" content="Hugo 0.150.0"><script>
     (function() {
-      var theme = localStorage.getItem('theme') || 'retro';
+      var defaultColorScheme = 'light';
+      var theme = localStorage.getItem('theme') || defaultColorScheme;
       var html = document.documentElement;
       html.setAttribute('data-theme', theme);
       if (theme === 'retro') {
@@ -24,7 +24,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
 <title>Ankshilp</title>
 
-<link rel="stylesheet" href="/css/style.min.eefda172d40a8a43c3ce4601bdd904c397e3beb7f2e56b599746f515d684c6c5.css" integrity="sha256-7v2hctQKikPDzkYBvdkEw5fjvrfy5WtZl0b1FdaExsU=" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/style.min.fefe22c24fd9940d80e86e85f0b064b685908a37301c1da5267d7a523fce3fc7.css" integrity="sha256-/v4iwk/ZlA2A6G6F8LBktoWQijcwHB2lJn16Uj/OP8c=" crossorigin="anonymous">
 <style>
 @font-face {
     font-family: 'Fusion Pixel 12px';
@@ -34,7 +34,6 @@
     src: url('/fonts/fusion-pixel-12px.woff2') format('woff2');
 }
 </style>
-<link rel="preload" as="font" href="/fonts/fusion-pixel-12px.woff2" type="font/woff2" crossorigin="anonymous" data-retro-font>
       <script defer src="/js/main.d4a3a025161705e28b82287ed9103bfd8ffb5af98cc2afadbc2b9f31bf708c22.js" integrity="sha256-1KOgJRYXBeKLgih&#43;2RA7/Y/7WvmMwq&#43;tvCufMb9wjCI=" crossorigin="anonymous"></script>
 
 
@@ -113,8 +112,9 @@
       
       var themeToggle = document.querySelector('.theme-toggle');
       if (themeToggle) {
+        var defaultColorScheme = 'light';
         function getEffectiveTheme() {
-          return localStorage.getItem('theme') || 'retro';
+          return localStorage.getItem('theme') || defaultColorScheme;
         }
 
         themeToggle.addEventListener('click', function() {
