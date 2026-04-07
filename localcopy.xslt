@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="3.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:atom="http://www.w3.org/2005/Atom">
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/">
 	<xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
 	<xsl:template match="/">
 	<xsl:variable name="owner_url"><xsl:value-of select="/rss/channel/link"/></xsl:variable>
@@ -53,7 +54,9 @@
 				</a>&#xa0;-&#xa0;
 				<xsl:value-of select="pubDate" />
 				</summary>
-				<xsl:value-of select="content" disable-output-escaping="yes" />
+				<div class="post-content">
+					<xsl:attribute name="data-content"><xsl:value-of select="content:encoded"/></xsl:attribute>
+				</div>
 				</details>
 		</xsl:for-each>
 		<p><xsl:value-of select="count(/rss/channel/item)"/> news items.</p>
@@ -61,6 +64,9 @@
 		<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
 		<script>
 			new ClipboardJS('.clipboard');
+			document.querySelectorAll('.post-content').forEach(function(el) {
+				el.innerHTML = el.getAttribute('data-content');
+			});
 		</script>
 	</body>
 </html>
