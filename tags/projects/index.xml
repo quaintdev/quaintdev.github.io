@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Ankshilp</title>
+    <link>https://ankshilp.in/tags/projects/</link>
+    <description>Recent content in Projects on Ankshilp</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 20 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ankshilp.in/tags/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Monitoring Solar Power Over WiFi</title>
+      <link>https://ankshilp.in/posts/monitoring_solar_panel_output_over_wifi/</link>
+      <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://ankshilp.in/posts/monitoring_solar_panel_output_over_wifi/</guid>
+      <description>Measuring solar panel output with Arduino and ESP8266 and viewing it on Grafana dashboard with InfluxDB hosted on Raspberry PI</description>
+    </item>
+  </channel>
+</rss>

@@ -29,5 +29,12 @@
       <guid>https://ankshilp.in/posts/why_self_host/</guid>
       <description>Take control back of your digital life</description>
     </item>
+    <item>
+      <title>Monitoring Solar Power Over WiFi</title>
+      <link>https://ankshilp.in/posts/monitoring_solar_panel_output_over_wifi/</link>
+      <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://ankshilp.in/posts/monitoring_solar_panel_output_over_wifi/</guid>
+      <description>Measuring solar panel output with Arduino and ESP8266 and viewing it on Grafana dashboard with InfluxDB hosted on Raspberry PI</description>
+    </item>
   </channel>
 </rss>
